@@ -68,14 +68,16 @@ export default function Navigation() {
                   <div
                     onMouseEnter={() => setIsMusicDropdownOpen(true)}
                     onMouseLeave={() => setIsMusicDropdownOpen(false)}
-                    className="absolute left-0 mt-2 w-56 bg-white/95 backdrop-blur-md border border-gray-200/50 rounded-md shadow-xl z-50"
+                    className="absolute right-0 mt-0 w-56 gradient-primary rounded-md shadow-xl border border-gray-200 z-[9999]"
+                    style={{ pointerEvents: 'auto', top: '100%' }}
                   >
                     <div className="py-1">
                       {musicItems.map((item) => (
                         <Link
                           key={item.name}
                           href={item.href}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
+                          className="block px-4 py-2 text-sm text-gray-300 hover:gradient-primary hover:text-white transition-colors duration-200"
+                          style={{ pointerEvents: 'auto' }}
                         >
                           {item.name}
                         </Link>
