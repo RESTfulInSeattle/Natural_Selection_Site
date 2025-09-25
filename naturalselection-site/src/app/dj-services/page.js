@@ -5,7 +5,7 @@ export default function DJServices() {
   return (
     <div className="min-h-screen gradient-primary">
       {/* Hero Section */}
-      <div className="gradient-hero text-white py-16 relative overflow-hidden">
+      <div className="gradient-mesh text-white py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <Image

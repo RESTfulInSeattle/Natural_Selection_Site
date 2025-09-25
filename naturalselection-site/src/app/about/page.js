@@ -15,7 +15,7 @@ export default async function About() {
 
   return (
     <div className="min-h-screen gradient-primary">
-      <ContentSection>
+      <ContentSection background="dark">
         <p className="text-lg text-gray-300 mb-6">
           Natural Selection was created by Dave Clayton in October 2003, and has remained an outlet for his passion for music.
         </p>        
