@@ -17,7 +17,7 @@ export default function Navigation() {
   ];
 
   const musicItems = [
-    { name: 'Natural Selection Albums', href: '/music' },
+    { name: 'Natural Selection Music', href: '/music' },
     { name: 'Clayton the Chemist', href: '/clayton-the-chemist' },
     { name: 'Music Publishing', href: '/publishing' }
   ];

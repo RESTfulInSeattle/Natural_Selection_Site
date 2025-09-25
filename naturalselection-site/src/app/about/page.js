@@ -11,7 +11,7 @@ export default async function About() {
     return <ExistingAboutContent />;
   }
 
-  const processedContent = processContentImages(aboutContent.content, aboutContent.path);
+  const processedContent = processContentImages(aboutContent.content, aboutContent.slug, 'page');
 
   return (
     <div className="min-h-screen gradient-section-light">
@@ -195,7 +195,7 @@ function ExistingAboutContent() {
         <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
           <div>
             <Image
-              src="/content/pages/2015/10/about/images/muralleveled.jpg"
+              src="/images/pages/about/muralleveled.jpg"
               alt="Natural Selection Mural by Bret Seyfert"
               width={500}
               height={300}
