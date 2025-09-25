@@ -1,0 +1,4 @@
+baseURL = "https://naturalselectionmusic.com"
+languageCode = "en-us"
+title = "Natural Selection Music"
+theme = "ananke"

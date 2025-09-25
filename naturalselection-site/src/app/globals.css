@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Modern gradient color stops for DJ/Music theme */
+  --gradient-primary-start: #1a1a2e;
+  --gradient-primary-end: #16213e;
+  --gradient-accent-start: #0f3460;
+  --gradient-accent-end: #533483;
+  --gradient-hero-start: #0c0c0c;
+  --gradient-hero-end: #1a1a2e;
+  --gradient-section-start: #f8fafc;
+  --gradient-section-end: #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --gradient-section-start: #1e293b;
+    --gradient-section-end: #334155;
+  }
+}
+
+/* Modern gradient classes */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--gradient-primary-start), var(--gradient-primary-end));
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--gradient-accent-start), var(--gradient-accent-end));
+}
+
+.gradient-hero {
+  background: linear-gradient(135deg, var(--gradient-hero-start) 0%, var(--gradient-hero-end) 100%);
+}
+
+.gradient-section-light {
+  background: linear-gradient(135deg, var(--gradient-section-start), var(--gradient-section-end));
+}
+
+.gradient-radial {
+  background: radial-gradient(ellipse at center, var(--gradient-primary-start), var(--gradient-primary-end));
+}
+
+.gradient-mesh {
+  background: 
+    radial-gradient(circle at 20% 80%, var(--gradient-accent-start) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--gradient-accent-end) 0%, transparent 50%),
+    linear-gradient(135deg, var(--gradient-primary-start), var(--gradient-primary-end));
+}
+
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* Prose styling for markdown content */
+.prose {
+  max-width: none;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose p {
+  color: #374151;
+  line-height: 1.625;
+  margin-bottom: 1rem;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.prose li {
+  margin-bottom: 0.25rem;
+}
+
+.prose img {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: #1d4ed8;
+}
+
+.prose blockquote {
+  border-left: 4px solid #d1d5db;
+  padding-left: 1rem;
+  font-style: italic;
+  margin: 1rem 0;
+  color: #6b7280;
+}
+
+.prose code {
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: monospace;
+}
+
+.prose pre {
+  background-color: #111827;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
