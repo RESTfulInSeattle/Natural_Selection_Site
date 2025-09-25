@@ -52,6 +52,31 @@
     linear-gradient(135deg, var(--gradient-primary-start), var(--gradient-primary-end));
 }
 
+/* Improved contrast classes for consistent text colors */
+.text-on-light {
+  color: #374151; /* gray-700 - good contrast on light backgrounds */
+}
+
+.text-heading-on-light {
+  color: #111827; /* gray-900 - strong contrast for headings on light */
+}
+
+.text-on-dark {
+  color: #f9fafb; /* gray-50 - good contrast on dark backgrounds */
+}
+
+.text-heading-on-dark {
+  color: #ffffff; /* white - strong contrast for headings on dark */
+}
+
+.text-muted-on-light {
+  color: #6b7280; /* gray-500 - muted text on light backgrounds */
+}
+
+.text-muted-on-dark {
+  color: #d1d5db; /* gray-300 - muted text on dark backgrounds */
+}
+
 body {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   color: var(--foreground);

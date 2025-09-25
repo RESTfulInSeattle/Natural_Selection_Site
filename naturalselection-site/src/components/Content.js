@@ -140,11 +140,17 @@ export function ContentSection({ children, className = "", background = "light" 
     ? "gradient-section-light" 
     : background === "dark" 
     ? "gradient-primary text-white" 
+    : background === "white"
+    ? "bg-white"
     : "bg-white";
+
+  const textClass = background === "dark" 
+    ? "text-white" 
+    : "text-gray-900";
 
   return (
     <div className={`py-16 ${bgClass} ${className}`}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 ${textClass}`}>
         {children}
       </div>
     </div>
