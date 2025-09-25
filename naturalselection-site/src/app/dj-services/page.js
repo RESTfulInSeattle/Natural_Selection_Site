@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function DJServices() {
   return (
-    <div className="min-h-screen gradient-section-light">
+    <div className="min-h-screen gradient-primary">
       {/* Hero Section */}
       <div className="gradient-hero text-white py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
@@ -18,19 +19,18 @@ export default function DJServices() {
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
             A great DJ plays the right song at the right time
           </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-8">
             With 28 years of experience across nightclubs, weddings, corporate events, fundraisers, 
             lounges, casinos, and outdoor races, Dave Clayton brings the expertise and passion to make your event a success.
           </p>
-        </div>
-      </div>
-
-      {/* Contact Info Banner */}
-      <div className="gradient-accent text-white py-4">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-lg">
-            📞 Call or text <a href="tel:206-851-0003" className="font-bold hover:underline">206-851-0003</a> for a quote
-          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/contact" 
+              className="inline-block gradient-accent text-white px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-200 shadow-lg"
+            >
+              Get Quote
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -39,24 +39,24 @@ export default function DJServices() {
         
         {/* Service Description */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-gray-900">Professional DJ Services</h2>
-          <p className="text-lg text-gray-700 mb-4">
+          <h2 className="text-3xl font-bold mb-6 text-white">Professional DJ Services</h2>
+          <p className="text-lg text-gray-300 mb-4">
             No event and crowd are the same. You need a seasoned professional to both keep the event on schedule, 
             and the crowd entertained with music that speaks to them.
           </p>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-300">
             Sound and Lighting can be scaled up and down to your needs and venue size.
           </p>
         </div>
 
         {/* Equipment & Services */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-8 mb-12 border border-white/30 shadow-xl">
-          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Equipment & Capabilities</h2>
+        <div className="gradient-primary backdrop-blur-sm rounded-lg p-8 mb-12 border border-white/30 shadow-xl">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-300">Equipment & Capabilities</h2>
           <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
             
             {/* Audio Equipment */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-              <h3 className="text-xl font-bold mb-4 text-gray-900 flex items-center">
+            <div className="gradient-primary backdrop-blur-sm rounded-lg p-6 border border-white/20">
+              <h3 className="text-xl font-bold mb-4 text-gray-300 flex items-center">
                 <div className="gradient-accent text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217z" clipRule="evenodd"/>
@@ -64,7 +64,7 @@ export default function DJServices() {
                 </div>
                 Audio Systems
               </h3>
-              <ul className="space-y-3 text-gray-700">
+              <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start">
                   <span className="text-green-600 mr-3">✓</span>
                   2 Simultaneous wireless microphones (handheld, lapel, or combination)
@@ -85,8 +85,8 @@ export default function DJServices() {
             </div>
 
             {/* Lighting */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-              <h3 className="text-xl font-bold mb-4 text-gray-900 flex items-center">
+            <div className="gradient-primarybackdrop-blur-sm rounded-lg p-6 border border-white/20">
+              <h3 className="text-xl font-bold mb-4 text-gray-300 flex items-center">
                 <div className="gradient-accent text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 6.343a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464a1 1 0 10-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.477.859h4z"/>
@@ -94,7 +94,7 @@ export default function DJServices() {
                 </div>
                 Lighting Systems
               </h3>
-              <ul className="space-y-3 text-gray-700">
+              <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start">
                   <span className="text-green-600 mr-3">✓</span>
                   Dance lighting that moves to the beat of the music
@@ -118,7 +118,7 @@ export default function DJServices() {
 
         {/* Event Types */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Event Experience</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-300">Event Experience</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { name: "Weddings", icon: "💒" },
@@ -130,18 +130,18 @@ export default function DJServices() {
               { name: "Races and Festivals", icon: "🏃" },
               { name: "Private Parties", icon: "🎉" }
             ].map((event, index) => (
-              <div key={index} className="text-center p-4 bg-white/90 backdrop-blur-sm border border-white/30 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-200">
+              <div key={index} className="text-center p-4 gradient-primary backdrop-blur-sm border border-white/30 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-200">
                 <div className="text-3xl mb-2">{event.icon}</div>
-                <div className="font-semibold text-gray-900">{event.name}</div>
+                <div className="font-semibold text-gray-300">{event.name}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* DJ Mixes Section */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-8 mb-12 border border-white/30 shadow-xl">
-          <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">DJ Mixes by Dave Clayton</h2>
-          <p className="text-center text-gray-700 mb-8">
+        <div className="gradient-primary backdrop-blur-sm rounded-lg p-8 mb-12 border border-white/30 shadow-xl">
+          <h2 className="text-3xl font-bold mb-6 text-center text-gray-300">DJ Mixes by Dave Clayton</h2>
+          <p className="text-center text-gray-300 mb-8">
             Listen to various decades and genres showcasing Dave's versatility and skill
           </p>
           
@@ -154,12 +154,12 @@ export default function DJServices() {
               "Natural Selection 90s", 
               "Natural Selection Top 40"
             ].map((mix, index) => (
-              <div key={index} className="bg-white/80 backdrop-blur-sm p-4 rounded border border-white/20 shadow-lg">
+              <div key={index} className="gradient-primary backdrop-blur-sm p-4 rounded border border-white/20 shadow-lg">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-900">{mix}</span>
+                  <span className="font-semibold text-gray-300">{mix}</span>
                   <span className="text-sm text-gray-500">Mixcloud Player</span>
                 </div>
-                <div className="mt-2 text-sm text-gray-600">
+                <div className="mt-2 text-sm text-gray-400">
                   🎵 Preview available - Full integration coming soon
                 </div>
               </div>
@@ -169,14 +169,8 @@ export default function DJServices() {
 
         {/* Testimonials */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900"></h2>
-          <div className="bg-white/90 backdrop-blur-sm border border-white/30 rounded-lg p-6 text-center shadow-lg">
-            <p className="text-lg text-gray-700 mb-4">
-             
-            </p>
-            <p className="font-semibold text-gray-900"></p>
-          </div>
-          <div className="text-center mt-6">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-300"></h2>
+          <div className="gradient-primary backdrop-blur-sm border border-white/30 rounded-lg p-6 text-center shadow-lg">
             <a 
               href="http://yelp.com/biz/natural-selection-seattle" 
               target="_blank" 
@@ -199,16 +193,10 @@ export default function DJServices() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="tel:206-851-0003" 
-              className="inline-block bg-white text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
-            >
-              📞 Call 206-851-0003
-            </a>
-            <a 
               href="/contact" 
               className="inline-block border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors duration-200"
             >
-              Contact Form
+              Get Quote
             </a>
           </div>
         </div>
