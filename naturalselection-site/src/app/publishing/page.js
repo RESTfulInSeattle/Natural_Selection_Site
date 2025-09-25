@@ -32,7 +32,7 @@ export default function Publishing() {
           <h2 className="text-3xl font-bold mb-6 text-gray-300">Music That Tells Your Story</h2>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
             Music invokes emotion, and can help take the viewer to that place in the scene. 
-            Natural Selection Music's diverse catalog of moods should have one your movie is looking for.
+            Natural Selection Music&apos;s diverse catalog of moods should have one your movie is looking for.
           </p>
           <div className="gradient-primary rounded-lg p-6 inline-block">
             <p className="text-lg font-semibold text-gray-300 mb-2">Licensed through</p>
@@ -69,7 +69,7 @@ export default function Publishing() {
               { title: "Beautiful World ft Moqita", id: "882024415", mood: "Cinematic, Hopeful" },
               { title: "Healing Dub ft Moqita", id: "381004313", mood: "Ambient, Meditative" },
               { title: "Making With", id: "882044503", mood: "Creative, Energetic" },
-              { title: "What You're Feeling ft Moqita", id: "882025297", mood: "Emotional, Introspective" },
+              { title: "What You&apos;re Feeling ft Moqita", id: "882025297", mood: "Emotional, Introspective" },
               { title: "Holler ft Moqita", id: "882026278", mood: "Urban, Dynamic" },
               { title: "Resistance ft Moqita", id: "882025892", mood: "Powerful, Dramatic" },
               { title: "The Heart Area ft Moqita", id: "882026143", mood: "Soulful, Deep" },

@@ -142,7 +142,7 @@ export default function DJServices() {
         <div className="gradient-primary backdrop-blur-sm rounded-lg p-8 mb-12 border border-white/30 shadow-xl">
           <h2 className="text-3xl font-bold mb-6 text-center text-gray-300">DJ Mixes by Dave Clayton</h2>
           <p className="text-center text-gray-300 mb-8">
-            Listen to various decades and genres showcasing Dave's versatility and skill
+            Listen to various decades and genres showcasing Dave&apos;s versatility and skill
           </p>
           
           {/* Placeholder for Mixcloud embeds - will be implemented as components later */}

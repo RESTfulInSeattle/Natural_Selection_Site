@@ -32,7 +32,7 @@ export default function Mastering() {
         <div className="mb-12">
           <h2 className="text-3xl font-bold mb-6 text-white">Mastering Excellence</h2>
           <p className="text-lg text-gray-300 mb-4">
-            You've completed that mix or album you live for, and now you need mastering to push your vision further. 
+            You&apos;ve completed that mix or album you live for, and now you need mastering to push your vision further. 
             Dave Clayton will assure your mix translates, and makes an impact, on any system played.
           </p>
           <p className="text-lg text-gray-300">
@@ -233,7 +233,7 @@ export default function Mastering() {
         <div className="gradient-primary text-white rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to Master Your Music?</h2>
           <p className="text-lg text-gray-300 mb-6">
-            Let's discuss your project and how mastering can take your music to the next level.
+            Let&apos;s discuss your project and how mastering can take your music to the next level.
           </p>
           <a 
             href="/contact" 

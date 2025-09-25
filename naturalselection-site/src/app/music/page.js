@@ -19,7 +19,7 @@ export default function Music() {
             Music for your soul, as well as your backside
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Clayton and Fulcrum's original compositions and releases spanning multiple genres and moods.
+            Clayton and Fulcrum&apos;s original compositions and releases spanning multiple genres and moods.
           </p>
         </div>
       </div>
