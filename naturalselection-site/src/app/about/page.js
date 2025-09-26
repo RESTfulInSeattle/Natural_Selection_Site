@@ -41,7 +41,7 @@ export default async function About() {
               and enjoys sharing his knowledge and mentoring others.
             </p>
             <p className="text-gray-300 mb-6">
-              Natural Selection was created in October 2003 as an outlet for Dave's passion for music. 
+              Natural Selection was created in October 2003 as an outlet for Dave&apos;s passion for music. 
               His underground moniker, Clayton the Chemist, features vibes that run the gamut of House, 
               Bass Music, Drum & Bass, Nu Funk, Nu Jazz, and Nu Soul.
             </p>
@@ -77,7 +77,7 @@ export default async function About() {
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold mb-4">Ready to Make Your Event Unforgettable?</h2>
           <p className="text-lg text-gray-300 mb-6">
-            Let's discuss how Natural Selection can bring the perfect sound to your next event.
+            Let&apos;s discuss how Natural Selection can bring the perfect sound to your next event.
           </p>
           <a 
             href="/contact" 
@@ -201,7 +201,7 @@ function ExistingAboutContent() {
         <div className="bg-black text-white rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to Make Your Event Unforgettable?</h2>
           <p className="text-lg text-gray-300 mb-6">
-            Let's discuss how Natural Selection Deejaying can bring the perfect sound to your next event.
+            Let&apos;s discuss how Natural Selection Deejaying can bring the perfect sound to your next event.
           </p>
           <a 
             href="/contact" 

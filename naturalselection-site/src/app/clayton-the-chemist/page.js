@@ -33,7 +33,7 @@ export default function ClaytonTheChemist() {
           </div>
           <div>
             <blockquote className="text-2xl italic text-gray-300 mb-8 border-l-4 border-purple-600 pl-6">
-              "You look like a mad scientist up there mixing records, like some crazy chemist"
+              &quot;You look like a mad scientist up there mixing records, like some crazy chemist&quot;
               <footer className="text-base text-gray-200 mt-4 not-italic">- JJ Brown</footer>
             </blockquote>
             <p className="text-lg text-gray-300 mb-6">
@@ -125,7 +125,7 @@ export default function ClaytonTheChemist() {
 
         {/* Philosophy */}
         <div className="gradient-primary from-purple-50 to-blue-50 rounded-lg p-8 mb-16">
-          <h2 className="text-3xl font-bold mb-6 text-center text-gray-300">The Chemist's Philosophy</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center text-gray-300">The Chemist&apos;s Philosophy</h2>
           <div className="text-center max-w-4xl mx-auto">
             <p className="text-lg text-gray-300 mb-6">
              When you hear the first notes of Stevie Wonder’s voice, you instantly feel what he’s singing about. The range of my sets, and musical library, will be broad, but the thing that ties everything together, the essential element, is that you will feel the emotion the song is conveying
