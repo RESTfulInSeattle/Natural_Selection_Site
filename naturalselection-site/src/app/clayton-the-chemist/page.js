@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SoundCloudPlayer, MusicSection } from "@/components/MusicPlayers";
 
 export default function ClaytonTheChemist() {
   return (
@@ -100,23 +101,25 @@ export default function ClaytonTheChemist() {
                 </div>
 
                 {/* Original Songs */}
-                <div className="gradient-primary  rounded-lg p-6 border border-gray-200">
-                  <h4 className="text-lg font-semibold mb-2">Original Songs</h4>
-                  <p className="text-sm text-gray-600 mb-4">Collection of original compositions and productions</p>
-                  <div className="gradient-primary  p-4 rounded text-center">
-                    <p className="text-xs text-gray-500">Playlist ID: 19050410</p>
-                    <p className="text-xs text-gray-400 mt-1">SoundCloud embed coming soon</p>
-                  </div>
+                <div className="gradient-primary rounded-lg p-6 border border-gray-200">
+                  <h4 className="text-lg font-semibold mb-2 text-gray-300">Original Songs</h4>
+                  <p className="text-sm text-gray-400 mb-4">Collection of original compositions and productions</p>
+                  <SoundCloudPlayer 
+                    playlistId="19050410" 
+                    title="Original Compositions"
+                    height="450"
+                  />
                 </div>
 
                 {/* Remixes and Edits */}
-                <div className="gradient-primary  rounded-lg p-6 border border-gray-200">
-                  <h4 className="text-lg font-semibold mb-2">Remixes and Edits</h4>
-                  <p className="text-sm text-gray-600 mb-4">Remixes, edits, and reimagined tracks</p>
-                  <div className="gradient-primary  p-4 rounded text-center">
-                    <p className="text-xs text-gray-500">Playlist ID: 527718</p>
-                    <p className="text-xs text-gray-400 mt-1">SoundCloud embed coming soon</p>
-                  </div>
+                <div className="gradient-primary rounded-lg p-6 border border-gray-200">
+                  <h4 className="text-lg font-semibold mb-2 text-gray-300">Remixes and Edits</h4>
+                  <p className="text-sm text-gray-400 mb-4">Remixes, edits, and reimagined tracks</p>
+                  <SoundCloudPlayer 
+                    playlistId="527718" 
+                    title="Remixes & Edits"
+                    height="450"
+                  />
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MixcloudPlayer, MusicSection } from "@/components/MusicPlayers";
 
 export default function DJServices() {
   return (
@@ -145,25 +146,51 @@ export default function DJServices() {
             Listen to various decades and genres showcasing Dave&apos;s versatility and skill
           </p>
           
-          {/* Placeholder for Mixcloud embeds - will be implemented as components later */}
-          <div className="grid md:grid-cols-1 gap-6">
-            {[
-              "Winchester Goose Set",
-              "Natural Selection Disco",
-              "Natural Selection 80s",
-              "Natural Selection 90s", 
-              "Natural Selection Top 40"
-            ].map((mix, index) => (
-              <div key={index} className="gradient-primary backdrop-blur-sm p-4 rounded border border-white/20 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-300">{mix}</span>
-                  <span className="text-sm text-gray-500">Mixcloud Player</span>
-                </div>
-                <div className="mt-2 text-sm text-gray-400">
-                  🎵 Preview available - Full integration coming soon
-                </div>
-              </div>
-            ))}
+          {/* Mixcloud Players */}
+          <div className="space-y-6">
+            <MixcloudPlayer 
+              url="/naturalselection-seattle/winchester-goose-set/"
+              title="Natural Selection Funk and Soul"
+              height="120"
+            />
+            
+            <MixcloudPlayer 
+              url="/naturalselection-seattle/natural-selection-disco/"
+              title="Natural Selection Disco"
+              height="120"
+            />
+            
+            <MixcloudPlayer 
+              url="/naturalselection-seattle/natural-selection-80s/"
+              title="Natural Selection 80s"
+              height="120"
+            />
+            
+            <MixcloudPlayer 
+              url="/naturalselection-seattle/natural-selection-90s/"
+              title="Natural Selection 90s"
+              height="120"
+            />
+            
+            <MixcloudPlayer 
+              url="/naturalselection-seattle/natural-selection-top-40/"
+              title="Natural Selection Top 40"
+              height="120"
+            />
+          </div>
+          
+          <div className="text-center mt-6">
+            <a 
+              href="https://www.mixcloud.com/naturalselection-seattle/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold"
+            >
+              View All Mixes on Mixcloud
+              <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"/>
+              </svg>
+            </a>
           </div>
         </div>
 

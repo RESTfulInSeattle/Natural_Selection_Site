@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SoundCloudPlayer, SpotifyPlayer, AppleMusicPlayer, MusicSection } from "@/components/MusicPlayers";
 
 export default function Music() {
   return (
@@ -31,64 +32,60 @@ export default function Music() {
         <div className="mb-16">
           <div className="grid md:grid-cols-2 gap-12 mb-12">
             {/* The Soul Purpose */}
-            <div className="gradient-primary  rounded-lg p-6">
-              <h3 className="text-2xl font-bold mb-6 text-center">The Soul Purpose</h3>
-              <div className="gradient-primary  rounded-lg p-4 mb-6">
-                {/* Placeholder for SoundCloud embed */}
-                <div className="text-center p-8 border-2 border-dashed border-gray-300 rounded">
-                  <div className="text-4xl mb-4">🎵</div>
-                  <p className="text-sm text-gray-600 mb-2">SoundCloud Playlist</p>
-                  <p className="text-xs text-gray-500">Playlist ID: 296341</p>
-                </div>
+            <div className="gradient-primary rounded-lg p-6">
+              <h3 className="text-2xl font-bold mb-6 text-center text-gray-300">The Soul Purpose</h3>
+              
+              {/* SoundCloud Playlist */}
+              <div className="mb-6">
+                <SoundCloudPlayer 
+                  playlistId="296341" 
+                  title="Full Album - SoundCloud"
+                />
               </div>
               
-              {/* Spotify Embed Placeholder */}
-              <div className=" rounded-lg p-4 mb-4">
-                <div className="text-center p-6 border-2 border-dashed border-gray-300 rounded">
-                  <div className="text-green-600 text-3xl mb-2">♪</div>
-                  <p className="text-sm text-gray-600 mb-2">Available on Spotify</p>
-                  <p className="text-xs text-gray-500">Album ID: 35mVsGO3cS1LAL0PlwfIkg</p>
-                </div>
+              {/* Spotify Album */}
+              <div className="mb-6">
+                <SpotifyPlayer 
+                  albumId="35mVsGO3cS1LAL0PlwfIkg" 
+                  title="Stream on Spotify"
+                />
               </div>
 
-              {/* Apple Music Embed Placeholder */}
-              <div className="gradient-primary rounded-lg p-4">
-                <div className="text-center p-6 border-2 border-dashed border-gray-300 rounded">
-                  <div className="text-gray-800 text-3xl mb-2">🍎</div>
-                  <p className="text-sm text-gray-600 mb-2">Available on Apple Music</p>
-                  <p className="text-xs text-gray-500">Album ID: 49523137</p>
-                </div>
+              {/* Apple Music Album */}
+              <div className="mb-4">
+                <AppleMusicPlayer 
+                  albumId="49523137" 
+                  title="Listen on Apple Music"
+                />
               </div>
             </div>
 
             {/* Songs from the Soul City */}
-            <div className="gradient-primary  rounded-lg p-6">
-              <h3 className="text-2xl font-bold mb-6 text-center">Songs from the Soul City</h3>
-              <div className="gradient-primary rounded-lg p-4 mb-6">
-                {/* Placeholder for SoundCloud embed */}
-                <div className="text-center p-8 border-2 border-dashed border-gray-300 rounded">
-                  <div className="text-4xl mb-4">🎵</div>
-                  <p className="text-sm text-gray-600 mb-2">SoundCloud Playlist</p>
-                  <p className="text-xs text-gray-500">Playlist ID: 300979</p>
-                </div>
+            <div className="gradient-primary rounded-lg p-6">
+              <h3 className="text-2xl font-bold mb-6 text-center text-gray-300">Songs from the Soul City</h3>
+              
+              {/* SoundCloud Playlist */}
+              <div className="mb-6">
+                <SoundCloudPlayer 
+                  playlistId="300979" 
+                  title="Full Album - SoundCloud"
+                />
               </div>
               
-              {/* Spotify Embed Placeholder */}
-              <div className="gradient-primary  rounded-lg p-4 mb-4">
-                <div className="text-center p-6 border-2 border-dashed border-gray-300 rounded">
-                  <div className="text-green-600 text-3xl mb-2">♪</div>
-                  <p className="text-sm text-gray-600 mb-2">Available on Spotify</p>
-                  <p className="text-xs text-gray-500">Album ID: 2HI8vZKInuaab67WDTtidl</p>
-                </div>
+              {/* Spotify Album */}
+              <div className="mb-6">
+                <SpotifyPlayer 
+                  albumId="2HI8vZKInuaab67WDTtidl" 
+                  title="Stream on Spotify"
+                />
               </div>
 
-              {/* Apple Music Embed Placeholder */}
-              <div className="gradient-primary  rounded-lg p-4">
-                <div className="text-center p-6 border-2 border-dashed border-gray-300 rounded">
-                  <div className="text-gray-800 text-3xl mb-2">🍎</div>
-                  <p className="text-sm text-gray-600 mb-2">Available on Apple Music</p>
-                  <p className="text-xs text-gray-500">Album ID: 256424222</p>
-                </div>
+              {/* Apple Music Album */}
+              <div className="mb-4">
+                <AppleMusicPlayer 
+                  albumId="256424222" 
+                  title="Listen on Apple Music"
+                />
               </div>
             </div>
           </div>
