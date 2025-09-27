@@ -147,50 +147,30 @@ export default function DJServices() {
           </p>
           
           {/* Mixcloud Players */}
-          <div className="space-y-6">
+          <div className="space-y-6">          
             <MixcloudPlayer 
-              url="/naturalselection-seattle/winchester-goose-set/"
-              title="Natural Selection Funk and Soul"
-              height="120"
-            />
-            
-            <MixcloudPlayer 
-              url="/naturalselection-seattle/natural-selection-disco/"
+              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-disco/"
               title="Natural Selection Disco"
               height="120"
             />
             
             <MixcloudPlayer 
-              url="/naturalselection-seattle/natural-selection-80s/"
+              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-80s/"
               title="Natural Selection 80s"
               height="120"
             />
             
             <MixcloudPlayer 
-              url="/naturalselection-seattle/natural-selection-90s/"
+              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-90s/"
               title="Natural Selection 90s"
               height="120"
             />
             
             <MixcloudPlayer 
-              url="/naturalselection-seattle/natural-selection-top-40/"
+              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-top-40/"
               title="Natural Selection Top 40"
               height="120"
             />
-          </div>
-          
-          <div className="text-center mt-6">
-            <a 
-              href="https://www.mixcloud.com/naturalselection-seattle/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold"
-            >
-              View All Mixes on Mixcloud
-              <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"/>
-              </svg>
-            </a>
           </div>
         </div>
 

@@ -12,10 +12,10 @@ export default function Publishing() {
             alt="Natural Selection Music Publishing"
             width={550}
             height={94}
-            className="mx-auto mb-8"
+            className="mx-auto mb-4"
             priority
           />
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Music Publishing & Licensing
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
@@ -28,9 +28,9 @@ export default function Publishing() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         {/* Introduction */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-4">
           <h2 className="text-3xl font-bold mb-6 text-gray-300">Music That Tells Your Story</h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-4">
             Music invokes emotion, and can help take the viewer to that place in the scene. 
             Natural Selection Music&apos;s diverse catalog of moods should have one your movie is looking for.
           </p>
@@ -42,15 +42,20 @@ export default function Publishing() {
         </div>
 
         {/* Featured Licensing Playlist */}
-        <div className="gradient-primary rounded-lg p-8 mb-16">
+        <div className="gradient-primary rounded-lg p-8 mb-4">
           <h2 className="text-3xl font-bold mb-8 text-center text-gray-300">Licensing Catalog</h2>
           <div className="text-center mb-8">
-            <div className="gradient-primary rounded-lg p-8 border-2 border-dashed border-gray-300 max-w-2xl mx-auto">
-              <div className="text-4xl mb-4">🎵</div>
-              <h3 className="text-xl font-semibold mb-4">SoundCloud Licensing Playlist</h3>
-              <p className="text-sm text-gray-300 mb-4">Complete catalog of licensable tracks</p>
-              <p className="text-xs text-gray-300">Playlist ID: 1538598</p>
-              <p className="text-xs text-gray-400 mt-2">Full embed integration coming soon</p>
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 shadow-lg max-w-4xl mx-auto">
+             <iframe 
+                width="100%" 
+                height="400" 
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A1538598&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                className="rounded"
+              />
+              <div style={{fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100}}>
+                <a href="https://soundcloud.com/naturalselection" title="NaturalSelection" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>NaturalSelection</a> · <a href="https://soundcloud.com/naturalselection/sets/publishing-versions" title="Publishing Versions" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>Publishing Versions</a>
+              </div>
             </div>
           </div>
         </div>

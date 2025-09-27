@@ -22,7 +22,7 @@ export default function ClaytonTheChemist() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         {/* Origin Story */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-8">
           <div>
             <Image
               src="/content/pages/2019/07/clayton-the-chemist/images/clayton-the-chemist-character-scaled.jpg"
@@ -49,54 +49,61 @@ export default function ClaytonTheChemist() {
         </div>
 
         {/* Streaming Platforms */}
-        <div className="mb-16">
+        <div className="mb-8">
 
           {/* Spotify */}
-          <div className="gradient-primary  rounded-lg p-8 mb-8">
-            <h3 className="text-2xl font-bold mb-6 text-center flex items-center justify-center">
-              <span className="text-green-600 mr-3">🎵</span>
-              Spotify
-            </h3>
-            <div className="gradient-primary  rounded-lg p-6 border-2 border-dashed border-gray-300">
-              <div className="text-center">
-                <p className="text-lg text-gray-700 mb-4">Clayton the Chemist Artist Page</p>
-                <p className="text-sm text-gray-500 mb-4">Artist ID: 5JakVmGiAB3D9RRqkXn2PZ</p>
-                <p className="text-xs text-gray-400">Full embed integration coming soon</p>
-              </div>
+          <div className="gradient-primary rounded-lg p-8 mb-4">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 shadow-lg">
+              <iframe 
+                data-testid="embed-iframe" 
+                style={{borderRadius: '12px'}} 
+                src="https://open.spotify.com/embed/artist/5JakVmGiAB3D9RRqkXn2PZ?utm_source=generator" 
+                width="100%" 
+                height="352" 
+                frameBorder="0" 
+                allowFullScreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy"
+              />
             </div>
           </div>
 
           {/* Apple Music */}
-          <div className="gradient-primary  rounded-lg p-8 mb-8">
-            <h3 className="text-2xl font-bold mb-6 text-center flex items-center justify-center">
-              <span className="text-gray-800 mr-3">🍎</span>
-              Apple Music
-            </h3>
-            <div className="gradient-primary  rounded-lg p-6 border-2 border-dashed border-gray-300">
-              <div className="text-center">
-                <p className="text-lg text-gray-700 mb-4">Introspectral EP</p>
-                <p className="text-sm text-gray-500 mb-4">Album ID: 1678143526</p>
-                <p className="text-xs text-gray-400">Full embed integration coming soon</p>
-              </div>
+          <div className="gradient-primary rounded-lg p-8 mb-4">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 shadow-lg">
+              <iframe 
+                src="https://embed.music.apple.com/us/artist/clayton-the-chemist/942054999"
+                height="450"
+                width="100%"
+                frameBorder="0" 
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                className="rounded"
+              />
             </div>
           </div>
 
           {/* SoundCloud Playlists */}
           <div className="grid md:grid-cols-1 gap-8">
             <div className="gradient-primary  rounded-lg p-8">
-              <h3 className="text-2xl font-bold mb-6 text-center flex items-center justify-center">
-                <span className="text-orange-500 mr-3">☁️</span>
-                SoundCloud
-              </h3>
-              
               <div className="space-y-6">
                 {/* Introspectral EP */}
-                <div className="gradient-primary  rounded-lg p-6 border border-gray-200">
-                  <h4 className="text-lg font-semibold mb-2">Introspectral EP</h4>
-                  <p className="text-sm text-gray-600 mb-4">Latest electronic music release</p>
-                  <div className="gradient-primary  p-4 rounded text-center">
-                    <p className="text-xs text-gray-500">Playlist ID: 1614946756</p>
-                    <p className="text-xs text-gray-400 mt-1">SoundCloud embed coming soon</p>
+                <div className="gradient-primary rounded-lg p-6 border border-gray-200">
+                  <h4 className="text-lg font-semibold mb-2 text-gray-300">Introspectral EP</h4>
+                  <p className="text-sm text-gray-400 mb-4">Latest electronic music release</p>
+                  <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 shadow-lg">
+                    <iframe 
+                      width="100%" 
+                      height="300" 
+                      scrolling="no" 
+                      frameBorder="no" 
+                      allow="autoplay"
+                      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A1614946756&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                      className="rounded"
+                    />
+                    <div style={{fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100}}>
+                      <a href="https://soundcloud.com/claytonthechemist" title="Clayton the Chemist" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>Clayton the Chemist</a> · <a href="https://soundcloud.com/claytonthechemist/sets/introspectral-ep" title="Introspectral EP" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>Introspectral EP</a>
+                    </div>
                   </div>
                 </div>
 
