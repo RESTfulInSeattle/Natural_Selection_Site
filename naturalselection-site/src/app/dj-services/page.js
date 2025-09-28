@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MixcloudPlayer, MusicSection } from "@/components/MusicPlayers";
+import { DropboxMP3Player, DJMixGrid } from "@/components/DropboxMP3Player";
 
 export default function DJServices() {
   return (
@@ -139,13 +140,11 @@ export default function DJServices() {
           </div>
         </div>
 
-        {/* DJ Mixes Section */}
-        <div className="gradient-primary backdrop-blur-sm rounded-lg p-8 mb-12 border border-white/30 shadow-xl">
-          <h2 className="text-3xl font-bold mb-6 text-center text-gray-300">DJ Mixes by Dave Clayton</h2>
+        {/* Mixcloud Section */}
+        <div className="gradient-primary backdrop-blur-sm rounded-lg p-8 mb-8 border border-white/30 shadow-xl">
           <p className="text-center text-gray-300 mb-8">
-            Listen to various decades and genres showcasing Dave&apos;s versatility and skill
+            Example mixes from Dave Clayton
           </p>
-          
           {/* Mixcloud Players */}
           <div className="space-y-6">          
             <MixcloudPlayer 

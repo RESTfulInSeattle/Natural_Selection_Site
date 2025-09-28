@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SoundCloudPlayer, MusicSection } from "@/components/MusicPlayers";
+import { DropboxMP3Player, DJMixGrid } from "@/components/DropboxMP3Player";
 
 export default function ClaytonTheChemist() {
   return (
@@ -48,38 +49,76 @@ export default function ClaytonTheChemist() {
           </div>
         </div>
 
+        {/* DJ Mixes Section */}
+        <div className="grid md:grid-cols-1 gap-8">
+          <div className="gradient-primary  rounded-lg p-8">
+            <div className="gradient-primary rounded-lg p-6 border border-gray-200">
+                <h4 className="text-lg font-semibold mb-2 text-gray-300">DJ Mixes</h4>
+                <p className="text-sm text-gray-400 mb-4">For stream and download</p>
+                {/* Dropbox MP3 Players */}
+                <DJMixGrid cols={1}>
+                  <DropboxMP3Player
+                mixTitle="Sister Soul"
+                artistName="Soul, Funk, RnB"
+                mp3Url="https://dl.dropboxusercontent.com/scl/fi/wkiif3iqna1jdbi5rig8l/Clayton-the-Chemist-Sister-Soul.mp3?rlkey=iyjp1y7olkswuxfcls630x2nc&dl=1"
+                artworkUrl="https://dl.dropboxusercontent.com/scl/fi/unzg610phx64ld542yp3h/Clayton-the-Chemist-Sister-Soul-Original.jpg?rlkey=g01km3729ka53wwzp2wx1dlhc"
+                downloadUrl="https://dl.dropboxusercontent.com/scl/fi/wkiif3iqna1jdbi5rig8l/Clayton-the-Chemist-Sister-Soul.mp3?rlkey=iyjp1y7olkswuxfcls630x2nc&dl=1"
+                description="Recorded for International Women's Day, a mix of classic soul and modern RnB"
+              />
+      
+              <DropboxMP3Player
+                mixTitle="PURR Neitherworld 2024"
+                artistName="Deep and Funky House"
+                mp3Url="https://dl.dropboxusercontent.com/scl/fi/t02jmew6bb4h5mpljweq5/Clayton-The-Chemist-PURR-Neitherworld-2024.mp3?rlkey=bcqq7feumzkd97sdiw26ouhr5&dl=1"
+                artworkUrl="https://dl.dropboxusercontent.com/scl/fi/sfzuckzr0g0xy5dvpoiyb/PURR-Neitherworld-2024.JPG?rlkey=rs0uku8ieezhf7vhtsg94q1e0"
+                downloadUrl="https://dl.dropboxusercontent.com/scl/fi/t02jmew6bb4h5mpljweq5/Clayton-The-Chemist-PURR-Neitherworld-2024.mp3?rlkey=bcqq7feumzkd97sdiw26ouhr5&dl=1"
+                description="Replay of Clayton's set for PURR's Neitherworld event in 2024"
+              />
+            </DJMixGrid>
+            </div>
+          </div>
+        </div>
+
         {/* Streaming Platforms */}
-        <div className="mb-8">
+        <div className="mb-4">
 
           {/* Spotify */}
-          <div className="gradient-primary rounded-lg p-8 mb-4">
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 shadow-lg">
-              <iframe 
-                data-testid="embed-iframe" 
-                style={{borderRadius: '12px'}} 
-                src="https://open.spotify.com/embed/artist/5JakVmGiAB3D9RRqkXn2PZ?utm_source=generator" 
-                width="100%" 
-                height="352" 
-                frameBorder="0" 
-                allowFullScreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"
-              />
+          <div className="grid md:grid-cols-1 gap-8">
+            <div className="gradient-primary  rounded-lg p-8">
+              <div className="gradient-primary rounded-lg p-6 border border-gray-200">
+                <h4 className="text-lg font-semibold mb-2 text-gray-300">Spotify</h4>
+                <p className="text-sm text-gray-400 mb-4">Stream original productions and remixes</p>
+                <iframe 
+                  data-testid="embed-iframe" 
+                  style={{borderRadius: '12px'}} 
+                  src="https://open.spotify.com/embed/artist/5JakVmGiAB3D9RRqkXn2PZ?utm_source=generator" 
+                  width="100%" 
+                  height="352" 
+                  frameBorder="0" 
+                  allowFullScreen="" 
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
 
           {/* Apple Music */}
-          <div className="gradient-primary rounded-lg p-8 mb-4">
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 shadow-lg">
-              <iframe 
-                src="https://embed.music.apple.com/us/artist/clayton-the-chemist/942054999"
-                height="450"
-                width="100%"
-                frameBorder="0" 
-                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-                className="rounded"
-              />
+         <div className="grid md:grid-cols-1 gap-8">
+            <div className="gradient-primary  rounded-lg p-8">
+              <div className="gradient-primary rounded-lg p-6 border border-gray-200">
+                <h4 className="text-lg font-semibold mb-2 text-gray-300">Apple Music</h4>
+                <p className="text-sm text-gray-400 mb-4">Stream original productions and remixes</p>
+                <iframe 
+                  src="https://embed.music.apple.com/us/artist/clayton-the-chemist/942054999"
+                  height="450"
+                  width="100%"
+                  frameBorder="0" 
+                  sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                  allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                  className="rounded"
+                />
+              </div>
             </div>
           </div>
 
@@ -89,8 +128,8 @@ export default function ClaytonTheChemist() {
               <div className="space-y-6">
                 {/* Introspectral EP */}
                 <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                  <h4 className="text-lg font-semibold mb-2 text-gray-300">Introspectral EP</h4>
-                  <p className="text-sm text-gray-400 mb-4">Latest electronic music release</p>
+                  <h4 className="text-lg font-semibold mb-2 text-gray-300">SoundCloud</h4>
+                  <p className="text-sm text-gray-400 mb-4">Clayton's 2023 EP</p>
                   <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 shadow-lg">
                     <iframe 
                       width="100%" 
@@ -110,7 +149,7 @@ export default function ClaytonTheChemist() {
                 {/* Original Songs */}
                 <div className="gradient-primary rounded-lg p-6 border border-gray-200">
                   <h4 className="text-lg font-semibold mb-2 text-gray-300">Original Songs</h4>
-                  <p className="text-sm text-gray-400 mb-4">Collection of original compositions and productions</p>
+                  <p className="text-sm text-gray-400 mb-4">Collection of original compositions and productions on SoundCloud</p>
                   <SoundCloudPlayer 
                     playlistId="19050410" 
                     title="Original Compositions"
@@ -121,7 +160,7 @@ export default function ClaytonTheChemist() {
                 {/* Remixes and Edits */}
                 <div className="gradient-primary rounded-lg p-6 border border-gray-200">
                   <h4 className="text-lg font-semibold mb-2 text-gray-300">Remixes and Edits</h4>
-                  <p className="text-sm text-gray-400 mb-4">Remixes, edits, and reimagined tracks</p>
+                  <p className="text-sm text-gray-400 mb-4">Remixes, edits, and reimagined tracks on SoundCloud</p>
                   <SoundCloudPlayer 
                     playlistId="527718" 
                     title="Remixes & Edits"
