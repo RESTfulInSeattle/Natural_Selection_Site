@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SoundCloudPlayer, MusicSection } from "@/components/MusicPlayers";
-import { DropboxMP3Player, DJMixGrid } from "@/components/DropboxMP3Player";
+import TabbedDJMixes from "@/components/TabbedDJMixes";
 
 export default function ClaytonTheChemist() {
   return (
@@ -9,8 +9,8 @@ export default function ClaytonTheChemist() {
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-purple-900 via-black to-blue-900 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Clayton the Chemist</h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">Clayton the Chemist</h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-6">
             Producer & DJ
           </p>
           <p className="text-lg text-gray-400 max-w-3xl mx-auto">
@@ -23,60 +23,40 @@ export default function ClaytonTheChemist() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         {/* Origin Story */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-8">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-4">
           <div>
             <Image
-              src="/content/pages/2019/07/clayton-the-chemist/images/clayton-the-chemist-character-scaled.jpg"
+              src="/images/pages/clayton-the-chemist/Clayton-The-Chemist-Instax.jpeg"
               alt="Clayton the Chemist"
-              width={500}
-              height={600}
+              width={400}
+              height={400}
               className="rounded-lg shadow-xl"
             />
           </div>
           <div>
-            <blockquote className="text-2xl italic text-gray-300 mb-8 border-l-4 border-purple-600 pl-6">
+            <blockquote className="text-2xl italic text-gray-300 mb-6 border-l-4 border-purple-600 pl-6">
               &quot;You look like a mad scientist up there mixing records, like some crazy chemist&quot;
               <footer className="text-base text-gray-200 mt-4 not-italic">- JJ Brown</footer>
             </blockquote>
-            <p className="text-lg text-gray-300 mb-6">
-              Dave Clayton is a renaissance man in the music industry. He is adept at DJing, Producing, 
-              Live Performance, Mastering, Acoustical Design, and enjoys sharing his knowledge and mentoring others.
+            <p className="text-lg text-gray-300 mb-4">
+              Dave Clayton is a renaissance man in the music industry.  He is adept at DJing, Music Production, Audio Mastering and Engineering, Acoustical Design, and is an avid instructor and mentor.  
+              He gravitates towards funky, soulful, and deep vibes in his sets, and masters a wealth of different genres for musical fulfilment.  This is also evident in his productions and remixes.  
             </p>
-            <p className="text-lg text-gray-300">
-              His underground moniker, Clayton the Chemist, features vibes that run the gamut of House, Bass Music, 
-              Drum & Bass, Nu Funk, Nu Jazz, and Nu Soul.
+            <p className="text-lg text-gray-300 mb-6">
+              His DJ and live performances are vibrant, fun, and incorporate fusions of different genres and places into an artistic flow of consciousness.
             </p>
           </div>
         </div>
 
-        {/* DJ Mixes Section */}
-        <div className="grid md:grid-cols-1 gap-8">
-          <div className="gradient-primary  rounded-lg p-8">
-            <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                <h4 className="text-lg font-semibold mb-2 text-gray-300">DJ Mixes</h4>
-                <p className="text-sm text-gray-400 mb-4">For stream and download</p>
-                {/* Dropbox MP3 Players */}
-                <DJMixGrid cols={1}>
-                  <DropboxMP3Player
-                mixTitle="Sister Soul"
-                artistName="Soul, Funk, RnB"
-                mp3Url="https://dl.dropboxusercontent.com/scl/fi/wkiif3iqna1jdbi5rig8l/Clayton-the-Chemist-Sister-Soul.mp3?rlkey=iyjp1y7olkswuxfcls630x2nc&dl=1"
-                artworkUrl="https://dl.dropboxusercontent.com/scl/fi/unzg610phx64ld542yp3h/Clayton-the-Chemist-Sister-Soul-Original.jpg?rlkey=g01km3729ka53wwzp2wx1dlhc"
-                downloadUrl="https://dl.dropboxusercontent.com/scl/fi/wkiif3iqna1jdbi5rig8l/Clayton-the-Chemist-Sister-Soul.mp3?rlkey=iyjp1y7olkswuxfcls630x2nc&dl=1"
-                description="Recorded for International Women's Day, a mix of classic soul and modern RnB"
-              />
+        <div>
+          <p className="text-lg text-gray-300 mb-4">
+            Notable Opening Gigs:  De La Soul, Massive Attack, LTJ Bukem, DJ Krush
+          </p>
+        </div>
       
-              <DropboxMP3Player
-                mixTitle="PURR Neitherworld 2024"
-                artistName="Deep and Funky House"
-                mp3Url="https://dl.dropboxusercontent.com/scl/fi/t02jmew6bb4h5mpljweq5/Clayton-The-Chemist-PURR-Neitherworld-2024.mp3?rlkey=bcqq7feumzkd97sdiw26ouhr5&dl=1"
-                artworkUrl="https://dl.dropboxusercontent.com/scl/fi/sfzuckzr0g0xy5dvpoiyb/PURR-Neitherworld-2024.JPG?rlkey=rs0uku8ieezhf7vhtsg94q1e0"
-                downloadUrl="https://dl.dropboxusercontent.com/scl/fi/t02jmew6bb4h5mpljweq5/Clayton-The-Chemist-PURR-Neitherworld-2024.mp3?rlkey=bcqq7feumzkd97sdiw26ouhr5&dl=1"
-                description="Replay of Clayton's set for PURR's Neitherworld event in 2024"
-              />
-            </DJMixGrid>
-            </div>
-          </div>
+        {/* Tabbed DJ Mixes Section - UPGRADED! */}
+        <div className="grid md:grid-cols-1 gap-8 mb-8">
+          <TabbedDJMixes />
         </div>
 
         {/* Streaming Platforms */}
@@ -86,7 +66,7 @@ export default function ClaytonTheChemist() {
           <div className="grid md:grid-cols-1 gap-8">
             <div className="gradient-primary  rounded-lg p-8">
               <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                <h4 className="text-lg font-semibold mb-2 text-gray-300">Spotify</h4>
+                <h4 className="text-lg font-semibold mb-2 text-gray-300">🎵 Spotify</h4>
                 <p className="text-sm text-gray-400 mb-4">Stream original productions and remixes</p>
                 <iframe 
                   data-testid="embed-iframe" 
@@ -107,7 +87,7 @@ export default function ClaytonTheChemist() {
          <div className="grid md:grid-cols-1 gap-8">
             <div className="gradient-primary  rounded-lg p-8">
               <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                <h4 className="text-lg font-semibold mb-2 text-gray-300">Apple Music</h4>
+                <h4 className="text-lg font-semibold mb-2 text-gray-300">🍎 Apple Music</h4>
                 <p className="text-sm text-gray-400 mb-4">Stream original productions and remixes</p>
                 <iframe 
                   src="https://embed.music.apple.com/us/artist/clayton-the-chemist/942054999"
@@ -128,13 +108,13 @@ export default function ClaytonTheChemist() {
               <div className="space-y-6">
                 {/* Introspectral EP */}
                 <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                  <h4 className="text-lg font-semibold mb-2 text-gray-300">SoundCloud</h4>
+                  <h4 className="text-lg font-semibold mb-2 text-gray-300">☁️ SoundCloud</h4>
                   <p className="text-sm text-gray-400 mb-4">Clayton's 2023 EP</p>
                   <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 shadow-lg">
                     <iframe 
                       width="100%" 
                       height="300" 
-                      scrolling="no" 
+                      scrolling="no"
                       frameBorder="no" 
                       allow="autoplay"
                       src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A1614946756&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
@@ -177,7 +157,7 @@ export default function ClaytonTheChemist() {
           <h2 className="text-3xl font-bold mb-6 text-center text-gray-300">The Chemist&apos;s Philosophy</h2>
           <div className="text-center max-w-4xl mx-auto">
             <p className="text-lg text-gray-300 mb-6">
-             When you hear the first notes of Stevie Wonder’s voice, you instantly feel what he’s singing about. The range of my sets, and musical library, will be broad, but the thing that ties everything together, the essential element, is that you will feel the emotion the song is conveying
+             When you hear the first notes of Stevie Wonder's voice, you instantly feel what he's singing about. The range of my sets, and musical library, will be broad, but the thing that ties everything together, the essential element, is that you will feel the emotion the song is conveying
             </p>
           </div>
         </div>
