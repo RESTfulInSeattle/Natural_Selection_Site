@@ -109,7 +109,7 @@ export default function ClaytonTheChemist() {
                 {/* Introspectral EP */}
                 <div className="gradient-primary rounded-lg p-6 border border-gray-200">
                   <h4 className="text-lg font-semibold mb-2 text-gray-300">☁️ SoundCloud</h4>
-                  <p className="text-sm text-gray-400 mb-4">Clayton's 2023 EP</p>
+                  <p className="text-sm text-gray-400 mb-4">Clayton&apos;s 2023 EP</p>
                   <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 shadow-lg">
                     <iframe 
                       width="100%" 
@@ -157,7 +157,7 @@ export default function ClaytonTheChemist() {
           <h2 className="text-3xl font-bold mb-6 text-center text-gray-300">The Chemist&apos;s Philosophy</h2>
           <div className="text-center max-w-4xl mx-auto">
             <p className="text-lg text-gray-300 mb-6">
-             When you hear the first notes of Stevie Wonder's voice, you instantly feel what he's singing about. The range of my sets, and musical library, will be broad, but the thing that ties everything together, the essential element, is that you will feel the emotion the song is conveying
+             When you hear the first notes of Stevie Wonder&apos;s voice, you instantly feel what he&apos;s singing about. The range of my sets, and musical library, will be broad, but the thing that ties everything together, the essential element, is that you will feel the emotion the song is conveying
             </p>
           </div>
         </div>
