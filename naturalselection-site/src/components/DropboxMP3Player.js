@@ -1,216 +1,269 @@
-// Custom MP3 Player for DJ Mixes hosted on Dropbox
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
-export function DropboxMP3Player({ 
-  mixTitle, 
-  artistName = "Dave Clayton",
-  mp3Url, 
-  artworkUrl, 
+export function DropboxMP3Player({
+  mixTitle,
+  artistName,
+  mp3Url,
+  artworkUrl,
   downloadUrl,
-  description = "",
-  className = ""
+  description,
+  audioRef,
+  onPlay
 }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const audioRef = useRef(null);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [volume, setVolume] = useState(1);
+  const [artworkError, setArtworkError] = useState(false);
+  const [audioError, setAudioError] = useState(false);
 
-  // Update time display
+  const audioEl = useRef(null);
+
+  // expose audio element to parent
   useEffect(() => {
-    const audio = audioRef.current;
+    if (audioRef && audioEl.current) {
+      audioRef(audioEl.current);
+    }
+  }, [audioRef]);
+
+  // wire audio events
+  useEffect(() => {
+    const audio = audioEl.current;
     if (!audio) return;
 
-    const updateTime = () => setCurrentTime(audio.currentTime);
-    const updateDuration = () => setDuration(audio.duration);
-    const handleLoadStart = () => setIsLoading(true);
+    const codeName = {
+      1: 'ABORTED',
+      2: 'NETWORK',
+      3: 'DECODE',
+      4: 'SRC_NOT_SUPPORTED',
+      5: 'ENCRYPTED'
+    };
+
+    const handleLoadStart = () => { setIsLoading(true); setAudioError(false); };
     const handleCanPlay = () => setIsLoading(false);
+    const handleLoadedMeta = () => { setDuration(audio.duration || 0); setIsLoading(false); };
+    const handleTimeUpdate = () => setCurrentTime(audio.currentTime || 0);
     const handleEnded = () => setIsPlaying(false);
 
-    audio.addEventListener('timeupdate', updateTime);
-    audio.addEventListener('loadedmetadata', updateDuration);
+    const handlePlayEvent = () => {
+      setIsPlaying(true);
+      onPlay?.(); // call parent callback without shadowing
+    };
+
+    const handlePause = () => setIsPlaying(false);
+
+    const handleError = (e) => {
+      const mediaErr = audio.error || e?.target?.error || e?.currentTarget?.error;
+      // Only log when there is an actual MediaError with a code
+      if (mediaErr?.code) {
+        console.warn('Audio error:', {
+          code: mediaErr.code,
+          name: codeName[mediaErr.code] || 'UNKNOWN',
+          src: audio.currentSrc || mp3Url
+        });
+      }
+      setIsLoading(false);
+      setIsPlaying(false);
+      setAudioError(true);
+    };
+
+    const handleStalled = () => setIsLoading(true);
+    const handleWaiting = () => setIsLoading(true);
+
     audio.addEventListener('loadstart', handleLoadStart);
     audio.addEventListener('canplay', handleCanPlay);
+    audio.addEventListener('loadedmetadata', handleLoadedMeta);
+    audio.addEventListener('timeupdate', handleTimeUpdate);
     audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('play', handlePlayEvent);
+    audio.addEventListener('pause', handlePause);
+    audio.addEventListener('error', handleError);
+    audio.addEventListener('stalled', handleStalled);
+    audio.addEventListener('waiting', handleWaiting);
+
+    // metadata only; set crossOrigin for safer CORS handling
+    audio.preload = 'metadata';
+    audio.crossOrigin = 'anonymous';
 
     return () => {
-      audio.removeEventListener('timeupdate', updateTime);
-      audio.removeEventListener('loadedmetadata', updateDuration);
       audio.removeEventListener('loadstart', handleLoadStart);
       audio.removeEventListener('canplay', handleCanPlay);
+      audio.removeEventListener('loadedmetadata', handleLoadedMeta);
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
       audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('play', handlePlayEvent);
+      audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener('error', handleError);
+      audio.removeEventListener('stalled', handleStalled);
+      audio.removeEventListener('waiting', handleWaiting);
     };
-  }, []);
+  }, [mp3Url, onPlay]);
 
-  const togglePlay = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
+  const togglePlayPause = async () => {
+    const audio = audioEl.current;
+    if (!audio || audioError) return;
+    try {
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        setIsLoading(true);
+        await audio.play();
+        setIsLoading(false);
+      }
+    } catch (err) {
+      console.warn('Playback error:', err?.name || err);
+      setIsLoading(false);
+      if (err?.name === 'NotAllowedError') {
+        alert('Please tap the play button to start audio playback');
+      } else if (err?.name === 'NotSupportedError') {
+        setAudioError(true);
+        alert('This audio format is not supported on your device');
+      }
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleSeek = (e) => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
+    const audio = audioEl.current;
+    if (!audio || !duration || audioError) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const newTime = (clickX / rect.width) * duration;
-    
     audio.currentTime = newTime;
     setCurrentTime(newTime);
   };
 
   const handleVolumeChange = (e) => {
-    const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
-    }
+    const v = parseFloat(e.target.value);
+    setVolume(v);
+    if (audioEl.current) audioEl.current.volume = v;
   };
 
-  const formatTime = (time) => {
-    if (isNaN(time)) return "0:00";
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  const formatTime = (s) => {
+    if (isNaN(s)) return '0:00';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m}:${sec.toString().padStart(2, '0')}`;
   };
 
-  const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const handleDownload = () => {
+    const a = document.createElement('a');
+    a.href = downloadUrl || mp3Url;
+    a.download = `${mixTitle}.mp3`;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
 
   return (
-    <div className={`bg-gradient-to-br from-gray-900 to-black rounded-lg p-6 shadow-xl ${className}`}>
-      <audio 
-        ref={audioRef}
-        src={mp3Url}
-        preload="metadata"
-      />
-      
-      {/* Mix Info Header */}
-      <div className="flex items-center mb-6">
-        {/* Artwork */}
-        <div className="relative w-24 h-24 mr-4 flex-shrink-0">
-          <Image
-            src={artworkUrl}
-            alt={`${mixTitle} artwork`}
-            width={96}
-            height={96}
-            className="rounded-lg shadow-lg object-cover"
-            priority
-          />
-          {isLoading && (
-            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex items-center justify-center">
-              <div className="animate-spin rounded-full h-6 w-6 border-2 border-white border-t-transparent"></div>
+    <div className="bg-gray-800 rounded-lg p-4 shadow-lg">
+      <div className="flex items-center gap-4">
+        <div className="relative flex-shrink-0">
+          {!artworkError ? (
+            <Image
+              src={artworkUrl}
+              alt={`${mixTitle} artwork`}
+              width={96}
+              height={96}
+              className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+              onError={() => setArtworkError(true)}
+              priority={false}
+              loading="lazy"
+            />
+          ) : (
+            <div className="w-24 h-24 bg-gray-700 rounded-lg flex items-center justify-center">
+              <div className="text-gray-400 text-xs text-center">🎵<br />Artwork<br />Loading</div>
+            </div>
+          )}
+
+          {isLoading && !audioError && (
+            <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+            </div>
+          )}
+
+          {audioError && (
+            <div className="absolute inset-0 bg-red-900/50 rounded-lg flex items-center justify-center">
+              <div className="text-white text-xs text-center">⚠️<br />Error</div>
             </div>
           )}
         </div>
 
-        {/* Track Info */}
-        <div className="flex-1 min-w-0">
-          <h3 className="text-xl font-bold text-white truncate">{mixTitle}</h3>
-          <p className="text-gray-300 text-sm">{artistName}</p>
-          {description && (
-            <p className="text-gray-400 text-xs mt-1 line-clamp-2">{description}</p>
-          )}
-        </div>
+        <div className="flex-grow min-w-0">
+          <div className="mb-3">
+            <h4 className="text-white font-semibold text-lg truncate">{mixTitle}</h4>
+            <p className="text-gray-400 text-sm truncate">{artistName}</p>
+            {description && <p className="text-gray-500 text-xs mt-1 line-clamp-2">{description}</p>}
+            {audioError && <p className="text-red-400 text-xs mt-1">⚠️ Audio failed to load</p>}
+          </div>
 
-        {/* Download Button */}
-        <div className="ml-4">
-          <a
-            href={downloadUrl}
-            download
-            className="inline-flex items-center px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors duration-200"
-            title="Download Mix"
-          >
-            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
-            Download
-          </a>
-        </div>
-      </div>
+          <div className="flex items-center gap-3 mb-2">
+            <button
+              onClick={togglePlayPause}
+              disabled={isLoading || audioError}
+              className="w-10 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 rounded-full flex items-center justify-center text-white transition-colors duration-200"
+              title={audioError ? 'Audio failed to load' : isPlaying ? 'Pause' : 'Play'}
+            >
+              {isLoading && !audioError ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              ) : isPlaying ? (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                </svg>
+              )}
+            </button>
 
-      {/* Player Controls */}
-      <div className="space-y-4">
-        {/* Progress Bar */}
-        <div className="space-y-2">
-          <div 
-            className="w-full h-2 bg-gray-700 rounded-full cursor-pointer relative overflow-hidden"
+            <button
+              onClick={handleDownload}
+              className="w-10 h-10 bg-gray-600 hover:bg-gray-700 rounded-full flex items-center justify-center text-white transition-colors duration-200"
+              title="Download Mix"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+
+            <div className="hidden sm:flex items-center gap-2 flex-grow max-w-20">
+              <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM15.657 6.343a1 1 0 010 1.414A5.98 5.98 0 0118 12a5.98 5.98 0 01-2.343 4.243 1 1 0 01-1.414-1.414A3.98 3.98 0 0016 12a3.98 3.98 0 00-1.757-3.829 1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                value={volume}
+                onChange={handleVolumeChange}
+                className="flex-grow h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+              />
+            </div>
+
+            <div className="text-gray-400 text-sm font-mono whitespace-nowrap">
+              {formatTime(currentTime)} / {formatTime(duration)}
+            </div>
+          </div>
+
+          <div
+            className="w-full bg-gray-600 rounded-full h-2 cursor-pointer hover:bg-gray-500 transition-colors duration-200"
             onClick={handleSeek}
           >
-            <div 
-              className="h-full bg-blue-500 rounded-full transition-all duration-100 ease-linear"
-              style={{ width: `${progressPercentage}%` }}
-            />
-          </div>
-          <div className="flex justify-between text-xs text-gray-400">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
-          </div>
-        </div>
-
-        {/* Controls Row */}
-        <div className="flex items-center justify-between">
-          {/* Play/Pause Button */}
-          <button
-            onClick={togglePlay}
-            disabled={isLoading}
-            className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-200 disabled:opacity-50"
-          >
-            {isLoading ? (
-              <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
-            ) : isPlaying ? (
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-              </svg>
-            )}
-          </button>
-
-          {/* Volume Control */}
-          <div className="flex items-center space-x-2">
-            <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.82L4.52 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.52l3.863-3.82a1 1 0 011.617.82zM12 8a1 1 0 011.414 0L15 9.586l1.586-1.586a1 1 0 111.414 1.414L16.414 11 18 12.586a1 1 0 01-1.414 1.414L15 12.414l-1.586 1.586a1 1 0 11-1.414-1.414L13.586 11 12 9.414A1 1 0 0112 8z" clipRule="evenodd" />
-            </svg>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.1"
-              value={volume}
-              onChange={handleVolumeChange}
-              className="w-20 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+            <div
+              className="bg-blue-600 h-2 rounded-full transition-all duration-100 ease-out"
+              style={{ width: duration ? `${(currentTime / duration) * 100}%` : '0%' }}
             />
           </div>
         </div>
       </div>
-    </div>
-  );
-}
 
-// Grid container for multiple DJ mix players
-export function DJMixGrid({ children, cols = 1 }) {
-  const gridClass = {
-    1: "space-y-6",
-    2: "grid md:grid-cols-2 gap-6", 
-    3: "grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-  }[cols] || "space-y-6";
-  
-  return (
-    <div className={gridClass}>
-      {children}
+      <audio ref={audioEl} src={mp3Url} preload="metadata" crossOrigin="anonymous" className="hidden" />
     </div>
   );
 }

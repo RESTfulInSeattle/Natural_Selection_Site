@@ -1,10 +1,14 @@
+// Client-side component for tabbed DJ mixes
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { DropboxMP3Player } from './DropboxMP3Player';
 
 export default function TabbedDJMixes() {
   const [activeTab, setActiveTab] = useState('House');
+  const [loadedTabs, setLoadedTabs] = useState(new Set(['House'])); // Track which tabs have been loaded
+  const audioRefs = useRef({}); // Track audio elements
+  const [currentlyPlaying, setCurrentlyPlaying] = useState(null); // Track which audio is playing
 
   // Convert Dropbox URLs to direct format
   const convertDropboxUrl = (url, isAudio = false) => {
@@ -88,17 +92,62 @@ export default function TabbedDJMixes() {
 
   const tabs = Object.keys(mixData);
 
+  // Handle tab switching with mobile optimization
+  const handleTabSwitch = (tab) => {
+    // Pause all currently playing audio first (mobile optimization)
+    Object.values(audioRefs.current).forEach(audio => {
+      if (audio && !audio.paused) {
+        audio.pause();
+      }
+    });
+
+    setCurrentlyPlaying(null);
+    setActiveTab(tab);
+    
+    // Mark this tab as loaded with a slight delay to ensure DOM is ready
+    setTimeout(() => {
+      setLoadedTabs(prev => new Set([...prev, tab]));
+    }, 100);
+  };
+
+  // Handle when a player starts playing
+  const handlePlay = (audioKey, audioElement) => {
+    // If a different audio is currently playing, pause it
+    if (currentlyPlaying && currentlyPlaying !== audioKey) {
+      const previousAudio = audioRefs.current[currentlyPlaying];
+      if (previousAudio && !previousAudio.paused) {
+        previousAudio.pause();
+      }
+    }
+    
+    // Set the new currently playing audio
+    setCurrentlyPlaying(audioKey);
+  };
+
+  // Cleanup audio on unmount
+  useEffect(() => {
+    return () => {
+      Object.values(audioRefs.current).forEach(audio => {
+        if (audio) {
+          audio.pause();
+          audio.src = '';
+        }
+      });
+    };
+  }, []);
+
   return (
     <div className="gradient-primary rounded-lg p-8">
       <div className="gradient-primary rounded-lg p-6 border border-gray-200">
         <h4 className="text-lg font-semibold mb-4 text-gray-300">DJ Mixes</h4>
+        <p className="text-sm text-gray-400 mb-6">Stream and download by genre</p>
         
         {/* Tab Navigation */}
         <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-600">
           {tabs.map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => handleTabSwitch(tab)}
               className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
                 activeTab === tab
                   ? 'bg-blue-600 text-white border-b-2 border-blue-400'
@@ -112,28 +161,43 @@ export default function TabbedDJMixes() {
 
         {/* Mix Grid for Active Tab */}
         <div className="grid gap-6">
-          {mixData[activeTab].map((mix, index) => (
-            <DropboxMP3Player
-              key={`${activeTab}-${index}`}
-              mixTitle={mix.mixTitle}
-              artistName={mix.artistName}
-              mp3Url={mix.mp3Url}
-              artworkUrl={mix.artworkUrl}
-              downloadUrl={mix.mp3Url}
-              description={mix.description}
-            />
-          ))}
-        </div>
-
-        {/* Genre Info */}
-        <div className="mt-6 p-4 bg-gray-800/50 rounded-lg">
-          <p className="text-sm text-gray-300">
-            {activeTab === 'House' && '🏠 Deep, soulful, and funky flavors of house music'}
-            {activeTab === 'Drum & Bass' && '🥁 Soulful, jazzy, and deep drum & bass selections'}
-            {activeTab === 'Funk & Soul' && '🎵 Classic and modern funk, soul, and R&B vibes'}
-          </p>
+          {/* Only render players for the active tab AND if it's been loaded */}
+          {loadedTabs.has(activeTab) && mixData[activeTab].map((mix, index) => {
+            const audioKey = `${activeTab}-${index}`;
+            
+            return (
+              <DropboxMP3Player
+                key={`${activeTab}-${index}-${Date.now()}`}
+                mixTitle={mix.mixTitle}
+                artistName={mix.artistName}
+                mp3Url={mix.mp3Url}
+                artworkUrl={mix.artworkUrl}
+                downloadUrl={mix.mp3Url}
+                description={mix.description}
+                audioRef={(ref) => {
+                  if (ref) {
+                    audioRefs.current[audioKey] = ref;
+                  } else {
+                    delete audioRefs.current[audioKey];
+                  }
+                }}
+                onPlay={() => handlePlay(audioKey, audioRefs.current[audioKey])}
+              />
+            );
+          })}
         </div>
       </div>
+    </div>
+  );
+}
+
+// Export the grid component as well
+export function DJMixGrid({ mixes }) {
+  return (
+    <div className="grid gap-6">
+      {mixes.map((mix, index) => (
+        <DropboxMP3Player key={index} {...mix} />
+      ))}
     </div>
   );
 }
