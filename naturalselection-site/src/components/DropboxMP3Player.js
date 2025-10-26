@@ -30,47 +30,29 @@ export function DropboxMP3Player({
     }
   }, [audioRef]);
 
-  // wire audio events
+  // wire audio events + safer error logging
   useEffect(() => {
     const audio = audioEl.current;
     if (!audio) return;
 
-    const codeName = {
-      1: 'ABORTED',
-      2: 'NETWORK',
-      3: 'DECODE',
-      4: 'SRC_NOT_SUPPORTED',
-      5: 'ENCRYPTED'
-    };
+    const codeName = { 1: 'ABORTED', 2: 'NETWORK', 3: 'DECODE', 4: 'SRC_NOT_SUPPORTED', 5: 'ENCRYPTED' };
 
     const handleLoadStart = () => { setIsLoading(true); setAudioError(false); };
     const handleCanPlay = () => setIsLoading(false);
     const handleLoadedMeta = () => { setDuration(audio.duration || 0); setIsLoading(false); };
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime || 0);
     const handleEnded = () => setIsPlaying(false);
-
-    const handlePlayEvent = () => {
-      setIsPlaying(true);
-      onPlay?.(); // call parent callback without shadowing
-    };
-
+    const handlePlayEvent = () => { setIsPlaying(true); onPlay?.(); };
     const handlePause = () => setIsPlaying(false);
-
     const handleError = (e) => {
       const mediaErr = audio.error || e?.target?.error || e?.currentTarget?.error;
-      // Only log when there is an actual MediaError with a code
       if (mediaErr?.code) {
-        console.warn('Audio error:', {
-          code: mediaErr.code,
-          name: codeName[mediaErr.code] || 'UNKNOWN',
-          src: audio.currentSrc || mp3Url
-        });
+        console.warn('Audio error:', { code: mediaErr.code, name: codeName[mediaErr.code] || 'UNKNOWN', src: audio.currentSrc || mp3Url });
       }
       setIsLoading(false);
       setIsPlaying(false);
       setAudioError(true);
     };
-
     const handleStalled = () => setIsLoading(true);
     const handleWaiting = () => setIsLoading(true);
 
@@ -85,7 +67,6 @@ export function DropboxMP3Player({
     audio.addEventListener('stalled', handleStalled);
     audio.addEventListener('waiting', handleWaiting);
 
-    // metadata only; set crossOrigin for safer CORS handling
     audio.preload = 'metadata';
     audio.crossOrigin = 'anonymous';
 
@@ -161,21 +142,23 @@ export function DropboxMP3Player({
 
   return (
     <div className="bg-gray-800 rounded-lg p-4 shadow-lg">
-      <div className="flex items-center gap-4">
-        <div className="relative flex-shrink-0">
+      {/* 2-column top row; controls span both below (good for iPhone portrait) */}
+      <div className="grid grid-cols-[88px,1fr] sm:grid-cols-[96px,1fr] gap-3 sm:gap-4">
+        {/* Artwork (left) */}
+        <div className="relative">
           {!artworkError ? (
             <Image
               src={artworkUrl}
               alt={`${mixTitle} artwork`}
               width={96}
               height={96}
-              className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+              className="w-22 h-22 sm:w-24 sm:h-24 rounded-lg shadow-md hover:shadow-lg object-cover transition-shadow duration-200"
               onError={() => setArtworkError(true)}
               priority={false}
               loading="lazy"
             />
           ) : (
-            <div className="w-24 h-24 bg-gray-700 rounded-lg flex items-center justify-center">
+            <div className="w-22 h-22 sm:w-24 sm:h-24 bg-gray-700 rounded-lg flex items-center justify-center">
               <div className="text-gray-400 text-xs text-center">🎵<br />Artwork<br />Loading</div>
             </div>
           )}
@@ -193,15 +176,21 @@ export function DropboxMP3Player({
           )}
         </div>
 
-        <div className="flex-grow min-w-0">
-          <div className="mb-3">
-            <h4 className="text-white font-semibold text-lg truncate">{mixTitle}</h4>
-            <p className="text-gray-400 text-sm truncate">{artistName}</p>
-            {description && <p className="text-gray-500 text-xs mt-1 line-clamp-2">{description}</p>}
-            {audioError && <p className="text-red-400 text-xs mt-1">⚠️ Audio failed to load</p>}
-          </div>
+        {/* Text info (right) */}
+        <div className="min-w-0">
+          <h4 className="text-white font-semibold text-base sm:text-lg truncate">{mixTitle}</h4>
+          <p className="text-gray-400 text-sm truncate">{artistName}</p>
+          {description && (
+            <p className="text-gray-500 text-xs mt-1 line-clamp-2">{description}</p>
+          )}
+          {audioError && (
+            <p className="text-red-400 text-xs mt-1">⚠️ Audio failed to load</p>
+          )}
+        </div>
 
-          <div className="flex items-center gap-3 mb-2">
+        {/* Transport + progress (full width below) */}
+        <div className="col-span-2 mt-2">
+          <div className="flex items-center gap-3 flex-wrap">
             <button
               onClick={togglePlayPause}
               disabled={isLoading || audioError}
@@ -231,7 +220,7 @@ export function DropboxMP3Player({
               </svg>
             </button>
 
-            <div className="hidden sm:flex items-center gap-2 flex-grow max-w-20">
+            <div className="hidden sm:flex items-center gap-2 flex-grow max-w-24">
               <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM15.657 6.343a1 1 0 010 1.414A5.98 5.98 0 0118 12a5.98 5.98 0 01-2.343 4.243 1 1 0 01-1.414-1.414A3.98 3.98 0 0016 12a3.98 3.98 0 00-1.757-3.829 1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
@@ -252,7 +241,7 @@ export function DropboxMP3Player({
           </div>
 
           <div
-            className="w-full bg-gray-600 rounded-full h-2 cursor-pointer hover:bg-gray-500 transition-colors duration-200"
+            className="mt-2 w-full bg-gray-600 rounded-full h-2 cursor-pointer hover:bg-gray-500 transition-colors duration-200"
             onClick={handleSeek}
           >
             <div
