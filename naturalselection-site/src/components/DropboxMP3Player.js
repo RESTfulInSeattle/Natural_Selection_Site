@@ -17,7 +17,6 @@ export function DropboxMP3Player({
   const [isLoading, setIsLoading] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [volume, setVolume] = useState(1);
   const [artworkError, setArtworkError] = useState(false);
   const [audioError, setAudioError] = useState(false);
 
@@ -117,12 +116,6 @@ export function DropboxMP3Player({
     setCurrentTime(newTime);
   };
 
-  const handleVolumeChange = (e) => {
-    const v = parseFloat(e.target.value);
-    setVolume(v);
-    if (audioEl.current) audioEl.current.volume = v;
-  };
-
   const formatTime = (s) => {
     if (isNaN(s)) return '0:00';
     const m = Math.floor(s / 60);
@@ -219,21 +212,6 @@ export function DropboxMP3Player({
                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             </button>
-
-            <div className="hidden sm:flex items-center gap-2 flex-grow max-w-24">
-              <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM15.657 6.343a1 1 0 010 1.414A5.98 5.98 0 0118 12a5.98 5.98 0 01-2.343 4.243 1 1 0 01-1.414-1.414A3.98 3.98 0 0016 12a3.98 3.98 0 00-1.757-3.829 1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.1"
-                value={volume}
-                onChange={handleVolumeChange}
-                className="flex-grow h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
-              />
-            </div>
 
             <div className="text-gray-400 text-sm font-mono whitespace-nowrap">
               {formatTime(currentTime)} / {formatTime(duration)}
