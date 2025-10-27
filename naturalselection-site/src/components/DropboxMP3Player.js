@@ -135,10 +135,10 @@ export function DropboxMP3Player({
 
   return (
     <div className="bg-gray-800 rounded-lg p-4 shadow-lg">
-      {/* 2-column top row; controls span both below (good for iPhone portrait) */}
-      <div className="grid grid-cols-[88px,1fr] sm:grid-cols-[96px,1fr] gap-3 sm:gap-4">
-        {/* Artwork (left) */}
-        <div className="relative">
+      {/* Info row: artwork + text grouped together, left-oriented */}
+      <div className="flex items-start gap-3 sm:gap-4">
+        {/* Artwork */}
+        <div className="relative shrink-0">
           {!artworkError ? (
             <Image
               src={artworkUrl}
@@ -169,64 +169,66 @@ export function DropboxMP3Player({
           )}
         </div>
 
-        {/* Text info (right) */}
-        <div className="min-w-0">
+        {/* Text info (kept next to artwork and scales) */}
+        <div className="min-w-0 flex-1">
           <h4 className="text-white font-semibold text-base sm:text-lg truncate">{mixTitle}</h4>
           <p className="text-gray-400 text-sm truncate">{artistName}</p>
           {description && (
-            <p className="text-gray-500 text-xs mt-1 line-clamp-2">{description}</p>
+            <p className="text-gray-500 text-xs sm:text-sm mt-1 line-clamp-2 sm:line-clamp-3">
+              {description}
+            </p>
           )}
           {audioError && (
             <p className="text-red-400 text-xs mt-1">⚠️ Audio failed to load</p>
           )}
         </div>
+      </div>
 
-        {/* Transport + progress (full width below) */}
-        <div className="col-span-2 mt-2">
-          <div className="flex items-center gap-3 flex-wrap">
-            <button
-              onClick={togglePlayPause}
-              disabled={isLoading || audioError}
-              className="w-10 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 rounded-full flex items-center justify-center text-white transition-colors duration-200"
-              title={audioError ? 'Audio failed to load' : isPlaying ? 'Pause' : 'Play'}
-            >
-              {isLoading && !audioError ? (
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-              ) : isPlaying ? (
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                </svg>
-              )}
-            </button>
-
-            <button
-              onClick={handleDownload}
-              className="w-10 h-10 bg-gray-600 hover:bg-gray-700 rounded-full flex items-center justify-center text-white transition-colors duration-200"
-              title="Download Mix"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </button>
-
-            <div className="text-gray-400 text-sm font-mono whitespace-nowrap">
-              {formatTime(currentTime)} / {formatTime(duration)}
-            </div>
-          </div>
-
-          <div
-            className="mt-2 w-full bg-gray-600 rounded-full h-2 cursor-pointer hover:bg-gray-500 transition-colors duration-200"
-            onClick={handleSeek}
+      {/* Transport + progress (full width below info row) */}
+      <div className="mt-3">
+        <div className="flex items-center gap-3 flex-wrap">
+          <button
+            onClick={togglePlayPause}
+            disabled={isLoading || audioError}
+            className="w-10 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 rounded-full flex items-center justify-center text-white transition-colors duration-200"
+            title={audioError ? 'Audio failed to load' : isPlaying ? 'Pause' : 'Play'}
           >
-            <div
-              className="bg-blue-600 h-2 rounded-full transition-all duration-100 ease-out"
-              style={{ width: duration ? `${(currentTime / duration) * 100}%` : '0%' }}
-            />
+            {isLoading && !audioError ? (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+            ) : isPlaying ? (
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+              </svg>
+            )}
+          </button>
+
+          <button
+            onClick={handleDownload}
+            className="w-10 h-10 bg-gray-600 hover:bg-gray-700 rounded-full flex items-center justify-center text-white transition-colors duration-200"
+            title="Download Mix"
+          >
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </button>
+
+          <div className="text-gray-400 text-sm font-mono whitespace-nowrap">
+            {formatTime(currentTime)} / {formatTime(duration)}
           </div>
+        </div>
+
+        <div
+          className="mt-2 w-full bg-gray-600 rounded-full h-2 cursor-pointer hover:bg-gray-500 transition-colors duration-200"
+          onClick={handleSeek}
+        >
+          <div
+            className="bg-blue-600 h-2 rounded-full transition-all duration-100 ease-out"
+            style={{ width: duration ? `${(currentTime / duration) * 100}%` : '0%' }}
+          />
         </div>
       </div>
 
