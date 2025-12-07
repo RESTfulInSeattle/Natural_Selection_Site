@@ -1,12 +1,35 @@
 import React from 'react';
 import { useClipboard } from '../hooks/useClipboard';
 
+// Input validation helper
+const validateShareData = (title, url) => {
+  if (!title || !url || typeof title !== 'string' || typeof url !== 'string') {
+    return false;
+  }
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 const ShareButton = ({ mixTitle, mixUrl }) => {
   const { copy } = useClipboard();
 
   const handleShare = () => {
-    copy(mixUrl);
-    alert('Link copied to clipboard! Share it on your favorite platform.');
+    if (!validateShareData(mixTitle, mixUrl)) {
+      alert('Unable to share: invalid data');
+      return;
+    }
+    
+    try {
+      copy(mixUrl);
+      alert('Link copied to clipboard! Share it on your favorite platform.');
+    } catch (error) {
+      console.error('Share failed:', error);
+      alert('Failed to copy link. Please try again.');
+    }
   };
 
   return (

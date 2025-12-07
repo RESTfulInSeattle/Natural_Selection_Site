@@ -4,6 +4,31 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import ShareButton from './ShareButton';
 
+// Input validation and sanitization helper
+const sanitizeString = (str) => {
+  if (typeof str !== 'string') return '';
+  return str.replace(/[<>"'&]/g, (match) => {
+    const map = {
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      '&': '&amp;'
+    };
+    return map[match];
+  }).substring(0, 500); // Limit length
+};
+
+const validateUrl = (url) => {
+  if (!url || typeof url !== 'string') return false;
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.protocol === 'https:' || parsedUrl.protocol === 'http:';
+  } catch {
+    return false;
+  }
+};
+
 export function DropboxMP3Player({
   mixTitle,
   artistName,
@@ -14,6 +39,13 @@ export function DropboxMP3Player({
   audioRef,
   onPlay
 }) {
+  // Sanitize all input props
+  const safeMixTitle = sanitizeString(mixTitle);
+  const safeArtistName = sanitizeString(artistName);
+  const safeDescription = sanitizeString(description);
+  const safeMp3Url = validateUrl(mp3Url) ? mp3Url : '';
+  const safeArtworkUrl = validateUrl(artworkUrl) ? artworkUrl : '';
+  const safeDownloadUrl = validateUrl(downloadUrl) ? downloadUrl : mp3Url;
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -123,29 +155,41 @@ export function DropboxMP3Player({
   };
 
   const handleDownload = () => {
-    const a = document.createElement('a');
-    a.href = downloadUrl || mp3Url;
-    a.download = `${mixTitle}.mp3`;
-    a.target = '_blank';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    if (!safeDownloadUrl) {
+      alert('Download URL is not available or invalid');
+      return;
+    }
+    
+    try {
+      const a = document.createElement('a');
+      a.href = safeDownloadUrl;
+      a.download = `${safeMixTitle.replace(/[^a-zA-Z0-9-_]/g, '_')}.mp3`;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert('Download failed. Please try again.');
+    }
   };
 
   return (
     <div className="bg-gray-800 rounded-lg p-4 shadow-lg">
       <div className="flex items-start gap-3 sm:gap-4">
         <div className="relative shrink-0">
-          {!artworkError ? (
+          {!artworkError && safeArtworkUrl ? (
             <Image
-              src={artworkUrl}
-              alt={`${mixTitle} artwork`}
+              src={safeArtworkUrl}
+              alt={`${safeMixTitle} artwork`}
               width={96}
               height={96}
               className="w-22 h-22 sm:w-24 sm:h-24 rounded-lg shadow-md hover:shadow-lg object-cover transition-shadow duration-200"
               onError={() => setArtworkError(true)}
               priority={false}
               loading="lazy"
+              unoptimized={false}
             />
           ) : (
             <div className="w-22 h-22 sm:w-24 sm:h-24 bg-gray-700 rounded-lg flex items-center justify-center">
@@ -167,11 +211,11 @@ export function DropboxMP3Player({
         </div>
 
         <div className="min-w-0 flex-1">
-          <h4 className="text-white font-semibold text-base sm:text-lg truncate">{mixTitle}</h4>
-          <p className="text-gray-400 text-sm truncate">{artistName}</p>
-          {description && (
+          <h4 className="text-white font-semibold text-base sm:text-lg truncate">{safeMixTitle}</h4>
+          <p className="text-gray-400 text-sm truncate">{safeArtistName}</p>
+          {safeDescription && (
             <p className="text-gray-500 text-xs sm:text-sm mt-1 line-clamp-2 sm:line-clamp-3">
-              {description}
+              {safeDescription}
             </p>
           )}
           {audioError && (
@@ -211,7 +255,7 @@ export function DropboxMP3Player({
             </svg>
           </button>
 
-          <ShareButton mixTitle={mixTitle} mp3Url={mp3Url} />
+          <ShareButton mixTitle={safeMixTitle} mp3Url={safeMp3Url} />
 
           <div className="text-gray-400 text-sm font-mono whitespace-nowrap">
             {formatTime(currentTime)} / {formatTime(duration)}
@@ -229,7 +273,16 @@ export function DropboxMP3Player({
         </div>
       </div>
 
-      <audio ref={audioEl} src={mp3Url} preload="metadata" crossOrigin="anonymous" className="hidden" />
+      {safeMp3Url && (
+        <audio 
+          ref={audioEl} 
+          src={safeMp3Url} 
+          preload="metadata" 
+          crossOrigin="anonymous" 
+          className="hidden"
+          controlsList="nodownload"
+        />
+      )}
     </div>
   );
 }
