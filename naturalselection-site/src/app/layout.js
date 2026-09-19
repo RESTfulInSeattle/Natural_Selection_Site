@@ -15,6 +15,19 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Natural Selection - Professional DJ & Audio Services",
   description: "Professional DJ services, audio mastering, and music production by Dave Clayton. 20+ years experience for weddings, corporate events, and entertainment.",
+  icons: {
+    icon: [
+      {
+        url: "/favicon-light.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-dark.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {

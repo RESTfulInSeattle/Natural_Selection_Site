@@ -6,13 +6,19 @@ const S3_BASE_URL = 'https://clayton-the-chemist-dj-mixes.s3.us-west-2.amazonaws
 /**
  * Helper to build properly encoded S3 URLs for a mix's MP3 and artwork
  */
-function buildMixUrls(folderName, mixName, artworkExt = 'jpg') {
+function buildMixUrls(folderName, mixName, options = {}) {
+  const artworkExt = options.artworkExt || 'jpg';
+  const mp3Prefix = options.mp3Prefix || 'Clayton the Chemist';
+  const artworkPrefix = options.artworkPrefix || 'Clayton the Chemist';
+  const mp3Name = options.mp3Name || `${mp3Prefix} - ${mixName}.mp3`;
+  const artworkName = options.artworkName || `${artworkPrefix} - ${mixName}.${artworkExt}`;
   const encodedFolder = encodeURIComponent(folderName);
-  const encodedFile = encodeURIComponent(`Clayton the Chemist - ${mixName}`);
+  const encodedMp3 = encodeURIComponent(mp3Name);
+  const encodedArtwork = encodeURIComponent(artworkName);
   return {
-    mp3Url: `${S3_BASE_URL}/${encodedFolder}/${encodedFile}.mp3`,
-    artworkUrl: `${S3_BASE_URL}/${encodedFolder}/${encodedFile}.${artworkExt}`,
-    downloadUrl: `${S3_BASE_URL}/${encodedFolder}/${encodedFile}.mp3`
+    mp3Url: `${S3_BASE_URL}/${encodedFolder}/${encodedMp3}`,
+    artworkUrl: `${S3_BASE_URL}/${encodedFolder}/${encodedArtwork}`,
+    downloadUrl: `${S3_BASE_URL}/${encodedFolder}/${encodedMp3}`
   };
 }
 
@@ -32,7 +38,11 @@ export const djMixData = {
       artistName: 'Deep and Funky House',
       description: "Replay of Clayton's set for PURR's Neitherworld event in 2024.",
       genre: 'House',
-      ...buildMixUrls('PURR Neitherworld 2024', 'PURR Neitherworld 2024')
+      ...buildMixUrls('PURR Neitherworld 2024', 'PURR Neitherworld 2024', {
+        artworkExt: 'JPG',
+        mp3Prefix: 'Clayton The Chemist',
+        artworkPrefix: 'Clayton the Chemist'
+      })
     },
     {
       id: 'moments-of-gratitude',
@@ -54,11 +64,14 @@ export const djMixData = {
     },
     {
       id: 'sci-clone-tribute-mix',
-      mixTitle: 'Sci Clone Tribute Mix',
+      mixTitle: 'Sci-Clone Tribute Mix',
       artistName: 'Drum & Bass',
       description: "Sci Clone's catalog of Jazzy and Soulful DnB.",
       genre: 'Drum & Bass',
-      ...buildMixUrls('Sci Clone Tribute Mix', 'Sci Clone Tribute Mix')
+      ...buildMixUrls('Sci Clone Tribute Mix', 'Sci-Clone Tribute Mix', {
+        mp3Name: 'Clayton The Chemist - Sci-Clone Mix.mp3',
+        artworkName: 'Clayton the Chemist - Sci-Clone Mix.jpg'
+      })
     }
   ],
   'Funk & Soul': [
