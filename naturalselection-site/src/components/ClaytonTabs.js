@@ -37,31 +37,27 @@ export default function ClaytonTabs() {
   };
 
   return (
-    <div className="w-full space-y-8">
-      {/* Tab Navigation Bar */}
-      <div className="bg-gray-900/90 backdrop-blur-md rounded-2xl p-2 sm:p-3 border border-white/10 shadow-2xl">
-        <div className="flex overflow-x-auto gap-2 no-scrollbar scroll-smooth">
+    <div className="w-full space-y-6">
+      {/* Tab Navigation Bar - compact, responsive, no scrollbars */}
+      <div className="bg-gray-900/90 backdrop-blur-md rounded-xl p-1.5 border border-white/10 shadow-xl">
+        <div className="grid grid-cols-5 gap-1 sm:gap-2">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => handleTabClick(tab.id)}
-                className={`flex-1 min-w-[120px] sm:min-w-0 py-3 px-3 sm:px-4 rounded-xl text-center transition-all duration-200 flex flex-col items-center justify-center gap-1 ${
+                title={tab.description}
+                className={`py-2 px-1 sm:px-3 rounded-lg text-center transition-all duration-150 flex items-center justify-center gap-1 sm:gap-1.5 ${
                   isActive
-                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/30 scale-[1.02]'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800/70'
+                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/30 font-semibold'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-800/60 font-medium'
                 }`}
                 aria-selected={isActive}
                 role="tab"
               >
-                <div className="flex items-center gap-1.5 text-base sm:text-lg font-bold">
-                  <span>{tab.icon}</span>
-                  <span className="whitespace-nowrap">{tab.label}</span>
-                </div>
-                <span className={`text-[10px] sm:text-xs truncate max-w-full ${isActive ? 'text-blue-100' : 'text-gray-500'}`}>
-                  {tab.description}
-                </span>
+                <span className="text-sm sm:text-base leading-none">{tab.icon}</span>
+                <span className="text-[11px] sm:text-xs md:text-sm truncate">{tab.label}</span>
               </button>
             );
           })}
@@ -69,7 +65,7 @@ export default function ClaytonTabs() {
       </div>
 
       {/* Tab Content Panels */}
-      <div className="tab-content transition-opacity duration-300">
+      <div className="tab-content">
         {activeTab === 'dj-mixes' && <TabbedDJMixes />}
         {activeTab === 'videos' && <ClaytonVideos />}
         {activeTab === 'releases' && <ClaytonReleases />}

@@ -11,37 +11,37 @@ export default function ClaytonEPK() {
       name: 'Instagram',
       handle: '@claytonthechemist',
       href: 'https://instagram.com/claytonthechemist',
-      color: 'hover:text-pink-400',
+      color: 'hover:text-pink-400 hover:border-pink-500/40',
     },
     {
       name: 'YouTube',
       handle: 'youtube.com/claytonthechemist',
       href: 'https://www.youtube.com/claytonthechemist',
-      color: 'hover:text-red-400',
+      color: 'hover:text-red-400 hover:border-red-500/40',
     },
     {
       name: 'SoundCloud',
       handle: 'soundcloud.com/claytonthechemist',
       href: 'https://soundcloud.com/claytonthechemist',
-      color: 'hover:text-orange-400',
+      color: 'hover:text-orange-400 hover:border-orange-500/40',
     },
     {
       name: 'MixCloud',
       handle: 'mixcloud.com/ClaytontheChemist',
       href: 'https://www.mixcloud.com/ClaytontheChemist/',
-      color: 'hover:text-blue-400',
+      color: 'hover:text-blue-400 hover:border-blue-500/40',
     },
     {
       name: 'BandCamp',
       handle: 'claytonthechemist.bandcamp.com',
       href: 'https://claytonthechemist.bandcamp.com/',
-      color: 'hover:text-cyan-400',
+      color: 'hover:text-cyan-400 hover:border-cyan-500/40',
     },
     {
       name: 'Twitch',
       handle: 'twitch.tv/claytonthechemist',
       href: 'https://www.twitch.tv/claytonthechemist',
-      color: 'hover:text-purple-400',
+      color: 'hover:text-purple-400 hover:border-purple-500/40',
     },
   ];
 
@@ -64,7 +64,7 @@ export default function ClaytonEPK() {
   return (
     <div className="space-y-6">
       {/* Action Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-gray-900/80 border border-gray-700/60 shadow-lg">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-gray-900/90 border border-gray-700/60 shadow-lg">
         <div>
           <h4 className="text-white font-bold text-lg flex items-center gap-2">
             <span>📄</span> Electronic Press Kit (EPK)
@@ -101,76 +101,28 @@ export default function ClaytonEPK() {
         </div>
       </div>
 
-      {/* EPK Main Paper Card */}
-      <div className="bg-white text-gray-900 rounded-2xl p-6 sm:p-10 md:p-12 shadow-2xl border border-gray-200">
+      {/* EPK Main Dark Mode Card */}
+      <div className="bg-gray-900/95 backdrop-blur-md text-gray-100 rounded-2xl p-6 sm:p-10 md:p-12 shadow-2xl border border-white/10">
         {/* Header Section */}
-        <div className="flex flex-col-reverse md:flex-row md:items-start justify-between gap-8 pb-8 border-b border-gray-200">
+        <div className="flex flex-col-reverse md:flex-row md:items-start justify-between gap-8 pb-8 border-b border-gray-800">
           {/* Identity & Basic Info */}
           <div className="space-y-6 flex-1">
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                <circle cx="50" cy="50" r="48" stroke="#111" strokeWidth="4" />
-                <circle cx="50" cy="50" r="40" stroke="#111" strokeWidth="3" />
-                <circle cx="50" cy="50" r="32" stroke="#111" strokeWidth="2.5" />
-                <circle cx="50" cy="50" r="24" stroke="#111" strokeWidth="2" />
-                <circle cx="50" cy="50" r="16" stroke="#111" strokeWidth="1.5" />
-                <circle cx="50" cy="50" r="8" fill="#111" />
-                <circle cx="50" cy="50" r="3" fill="#fff" />
-              </svg>
-              <div>
-                <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-gray-900 leading-tight">
-                  clayton<br />the chemist
-                </h1>
-              </div>
-            </div>
 
             {/* Quick Meta */}
-            <div className="space-y-1 text-sm sm:text-base text-gray-700">
-              <p><span className="font-bold text-gray-900">Name:</span> Dave Clayton</p>
-              <p><span className="font-bold text-gray-900">Location:</span> Seattle, WA</p>
+            <div className="space-y-1.5 text-sm sm:text-base text-gray-300">
+              <p><span className="font-bold text-white">Name:</span> Dave Clayton</p>
+              <p><span className="font-bold text-white">Location:</span> Seattle, WA</p>
               <p>
-                <span className="font-bold text-gray-900">Affiliations:</span>{' '}
-                <a href="https://naturalselectionmusic.com" className="text-blue-600 hover:underline">NaturalSelectionMusic.com</a>, SEMPA
+                <span className="font-bold text-white">Affiliations:</span>{' '}
+                <a href="https://naturalselectionmusic.com" className="text-blue-400 hover:text-blue-300 underline underline-offset-2">NaturalSelectionMusic.com</a>, SEMPA
               </p>
             </div>
-          </div>
-
-          {/* Instax Polaroid Photo */}
-          <div className="flex justify-center md:justify-end">
-            <div className="w-48 sm:w-56 bg-white p-2 pb-6 rounded shadow-xl border border-gray-200 transform md:rotate-2 hover:rotate-0 transition-transform duration-300">
-              <div className="relative w-full aspect-square bg-gray-100 rounded overflow-hidden">
-                <Image
-                  src="/images/pages/clayton-the-chemist/Clayton-The-Chemist-Instax.jpeg"
-                  alt="Dave Clayton - Clayton The Chemist"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <p className="text-center text-xs text-gray-500 mt-2 font-mono">Clayton The Chemist</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Contact & Links Section */}
-        <div className="py-6 border-b border-gray-200 grid sm:grid-cols-2 gap-4 text-sm text-gray-700">
-          <div>
-            <span className="font-bold text-gray-900">Contact: </span>
-            <a href="mailto:clayton@naturalselectionmusic.com" className="text-blue-600 hover:underline">
-              clayton@naturalselectionmusic.com
-            </a>
-            {' '}| 206-851-0003
-          </div>
-          <div>
-            <span className="font-bold text-gray-900">Websites: </span>
-            <a href="https://claytonthechemist.com" className="text-blue-600 hover:underline">claytonthechemist.com</a>,{' '}
-            <a href="https://naturalselectionmusic.com" className="text-blue-600 hover:underline">naturalselectionmusic.com</a>
           </div>
         </div>
 
         {/* Social & Streaming Channels */}
-        <div className="py-6 border-b border-gray-200">
-          <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-3">
+        <div className="py-6 border-b border-gray-800">
+          <h3 className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-3">
             Social & Streaming Channels
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
@@ -180,21 +132,21 @@ export default function ClaytonEPK() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg border border-gray-200 hover:border-gray-400 bg-gray-50 hover:bg-gray-100 transition-colors flex flex-col"
+                className={`p-3 rounded-xl border border-gray-800 bg-gray-800/60 hover:bg-gray-800 transition-all duration-150 flex flex-col ${item.color}`}
               >
-                <span className="font-semibold text-gray-900">{item.name}</span>
-                <span className="text-xs text-gray-600 truncate">{item.handle}</span>
+                <span className="font-semibold text-white">{item.name}</span>
+                <span className="text-xs text-gray-400 truncate mt-0.5">{item.handle}</span>
               </a>
             ))}
           </div>
         </div>
 
         {/* Summary */}
-        <div className="py-6 border-b border-gray-200">
-          <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-3">
+        <div className="py-6 border-b border-gray-800">
+          <h3 className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-3">
             Summary
           </h3>
-          <div className="space-y-4 text-gray-700 text-sm sm:text-base leading-relaxed">
+          <div className="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed">
             <p>
               Dave Clayton is a renaissance man in the music industry. He is adept at DJing, Music Production, Audio Mastering and Engineering, Acoustical Design, and is an avid instructor and mentor. He gravitates towards funky, soulful, and deep vibes in his sets, and masters a wealth of different genres for musical fulfilment. This is also evident in his productions and remixes.
             </p>
@@ -205,15 +157,15 @@ export default function ClaytonEPK() {
         </div>
 
         {/* Genres */}
-        <div className="py-6 border-b border-gray-200">
-          <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-3">
+        <div className="py-6 border-b border-gray-800">
+          <h3 className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-3">
             Genres
           </h3>
           <div className="flex flex-wrap gap-2">
             {genres.map((genre) => (
               <span
                 key={genre}
-                className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs sm:text-sm font-medium border border-gray-300"
+                className="px-3.5 py-1.5 bg-gray-800 text-gray-200 rounded-full text-xs sm:text-sm font-medium border border-gray-700/80 shadow-sm"
               >
                 {genre}
               </span>
@@ -222,15 +174,15 @@ export default function ClaytonEPK() {
         </div>
 
         {/* Labels Released On */}
-        <div className="py-6 border-b border-gray-200">
-          <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-3">
+        <div className="py-6 border-b border-gray-800">
+          <h3 className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-3">
             Labels Released On
           </h3>
           <div className="flex flex-wrap gap-2">
             {labels.map((label) => (
               <span
                 key={label}
-                className="px-3 py-1 bg-blue-50 text-blue-900 rounded-md text-xs sm:text-sm font-medium border border-blue-200"
+                className="px-3.5 py-1.5 bg-blue-950/60 text-blue-300 rounded-lg text-xs sm:text-sm font-medium border border-blue-800/60 shadow-sm"
               >
                 {label}
               </span>
@@ -239,15 +191,15 @@ export default function ClaytonEPK() {
         </div>
 
         {/* Notable Opening Gigs */}
-        <div className="py-6 border-b border-gray-200">
-          <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-3">
+        <div className="py-6 border-b border-gray-800">
+          <h3 className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-3">
             Notable Opening Gigs
           </h3>
           <div className="flex flex-wrap gap-2">
             {openingGigs.map((gig) => (
               <span
                 key={gig}
-                className="px-3 py-1 bg-purple-50 text-purple-900 rounded-md text-xs sm:text-sm font-semibold border border-purple-200"
+                className="px-3.5 py-1.5 bg-purple-950/60 text-purple-300 rounded-lg text-xs sm:text-sm font-semibold border border-purple-800/60 shadow-sm"
               >
                 {gig}
               </span>
@@ -257,13 +209,13 @@ export default function ClaytonEPK() {
 
         {/* Press Assets Links */}
         <div className="pt-6 grid sm:grid-cols-2 gap-4 text-sm">
-          <div className="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <span className="font-bold text-gray-900 block mb-1">📸 Press Photos:</span>
+          <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700/60 hover:border-gray-600 transition-colors">
+            <span className="font-bold text-white block mb-1">📸 Photos:</span>
             <a
               href={DRIVE_FOLDER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:underline flex items-center gap-1 text-sm"
+              className="text-blue-400 hover:text-blue-300 underline underline-offset-2 flex items-center gap-1.5 text-sm"
             >
               <span>View & Download Photos on Google Drive</span>
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -272,20 +224,6 @@ export default function ClaytonEPK() {
             </a>
           </div>
 
-          <div className="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <span className="font-bold text-gray-900 block mb-1">🎨 Logos & Artwork:</span>
-            <a
-              href={DRIVE_FOLDER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline flex items-center gap-1 text-sm"
-            >
-              <span>View & Download Logos on Google Drive</span>
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </div>
