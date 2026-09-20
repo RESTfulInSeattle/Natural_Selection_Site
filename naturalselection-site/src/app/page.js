@@ -5,28 +5,61 @@ export default function Home() {
   return (
     <div className="min-h-screen theme-page">
       {/* Hero Section */}
-      <div className="theme-hero py-20 relative overflow-hidden">
+      <div className="theme-hero py-10 md:py-12 relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <Image
-              className="mx-auto mb-8 drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200"
-              src="/images/ns-deejaying_header_white.png"
-              alt="Natural Selection Deejaying"
-              width={550}
-              height={94}
-              priority
-            />
-            <h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight theme-heading">
-              A great DJ plays the right song at the right time
-            </h1>
-            <p className="text-lg md:text-xl theme-muted max-w-4xl mx-auto mb-8 font-normal leading-relaxed">
-              No event and crowd are the same. You need a seasoned professional to both keep the event on schedule, 
-              and the crowd entertained with music that speaks to them.
-            </p>
+            <div className="flex items-center justify-center gap-4 sm:gap-8 md:gap-12 lg:gap-14 mb-10">
+              <Link 
+                href="/dj-services" 
+                className="transition-transform duration-200 hover:scale-105 focus:outline-none flex items-center justify-center"
+                aria-label="Natural Selection Deejaying"
+              >
+                <Image
+                  className="drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200 w-auto h-10 sm:h-14 md:h-16 lg:h-20 object-contain"
+                  src="/images/ns-deejaying_header_white.png"
+                  alt="Natural Selection Deejaying"
+                  width={400}
+                  height={188}
+                  priority
+                />
+              </Link>
+              <Link 
+                href="/music" 
+                className="transition-transform duration-200 hover:scale-105 focus:outline-none flex items-center justify-center"
+                aria-label="Natural Selection Music"
+              >
+                <Image
+                  className="drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200 w-auto h-10 sm:h-14 md:h-16 lg:h-20 object-contain"
+                  src="/images/ns-music_header_white.png"
+                  alt="Natural Selection Music"
+                  width={399}
+                  height={188}
+                  priority
+                />
+              </Link>
+              <Link 
+                href="/mastering" 
+                className="transition-transform duration-200 hover:scale-105 focus:outline-none flex items-center justify-center"
+                aria-label="Natural Selection Mastering"
+              >
+                <Image
+                  className="drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200 w-auto h-10 sm:h-14 md:h-16 lg:h-20 object-contain"
+                  src="/images/ns-mastering_header_white.png"
+                  alt="Natural Selection Mastering"
+                  width={407}
+                  height={188}
+                  priority
+                />
+              </Link>
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold mb-10 tracking-tight theme-heading">
+              Dedicated to the Art of Deejaying, Music Production, Audio Engineering, and Acoustics.
+            </h3>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/contact" 
-                className="inline-block gradient-accent text-white px-8 py-3.5 rounded-xl font-semibold hover:scale-105 transition-all duration-200 shadow-lg shadow-sky-950/20 dark:shadow-sky-950/60"
+                className="inline-block gradient-accent text-white px-8 py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-200 shadow-lg shadow-sky-950/20 dark:shadow-sky-950/60"
               >
                 Get Quote
               </Link>
@@ -36,19 +69,19 @@ export default function Home() {
       </div>
 
       {/* Experience Banner */}
-      <div className="theme-banner py-10 border-y">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="theme-banner py-5 border-y">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="p-5 rounded-2xl bg-white/70 dark:bg-black/40 backdrop-blur-sm border border-emerald-500/15 shadow-sm">
-              <div className="text-4xl font-extrabold mb-2 bg-gradient-to-r from-emerald-600 to-sky-600 dark:from-emerald-400 dark:to-sky-300 bg-clip-text text-transparent">28</div>
+              <div className="text-2xl font-extrabold mb-2 bg-gradient-to-r from-emerald-600 to-sky-600 dark:from-emerald-400 dark:to-sky-300 bg-clip-text text-transparent">28</div>
               <div className="theme-muted font-medium">Years Experience</div>
             </div>
             <div className="p-5 rounded-2xl bg-white/70 dark:bg-black/40 backdrop-blur-sm border border-emerald-500/15 shadow-sm">
-              <div className="text-4xl font-extrabold mb-2 bg-gradient-to-r from-sky-600 to-emerald-600 dark:from-sky-400 dark:to-emerald-300 bg-clip-text text-transparent">100+</div>
+              <div className="text-2xl font-extrabold mb-2 bg-gradient-to-r from-sky-600 to-emerald-600 dark:from-sky-400 dark:to-emerald-300 bg-clip-text text-transparent">100+</div>
               <div className="theme-muted font-medium">Events Completed</div>
             </div>
             <div className="p-5 rounded-2xl bg-white/70 dark:bg-black/40 backdrop-blur-sm border border-emerald-500/15 shadow-sm">
-              <div className="text-4xl font-extrabold mb-2 bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent">100%</div>
+              <div className="text-2xl font-extrabold mb-2 bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent">100%</div>
               <div className="theme-muted font-medium">Client Satisfaction</div>
             </div>
           </div>
@@ -56,7 +89,7 @@ export default function Home() {
       </div>
 
       {/* Services Section */}
-      <div className="py-20 theme-page">
+      <div className="py-10 theme-page">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold theme-heading mb-4">Our Services</h2>
