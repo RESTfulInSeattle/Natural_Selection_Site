@@ -118,7 +118,7 @@ export default function PhotoSlideshow({ photos = claytonPhotos }) {
             onClick={() => setIsPlaying(!isPlaying)}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${
               isPlaying
-                ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30'
+                ? 'gradient-accent text-white shadow-md shadow-emerald-950/30'
                 : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
             title={isPlaying ? 'Pause Autoplay' : 'Start Autoplay'}
