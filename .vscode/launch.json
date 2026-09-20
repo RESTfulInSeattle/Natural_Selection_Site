@@ -6,7 +6,7 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev",
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}/naturalselection-site",
       "serverReadyAction": {
         "pattern": "(https?://localhost:[0-9]+)",
         "uriFormat": "%s",
@@ -18,7 +18,7 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev",
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}/naturalselection-site",
       "serverReadyAction": {
         "pattern": "(https?://localhost:[0-9]+)",
         "uriFormat": "%s",
@@ -30,21 +30,21 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev",
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}/naturalselection-site"
     },
     {
       "name": "Next.js: debug client-side (Chrome - requires server running)",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}/naturalselection-site"
     },
     {
       "name": "Next.js: debug client-side (Edge - requires server running)",
       "type": "msedge",
       "request": "launch",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}/naturalselection-site"
     }
   ]
 }
