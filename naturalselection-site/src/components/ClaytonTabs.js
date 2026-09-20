@@ -39,7 +39,7 @@ export default function ClaytonTabs() {
   return (
     <div className="w-full space-y-6">
       {/* Tab Navigation Bar - compact, responsive, no scrollbars */}
-      <div className="bg-gray-900/90 backdrop-blur-md rounded-xl p-1.5 border border-white/10 shadow-xl">
+      <div className="theme-card rounded-2xl p-1.5 shadow-xl">
         <div className="grid grid-cols-5 gap-1 sm:gap-2">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -48,10 +48,10 @@ export default function ClaytonTabs() {
                 key={tab.id}
                 onClick={() => handleTabClick(tab.id)}
                 title={tab.description}
-                className={`py-2 px-1 sm:px-3 rounded-lg text-center transition-all duration-150 flex items-center justify-center gap-1 sm:gap-1.5 ${
+                className={`py-2 px-1 sm:px-3 rounded-xl text-center transition-all duration-200 flex items-center justify-center gap-1 sm:gap-1.5 ${
                   isActive
-                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/30 font-semibold'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800/60 font-medium'
+                    ? 'gradient-accent text-white shadow-md shadow-emerald-950/30 font-semibold'
+                    : 'theme-muted hover:theme-heading hover:bg-emerald-500/10 font-medium'
                 }`}
                 aria-selected={isActive}
                 role="tab"

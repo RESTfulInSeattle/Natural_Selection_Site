@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,42 +24,45 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="gradient-primary text-white sticky top-0 z-50 shadow-lg backdrop-blur-sm">
+    <nav className="bg-white/95 dark:bg-[#02070a]/95 text-slate-800 dark:text-white sticky top-0 z-50 shadow-sm dark:shadow-2xl backdrop-blur-md border-b border-slate-200/80 dark:border-emerald-500/20 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          {/* Logo - Adapts brightness between Light and Dark mode */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
               src="/content/images/ns-deejaying_header_white.png"
               alt="Natural Selection"
               width={200}
               height={34}
-              className="h-8 w-auto"
+              className="h-8 w-auto brightness-0 dark:brightness-100 hover:opacity-90 transition-all duration-200"
+              priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="flex items-baseline space-x-1 lg:space-x-2">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-800 hover:text-white transition-colors duration-200"
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-300 hover:bg-emerald-50/80 dark:hover:bg-emerald-950/40 transition-colors duration-200"
                 >
                   {item.name}
                 </Link>
               ))}
               
               {/* Music Dropdown */}
-              <div className="relative">
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsMusicDropdownOpen(true)}
+                onMouseLeave={() => setIsMusicDropdownOpen(false)}
+              >
                 <button
-                  onMouseEnter={() => setIsMusicDropdownOpen(true)}
-                  onMouseLeave={() => setIsMusicDropdownOpen(false)}
-                  className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-800 hover:text-white transition-colors duration-200 flex items-center"
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-300 hover:bg-emerald-50/80 dark:hover:bg-emerald-950/40 transition-colors duration-200 flex items-center gap-1"
                 >
                   Music
-                  <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -66,18 +70,15 @@ export default function Navigation() {
                 {/* Dropdown Menu */}
                 {isMusicDropdownOpen && (
                   <div
-                    onMouseEnter={() => setIsMusicDropdownOpen(true)}
-                    onMouseLeave={() => setIsMusicDropdownOpen(false)}
-                    className="absolute right-0 mt-0 w-56 gradient-primary rounded-md shadow-xl border border-gray-200 z-[9999]"
+                    className="absolute right-0 mt-0 w-56 bg-white dark:bg-[#061217] rounded-xl shadow-xl dark:shadow-2xl border border-slate-200 dark:border-emerald-500/30 z-[9999] backdrop-blur-md overflow-hidden"
                     style={{ pointerEvents: 'auto', top: '100%' }}
                   >
-                    <div className="py-1">
+                    <div className="py-1.5">
                       {musicItems.map((item) => (
                         <Link
                           key={item.name}
                           href={item.href}
-                          className="block px-4 py-2 text-sm text-gray-300 hover:gradient-primary hover:text-white transition-colors duration-200"
-                          style={{ pointerEvents: 'auto' }}
+                          className="block px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors duration-200"
                         >
                           {item.name}
                         </Link>
@@ -87,20 +88,27 @@ export default function Navigation() {
                 )}
               </div>
             </div>
+
+            {/* Desktop Theme Switch */}
+            <div className="pl-2 border-l border-slate-200 dark:border-emerald-500/30">
+              <ThemeToggle showLabel={false} />
+            </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile menu and theme toggle */}
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle showLabel={false} />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="inline-flex items-center justify-center p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/40 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500 text-slate-700 dark:text-white"
+              aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
               {/* Hamburger icon */}
               <div className="w-6 h-6 flex flex-col justify-center items-center">
-                <div className={`w-5 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
-                <div className={`w-5 h-0.5 bg-white transition-all duration-300 mt-1 ${isMenuOpen ? 'opacity-0' : ''}`}></div>
-                <div className={`w-5 h-0.5 bg-white transition-all duration-300 mt-1 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+                <div className={`w-5 h-0.5 bg-slate-800 dark:bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
+                <div className={`w-5 h-0.5 bg-slate-800 dark:bg-white transition-all duration-300 mt-1 ${isMenuOpen ? 'opacity-0' : ''}`}></div>
+                <div className={`w-5 h-0.5 bg-slate-800 dark:bg-white transition-all duration-300 mt-1 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
               </div>
             </button>
           </div>
@@ -109,13 +117,13 @@ export default function Navigation() {
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 gradient-accent backdrop-blur-md">
+        <div className="md:hidden border-t border-slate-200 dark:border-emerald-500/20 bg-white/98 dark:bg-[#02070a]/98 backdrop-blur-xl">
+          <div className="px-3 pt-2 pb-4 space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800 hover:text-white transition-colors duration-200"
+                className="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/40 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
@@ -123,18 +131,26 @@ export default function Navigation() {
             ))}
             
             {/* Mobile Music Section */}
-            <div className="border-t border-gray-700 pt-2 mt-2">
-              <div className="px-3 py-2 text-base font-medium text-gray-300">Music</div>
+            <div className="border-t border-slate-200 dark:border-emerald-500/20 pt-3 mt-3">
+              <div className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                Music Sections
+              </div>
               {musicItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-6 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-colors duration-200"
+                  className="block px-4 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/40 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
+            </div>
+
+            {/* Mobile Theme Toggle Row */}
+            <div className="border-t border-slate-200 dark:border-emerald-500/20 pt-3 mt-3 px-3 flex items-center justify-between">
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Appearance</span>
+              <ThemeToggle showLabel={true} />
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import Image from 'next/image';
 export function ContentRenderer({ content, className = "" }) {
   return (
     <div 
-      className={`prose prose-lg max-w-none text-gray-900 ${className}`}
+      className={`prose prose-lg max-w-none ${className}`}
       dangerouslySetInnerHTML={{ __html: content }}
     />
   );
@@ -21,7 +21,7 @@ export function ImageGallery({ images, className = "" }) {
   return (
     <div className={`grid gap-6 ${className}`}>
       {images.map((image, index) => (
-        <div key={index} className="relative overflow-hidden rounded-lg">
+        <div key={index} className="relative overflow-hidden rounded-2xl border border-emerald-500/20 shadow-md">
           <Image
             src={image.path}
             alt={image.alt || `Gallery image ${index + 1}`}
@@ -40,11 +40,11 @@ export function ImageGallery({ images, className = "" }) {
  * PostCard - Card component for displaying content summaries
  */
 export function PostCard({ post, className = "" }) {
-  const { frontmatter, content, images, slug } = post;
+  const { frontmatter, content, images } = post;
   const previewImage = images && images.length > 0 ? images[0] : null;
 
   return (
-    <div className={`bg-white/90 backdrop-blur-sm rounded-lg border border-white/20 overflow-hidden hover:shadow-xl transition-all duration-200 ${className}`}>
+    <div className={`theme-card rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-200 ${className}`}>
       {previewImage && (
         <div className="relative h-48 overflow-hidden">
           <Image
@@ -58,12 +58,12 @@ export function PostCard({ post, className = "" }) {
       )}
       
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2 text-gray-900">
+        <h3 className="text-xl font-semibold mb-2 theme-heading">
           {frontmatter.title}
         </h3>
         
         {frontmatter.date && (
-          <p className="text-sm text-gray-600 mb-3">
+          <p className="text-sm theme-muted mb-3">
             {new Date(frontmatter.date).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -73,7 +73,7 @@ export function PostCard({ post, className = "" }) {
         )}
         
         <div 
-          className="text-gray-700 prose prose-sm"
+          className="theme-body prose prose-sm"
           dangerouslySetInnerHTML={{ 
             __html: content.split('</p>')[0] + '</p>' // First paragraph as preview
           }}
@@ -81,7 +81,7 @@ export function PostCard({ post, className = "" }) {
         
         {frontmatter.category && (
           <div className="mt-4">
-            <span className="inline-block bg-gradient-accent text-white px-3 py-1 rounded-full text-xs font-medium">
+            <span className="inline-block gradient-accent text-white px-3 py-1 rounded-full text-xs font-semibold shadow-sm">
               {frontmatter.category}
             </span>
           </div>
@@ -96,7 +96,7 @@ export function PostCard({ post, className = "" }) {
  */
 export function ContentHero({ title, subtitle, date, image, className = "" }) {
   return (
-    <div className={`gradient-hero text-white py-16 relative overflow-hidden ${className}`}>
+    <div className={`gradient-mesh text-white py-16 relative overflow-hidden ${className}`}>
       {image && (
         <div className="absolute inset-0 opacity-20">
           <Image
@@ -109,17 +109,17 @@ export function ContentHero({ title, subtitle, date, image, className = "" }) {
         </div>
       )}
       
-      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute inset-0 bg-black/30"></div>
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">{title}</h1>
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">{title}</h1>
         
         {subtitle && (
-          <p className="text-xl md:text-2xl text-gray-300 mb-4">{subtitle}</p>
+          <p className="text-xl md:text-2xl text-emerald-100/90 mb-4 font-light">{subtitle}</p>
         )}
         
         {date && (
-          <p className="text-gray-400">
+          <p className="text-emerald-200/70 text-sm">
             {new Date(date).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -137,16 +137,16 @@ export function ContentHero({ title, subtitle, date, image, className = "" }) {
  */
 export function ContentSection({ children, className = "", background = "light" }) {
   const bgClass = background === "light" 
-    ? "gradient-section-light" 
+    ? "theme-page" 
     : background === "dark" 
     ? "gradient-primary text-white" 
-    : background === "white"
-    ? "bg-white"
-    : "bg-white";
+    : background === "card"
+    ? "theme-card"
+    : "theme-page";
 
   const textClass = background === "dark" 
     ? "text-white" 
-    : "text-gray-900";
+    : "theme-body";
 
   return (
     <div className={`py-16 ${bgClass} ${className}`}>

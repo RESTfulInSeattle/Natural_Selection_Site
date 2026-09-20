@@ -1,39 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SoundCloudPlayer, SpotifyPlayer, AppleMusicPlayer, MusicSection } from "@/components/MusicPlayers";
+import { SoundCloudPlayer, SpotifyPlayer, AppleMusicPlayer } from "@/components/MusicPlayers";
 
 export default function Music() {
   return (
-    <div className="min-h-screen gradient-primary">
+    <div className="min-h-screen theme-page">
       {/* Hero Section */}
-      <div className="gradient-mesh text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="theme-hero py-16 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <Image
             src="/content/pages/2015/10/music/images/ns-music_header_white.png"
             alt="Natural Selection Music"
             width={550}
             height={94}
-            className="mx-auto mb-8"
+            className="mx-auto mb-8 drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200"
             priority
           />
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
+          <h1 className="text-2xl md:text-4xl font-bold mb-4 tracking-tight theme-heading">
             Music for your soul, as well as your backside
-          </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          </h1>
+          <p className="text-base md:text-lg theme-muted max-w-3xl mx-auto font-normal leading-relaxed">
             Clayton and Fulcrum&apos;s original compositions and releases spanning multiple genres and moods.
           </p>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         
         {/* Featured Albums */}
         <div className="mb-16">
-          <div className="grid md:grid-cols-2 gap-12 mb-12">
+          <div className="grid md:grid-cols-2 gap-10 mb-12">
             {/* The Soul Purpose */}
-            <div className="gradient-primary rounded-lg p-6">
-              <h3 className="text-2xl font-bold mb-6 text-center text-gray-300">The Soul Purpose</h3>
+            <div className="theme-card rounded-2xl p-6 sm:p-8">
+              <h2 className="text-2xl font-bold mb-6 text-center theme-heading">The Soul Purpose</h2>
               
               {/* SoundCloud Playlist */}
               <div className="mb-6">
@@ -61,8 +61,8 @@ export default function Music() {
             </div>
 
             {/* Songs from the Soul City */}
-            <div className="gradient-primary rounded-lg p-6">
-              <h3 className="text-2xl font-bold mb-6 text-center text-gray-300">Songs from the Soul City</h3>
+            <div className="theme-card rounded-2xl p-6 sm:p-8">
+              <h2 className="text-2xl font-bold mb-6 text-center theme-heading">Songs from the Soul City</h2>
               
               {/* SoundCloud Playlist */}
               <div className="mb-6">
@@ -92,21 +92,21 @@ export default function Music() {
         </div>
 
         {/* Call to Action */}
-        <div className="gradient-primary text-white rounded-lg p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Want to License Our Music?</h2>
-          <p className="text-lg text-gray-300 mb-6">
+        <div className="theme-cta rounded-2xl p-10 text-center border shadow-xl">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight theme-heading">Want to License Our Music?</h2>
+          <p className="text-base md:text-lg theme-muted mb-8 max-w-2xl mx-auto">
             Check out our publishing page for licensing opportunities or contact us directly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/publishing" 
-              className="inline-block bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
+              className="inline-block gradient-accent text-white px-8 py-3.5 rounded-xl font-bold hover:scale-105 transition-all duration-200 shadow-md"
             >
               View Publishing
             </Link>
             <Link 
               href="/contact" 
-              className="inline-block border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors duration-200"
+              className="inline-block theme-card border-2 px-8 py-3.5 rounded-xl font-bold theme-heading hover:bg-emerald-500/10 transition-all duration-200"
             >
               Contact Us
             </Link>

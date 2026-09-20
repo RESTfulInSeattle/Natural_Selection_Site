@@ -54,19 +54,19 @@ export default function TabbedDJMixes() {
   const activeMixes = djMixData[activeTab] || [];
 
   return (
-    <div className="gradient-primary rounded-2xl p-6 sm:p-8 border border-white/10 shadow-2xl">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 pb-4 border-b border-gray-700/60 gap-4">
+    <div className="theme-card rounded-2xl p-6 sm:p-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 pb-4 border-b border-slate-200/80 dark:border-slate-800 gap-4">
         <div>
-          <h3 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h3 className="text-2xl font-bold theme-heading tracking-tight flex items-center gap-2">
             <span>🎧</span> Clayton The Chemist DJ Mixes
           </h3>
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-sm theme-muted mt-1">
             Stream high-definition DJ sets directly or download for offline listening
           </p>
         </div>
 
         {/* Tab Selection */}
-        <div className="flex flex-wrap gap-2 bg-gray-900/60 p-1.5 rounded-xl border border-gray-700/40">
+        <div className="flex flex-wrap gap-2 bg-slate-100 dark:bg-slate-900/80 p-1.5 rounded-xl border border-slate-200 dark:border-emerald-500/20">
           {tabs.map((tab) => {
             const count = djMixData[tab]?.length || 0;
             const isActive = activeTab === tab;
@@ -76,14 +76,16 @@ export default function TabbedDJMixes() {
                 onClick={() => handleTabSwitch(tab)}
                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 ${
                   isActive
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800/80'
+                    ? 'gradient-accent text-white shadow-md shadow-emerald-950/20'
+                    : 'theme-muted hover:theme-heading hover:bg-white dark:hover:bg-slate-800'
                 }`}
               >
                 <span>{tab}</span>
                 <span
                   className={`text-xs px-1.5 py-0.5 rounded-full ${
-                    isActive ? 'bg-blue-700 text-white' : 'bg-gray-800 text-gray-400'
+                    isActive
+                      ? 'bg-white/25 text-white font-bold'
+                      : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
                   }`}
                 >
                   {count}
