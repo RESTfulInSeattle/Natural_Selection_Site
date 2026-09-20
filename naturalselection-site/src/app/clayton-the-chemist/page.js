@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SoundCloudPlayer, MusicSection } from "@/components/MusicPlayers";
-import TabbedDJMixes from "@/components/TabbedDJMixes";
+import ClaytonTabs from "@/components/ClaytonTabs";
+
+export const metadata = {
+  title: "Clayton the Chemist | Producer & DJ | Natural Selection",
+  description: "Artist portfolio for Dave Clayton (Clayton The Chemist) - DJ sets, YouTube playlist, music releases, photo gallery, and electronic press kit (EPK).",
+};
 
 export default function ClaytonTheChemist() {
   return (
@@ -21,9 +25,8 @@ export default function ClaytonTheChemist() {
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
         {/* Origin Story */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-4">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-10">
           <div>
             <Image
               src="/images/pages/clayton-the-chemist/Clayton-The-Chemist-Instax.jpeg"
@@ -31,6 +34,7 @@ export default function ClaytonTheChemist() {
               width={400}
               height={400}
               className="rounded-lg shadow-xl"
+              priority
             />
           </div>
           <div>
@@ -39,131 +43,34 @@ export default function ClaytonTheChemist() {
               <footer className="text-base text-gray-200 mt-4 not-italic">- JJ Brown</footer>
             </blockquote>
             <p className="text-lg text-gray-300 mb-4">
-              Dave Clayton is a renaissance man in the music industry.  He is adept at DJing, Music Production, Audio Mastering and Engineering, Acoustical Design, and is an avid instructor and mentor.  
-              He gravitates towards funky, soulful, and deep vibes in his sets, and masters a wealth of different genres for musical fulfilment.  This is also evident in his productions and remixes.  
+              Dave Clayton is a renaissance man in the music industry. He is adept at DJing, Music Production, Audio Mastering and Engineering, Acoustical Design, and is an avid instructor and mentor. He gravitates towards funky, soulful, and deep vibes in his sets, and masters a wealth of different genres for musical fulfilment. This is also evident in his productions and remixes.
             </p>
-            <p className="text-lg text-gray-300 mb-6">
+            <p className="text-lg text-gray-300 mb-4">
               His DJ and live performances are vibrant, fun, and incorporate fusions of different genres and places into an artistic flow of consciousness.
             </p>
+            <p className="text-base text-purple-300 font-medium">
+              Notable Opening Gigs: De La Soul, Massive Attack, LTJ Bukem, DJ Krush
+            </p>
           </div>
         </div>
 
-        <div>
-          <p className="text-lg text-gray-300 mb-4">
-            Notable Opening Gigs:  De La Soul, Massive Attack, LTJ Bukem, DJ Krush
-          </p>
-        </div>
-      
-        {/* Tabbed DJ Mixes Section - UPGRADED! */}
-        <div className="grid md:grid-cols-1 gap-8 mb-8">
-          <TabbedDJMixes />
-        </div>
-
-        {/* Streaming Platforms */}
-        <div className="mb-4">
-
-          {/* Spotify */}
-          <div className="grid md:grid-cols-1 gap-8">
-            <div className="gradient-primary  rounded-lg p-8">
-              <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                <h4 className="text-lg font-semibold mb-2 text-gray-300">🎵 Spotify</h4>
-                <p className="text-sm text-gray-400 mb-4">Stream original productions and remixes</p>
-                <iframe 
-                  data-testid="embed-iframe" 
-                  style={{borderRadius: '12px'}} 
-                  src="https://open.spotify.com/embed/artist/5JakVmGiAB3D9RRqkXn2PZ?utm_source=generator" 
-                  width="100%" 
-                  height="352" 
-                  frameBorder="0" 
-                  allowFullScreen="" 
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Apple Music */}
-         <div className="grid md:grid-cols-1 gap-8">
-            <div className="gradient-primary  rounded-lg p-8">
-              <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                <h4 className="text-lg font-semibold mb-2 text-gray-300">🍎 Apple Music</h4>
-                <p className="text-sm text-gray-400 mb-4">Stream original productions and remixes</p>
-                <iframe 
-                  src="https://embed.music.apple.com/us/artist/clayton-the-chemist/942054999"
-                  height="450"
-                  width="100%"
-                  frameBorder="0" 
-                  sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                  allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-                  className="rounded"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* SoundCloud Playlists */}
-          <div className="grid md:grid-cols-1 gap-8">
-            <div className="gradient-primary  rounded-lg p-8">
-              <div className="space-y-6">
-                {/* Introspectral EP */}
-                <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                  <h4 className="text-lg font-semibold mb-2 text-gray-300">☁️ SoundCloud</h4>
-                  <p className="text-sm text-gray-400 mb-4">Clayton&apos;s 2023 EP</p>
-                  <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 shadow-lg">
-                    <iframe 
-                      width="100%" 
-                      height="300" 
-                      scrolling="no"
-                      frameBorder="no" 
-                      allow="autoplay"
-                      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A1614946756&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-                      className="rounded"
-                    />
-                    <div style={{fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100}}>
-                      <a href="https://soundcloud.com/claytonthechemist" title="Clayton the Chemist" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>Clayton the Chemist</a> · <a href="https://soundcloud.com/claytonthechemist/sets/introspectral-ep" title="Introspectral EP" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>Introspectral EP</a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Original Songs */}
-                <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                  <h4 className="text-lg font-semibold mb-2 text-gray-300">Original Songs</h4>
-                  <p className="text-sm text-gray-400 mb-4">Collection of original compositions and productions on SoundCloud</p>
-                  <SoundCloudPlayer 
-                    playlistId="19050410" 
-                    title="Original Compositions"
-                    height="450"
-                  />
-                </div>
-
-                {/* Remixes and Edits */}
-                <div className="gradient-primary rounded-lg p-6 border border-gray-200">
-                  <h4 className="text-lg font-semibold mb-2 text-gray-300">Remixes and Edits</h4>
-                  <p className="text-sm text-gray-400 mb-4">Remixes, edits, and reimagined tracks on SoundCloud</p>
-                  <SoundCloudPlayer 
-                    playlistId="527718" 
-                    title="Remixes & Edits"
-                    height="450"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* 5-Tab Section: DJ Mixes, Videos, Releases, Photos, EPK */}
+        <div className="mb-16">
+          <ClaytonTabs />
         </div>
 
         {/* Philosophy */}
-        <div className="gradient-primary from-purple-50 to-blue-50 rounded-lg p-8 mb-16">
-          <h2 className="text-3xl font-bold mb-6 text-center text-gray-300">The Chemist&apos;s Philosophy</h2>
+        <div className="gradient-primary from-purple-50 to-blue-50 rounded-2xl p-8 mb-16 border border-white/10 shadow-xl">
+          <h2 className="text-3xl font-bold mb-6 text-center text-gray-200">The Chemist&apos;s Philosophy</h2>
           <div className="text-center max-w-4xl mx-auto">
-            <p className="text-lg text-gray-300 mb-6">
-             When you hear the first notes of Stevie Wonder&apos;s voice, you instantly feel what he&apos;s singing about. The range of my sets, and musical library, will be broad, but the thing that ties everything together, the essential element, is that you will feel the emotion the song is conveying
+            <p className="text-lg text-gray-300 leading-relaxed">
+              &quot;When you hear the first notes of Stevie Wonder&apos;s voice, you instantly feel what he&apos;s singing about. The range of my sets, and musical library, will be broad, but the thing that ties everything together, the essential element, is that you will feel the emotion the song is conveying.&quot;
             </p>
           </div>
         </div>
 
         {/* Call to Action */}
-        <div className="gradient-mesh text-white rounded-lg p-8 text-center">
+        <div className="gradient-mesh text-white rounded-2xl p-8 text-center border border-white/10 shadow-xl">
           <p className="text-lg text-gray-300 mb-6">
             Stay connected for new releases, remixes, and musical experiments.
           </p>
@@ -172,7 +79,7 @@ export default function ClaytonTheChemist() {
               href="https://soundcloud.com/claytonthechemist" 
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors duration-200"
+              className="inline-block bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors duration-200 shadow-lg shadow-orange-900/30"
             >
               Follow on SoundCloud
             </a>
