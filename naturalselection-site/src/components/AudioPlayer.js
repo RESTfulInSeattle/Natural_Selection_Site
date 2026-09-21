@@ -1,137 +1,100 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Image from 'next/image';
+import { useAudio } from '@/context/AudioContext';
 
 export function AudioPlayer({
+  id,
   mixTitle,
   artistName = 'Clayton The Chemist',
   mp3Url,
   artworkUrl,
   downloadUrl,
   description,
-  audioRef: externalAudioRef,
+  genre,
   onPlay,
 }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.8);
-  const [isMuted, setIsMuted] = useState(false);
-  const [playbackRate, setPlaybackRate] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [audioError, setAudioError] = useState(false);
+  const {
+    currentTrack,
+    isPlaying,
+    isLoading,
+    currentTime,
+    duration,
+    volume,
+    isMuted,
+    playbackRate,
+    audioError,
+    playTrack,
+    togglePlayPause,
+    seek,
+    skip,
+    setVolume,
+    toggleMute,
+    setPlaybackRate,
+  } = useAudio();
+
   const [artworkError, setArtworkError] = useState(false);
   const [hoverTime, setHoverTime] = useState(null);
   const [hoverPosition, setHoverPosition] = useState(0);
-
-  const internalAudioRef = useRef(null);
   const progressBarRef = useRef(null);
 
-  const audioEl = internalAudioRef;
+  // Check if this specific card represents the currently active global track
+  const isCurrent = currentTrack && (currentTrack.mp3Url === mp3Url || (id && currentTrack.id === id));
+  const cardPlaying = isCurrent && isPlaying;
+  const cardLoading = isCurrent && isLoading;
+  const cardError = isCurrent && audioError;
+  const cardCurrentTime = isCurrent ? currentTime : 0;
+  const cardDuration = isCurrent ? duration : 0;
 
-  // Sync external ref if provided
-  useEffect(() => {
-    if (externalAudioRef && audioEl.current) {
-      if (typeof externalAudioRef === 'function') {
-        externalAudioRef(audioEl.current);
-      } else {
-        externalAudioRef.current = audioEl.current;
-      }
-    }
-  }, [externalAudioRef, audioEl]);
-
-  // Audio event listeners
-  useEffect(() => {
-    const audio = audioEl.current;
-    if (!audio) return;
-
-    const handleLoadedMetadata = () => {
-      setDuration(audio.duration);
-      setIsLoading(false);
-      setAudioError(false);
-    };
-
-    const handleTimeUpdate = () => {
-      setCurrentTime(audio.currentTime);
-    };
-
-    const handleWaiting = () => {
-      setIsLoading(true);
-    };
-
-    const handleCanPlay = () => {
-      setIsLoading(false);
-    };
-
-    const handleEnded = () => {
-      setIsPlaying(false);
-      setCurrentTime(0);
-    };
-
-    const handleError = () => {
-      setIsLoading(false);
-      setAudioError(true);
-      setIsPlaying(false);
-    };
-
-    const handlePause = () => {
-      setIsPlaying(false);
-    };
-
-    const handlePlayEvent = () => {
-      setIsPlaying(true);
-      if (onPlay) onPlay();
-    };
-
-    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-    audio.addEventListener('timeupdate', handleTimeUpdate);
-    audio.addEventListener('waiting', handleWaiting);
-    audio.addEventListener('canplay', handleCanPlay);
-    audio.addEventListener('ended', handleEnded);
-    audio.addEventListener('error', handleError);
-    audio.addEventListener('pause', handlePause);
-    audio.addEventListener('play', handlePlayEvent);
-
-    return () => {
-      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      audio.removeEventListener('timeupdate', handleTimeUpdate);
-      audio.removeEventListener('waiting', handleWaiting);
-      audio.removeEventListener('canplay', handleCanPlay);
-      audio.removeEventListener('ended', handleEnded);
-      audio.removeEventListener('error', handleError);
-      audio.removeEventListener('pause', handlePause);
-      audio.removeEventListener('play', handlePlayEvent);
-    };
-  }, [audioEl, onPlay]);
-
-  const togglePlayPause = () => {
-    if (!audioEl.current) return;
-    if (isPlaying) {
-      audioEl.current.pause();
+  const handlePlayToggle = () => {
+    if (isCurrent) {
+      togglePlayPause();
     } else {
-      setIsLoading(true);
-      audioEl.current.play().catch(() => {
-        setIsLoading(false);
-        setAudioError(true);
+      playTrack({
+        id: id || mixTitle,
+        mixTitle,
+        artistName,
+        mp3Url,
+        artworkUrl,
+        downloadUrl,
+        description,
+        genre,
       });
+      if (onPlay) onPlay();
     }
   };
 
   const handleSeek = (e) => {
-    if (!progressBarRef.current || !audioEl.current || !duration) return;
+    if (!progressBarRef.current) return;
     const rect = progressBarRef.current.getBoundingClientRect();
     const clickX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-    const seekTime = (clickX / rect.width) * duration;
-    audioEl.current.currentTime = seekTime;
-    setCurrentTime(seekTime);
+
+    if (!isCurrent) {
+      playTrack({
+        id: id || mixTitle,
+        mixTitle,
+        artistName,
+        mp3Url,
+        artworkUrl,
+        downloadUrl,
+        description,
+        genre,
+      });
+      return;
+    }
+
+    if (duration > 0) {
+      const seekTime = (clickX / rect.width) * duration;
+      seek(seekTime);
+    }
   };
 
   const handleMouseMove = (e) => {
-    if (!progressBarRef.current || !duration) return;
+    if (!progressBarRef.current || !cardDuration) return;
     const rect = progressBarRef.current.getBoundingClientRect();
     const moveX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-    const time = (moveX / rect.width) * duration;
+    const time = (moveX / rect.width) * cardDuration;
     setHoverTime(time);
     setHoverPosition(moveX);
   };
@@ -141,10 +104,9 @@ export function AudioPlayer({
   };
 
   const handleSkip = (seconds) => {
-    if (!audioEl.current || !duration) return;
-    const newTime = Math.max(0, Math.min(audioEl.current.currentTime + seconds, duration));
-    audioEl.current.currentTime = newTime;
-    setCurrentTime(newTime);
+    if (isCurrent) {
+      skip(seconds);
+    }
   };
 
   const formatTime = useCallback((timeInSeconds) => {
@@ -161,37 +123,22 @@ export function AudioPlayer({
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
-    if (audioEl.current) {
-      audioEl.current.volume = newVolume;
-      setIsMuted(newVolume === 0);
-    }
-  };
-
-  const toggleMute = () => {
-    if (!audioEl.current) return;
-    if (isMuted) {
-      audioEl.current.volume = volume || 0.5;
-      setIsMuted(false);
-    } else {
-      audioEl.current.volume = 0;
-      setIsMuted(true);
-    }
   };
 
   const handleSpeedChange = () => {
     const speeds = [1, 1.25, 1.5];
     const nextIndex = (speeds.indexOf(playbackRate) + 1) % speeds.length;
-    const nextSpeed = speeds[nextIndex];
-    setPlaybackRate(nextSpeed);
-    if (audioEl.current) {
-      audioEl.current.playbackRate = nextSpeed;
-    }
+    setPlaybackRate(speeds[nextIndex]);
   };
 
-  const progressPercent = duration ? (currentTime / duration) * 100 : 0;
+  const progressPercent = cardDuration ? (cardCurrentTime / cardDuration) * 100 : 0;
 
   return (
-    <div className="theme-card rounded-2xl p-5 hover:border-emerald-500/40 transition-all duration-200">
+    <div className={`theme-card rounded-2xl p-5 transition-all duration-200 ${
+      isCurrent
+        ? 'border-emerald-500/60 dark:border-emerald-500/50 shadow-md shadow-emerald-950/10 ring-1 ring-emerald-500/30'
+        : 'hover:border-emerald-500/40'
+    }`}>
       {/* Top section: Artwork + Title + Description */}
       <div className="flex items-start gap-4">
         {/* Artwork */}
@@ -213,16 +160,24 @@ export function AudioPlayer({
             </div>
           )}
 
-          {isLoading && !audioError && (
+          {cardLoading && !cardError && (
             <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
               <div className="animate-spin rounded-full h-7 w-7 border-2 border-emerald-400 border-t-transparent"></div>
             </div>
           )}
 
-          {audioError && (
+          {cardError && (
             <div className="absolute inset-0 bg-red-950/80 flex flex-col items-center justify-center text-red-200 text-xs p-1 text-center">
               <span className="text-lg">⚠️</span>
               <span>Audio Error</span>
+            </div>
+          )}
+
+          {/* Playing indicator badge on artwork */}
+          {cardPlaying && (
+            <div className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+              LIVE
             </div>
           )}
         </div>
@@ -255,7 +210,7 @@ export function AudioPlayer({
             </p>
           )}
 
-          {audioError && (
+          {cardError && (
             <p className="text-red-500 text-xs mt-2 flex items-center gap-1">
               <span>⚠️</span> Audio stream unavailable. Please check back shortly.
             </p>
@@ -284,7 +239,7 @@ export function AudioPlayer({
           </div>
 
           {/* Hover time tooltip */}
-          {hoverTime !== null && (
+          {hoverTime !== null && isCurrent && (
             <div
               className="absolute -top-7 transform -translate-x-1/2 bg-slate-900 text-white text-xs px-2 py-0.5 rounded shadow pointer-events-none font-mono"
               style={{ left: `${hoverPosition}px` }}
@@ -301,8 +256,8 @@ export function AudioPlayer({
             {/* Skip Back 10s */}
             <button
               onClick={() => handleSkip(-10)}
-              disabled={audioError || !duration}
-              className="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white disabled:opacity-40 transition-colors"
+              disabled={!isCurrent || cardError || !cardDuration}
+              className="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white disabled:opacity-30 transition-colors"
               title="Rewind 10s"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -312,14 +267,14 @@ export function AudioPlayer({
 
             {/* Play/Pause Button */}
             <button
-              onClick={togglePlayPause}
-              disabled={isLoading || audioError}
+              onClick={handlePlayToggle}
+              disabled={cardLoading || cardError}
               className="w-11 h-11 gradient-accent rounded-full flex items-center justify-center text-white shadow-md shadow-sky-950/20 dark:shadow-sky-950/50 transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50"
-              title={audioError ? 'Audio Error' : isPlaying ? 'Pause' : 'Play'}
+              title={cardError ? 'Audio Error' : cardPlaying ? 'Pause' : 'Play'}
             >
-              {isLoading && !audioError ? (
+              {cardLoading && !cardError ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-              ) : isPlaying ? (
+              ) : cardPlaying ? (
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path fillRule="evenodd" d="M6.75 5.25a.75.75 0 01.75.75v12a.75.75 0 01-1.5 0v-12a.75.75 0 01.75-.75zm10.5 0a.75.75 0 01.75.75v12a.75.75 0 01-1.5 0v-12a.75.75 0 01.75-.75z" clipRule="evenodd" />
                 </svg>
@@ -333,8 +288,8 @@ export function AudioPlayer({
             {/* Skip Forward 10s */}
             <button
               onClick={() => handleSkip(10)}
-              disabled={audioError || !duration}
-              className="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white disabled:opacity-40 transition-colors"
+              disabled={!isCurrent || cardError || !cardDuration}
+              className="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white disabled:opacity-30 transition-colors"
               title="Forward 10s"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -344,9 +299,9 @@ export function AudioPlayer({
 
             {/* Current / Total Time */}
             <div className="text-xs sm:text-sm font-mono ml-2 whitespace-nowrap theme-muted">
-              <span className="theme-heading font-semibold">{formatTime(currentTime)}</span>
+              <span className="theme-heading font-semibold">{formatTime(cardCurrentTime)}</span>
               <span className="mx-1 opacity-50">/</span>
-              <span>{formatTime(duration)}</span>
+              <span>{formatTime(cardDuration)}</span>
             </div>
           </div>
 
@@ -393,9 +348,6 @@ export function AudioPlayer({
           </div>
         </div>
       </div>
-
-      {/* Hidden HTML5 Audio Element */}
-      <audio ref={audioEl} src={mp3Url} preload="metadata" className="hidden" />
     </div>
   );
 }
