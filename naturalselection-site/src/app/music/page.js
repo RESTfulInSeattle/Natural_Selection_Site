@@ -8,19 +8,12 @@ export default function Music() {
       {/* Hero Section */}
       <div className="theme-hero py-16 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Image
-            src="/content/pages/2015/10/music/images/ns-music_header_white.png"
-            alt="Natural Selection Music"
-            width={550}
-            height={94}
-            className="mx-auto mb-8 drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200"
-            priority
-          />
-          <h1 className="text-2xl md:text-4xl font-bold mb-4 tracking-tight theme-heading">
+    
+          <h1 className="text-xl md:text-xl font-bold mb-4 tracking-tight theme-heading">
             Music for your soul, as well as your backside
           </h1>
           <p className="text-base md:text-lg theme-muted max-w-3xl mx-auto font-normal leading-relaxed">
-            Clayton and Fulcrum&apos;s original compositions and releases spanning multiple genres and moods.
+            Clayton and Fulcrum&apos;s 2 albums spanning multiple genres and moods.
           </p>
         </div>
       </div>

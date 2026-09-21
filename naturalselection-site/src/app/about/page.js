@@ -19,8 +19,8 @@ export default async function About() {
       {/* Hero Section */}
       <div className="theme-hero py-16 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight theme-heading">About Natural Selection</h1>
-          <p className="text-lg md:text-2xl theme-muted font-normal">
+          <h1 className="text-4xl md:text-xl font-bold mb-4 tracking-tight theme-heading">About Natural Selection</h1>
+          <p className="text-lg md:text-xl theme-muted font-normal">
             Creating exceptional musical experiences since 2003
           </p>
         </div>

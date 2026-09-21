@@ -8,51 +8,8 @@ export default function Home() {
       <div className="theme-hero py-10 md:py-12 relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <div className="flex items-center justify-center gap-4 sm:gap-8 md:gap-12 lg:gap-14 mb-10">
-              <Link 
-                href="/dj-services" 
-                className="transition-transform duration-200 hover:scale-105 focus:outline-none flex items-center justify-center"
-                aria-label="Natural Selection Deejaying"
-              >
-                <Image
-                  className="drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200 w-auto h-10 sm:h-14 md:h-16 lg:h-20 object-contain"
-                  src="/images/ns-deejaying_header_white.png"
-                  alt="Natural Selection Deejaying"
-                  width={400}
-                  height={188}
-                  priority
-                />
-              </Link>
-              <Link 
-                href="/music" 
-                className="transition-transform duration-200 hover:scale-105 focus:outline-none flex items-center justify-center"
-                aria-label="Natural Selection Music"
-              >
-                <Image
-                  className="drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200 w-auto h-10 sm:h-14 md:h-16 lg:h-20 object-contain"
-                  src="/images/ns-music_header_white.png"
-                  alt="Natural Selection Music"
-                  width={399}
-                  height={188}
-                  priority
-                />
-              </Link>
-              <Link 
-                href="/mastering" 
-                className="transition-transform duration-200 hover:scale-105 focus:outline-none flex items-center justify-center"
-                aria-label="Natural Selection Mastering"
-              >
-                <Image
-                  className="drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200 w-auto h-10 sm:h-14 md:h-16 lg:h-20 object-contain"
-                  src="/images/ns-mastering_header_white.png"
-                  alt="Natural Selection Mastering"
-                  width={407}
-                  height={188}
-                  priority
-                />
-              </Link>
-            </div>
-            <h3 className="text-xl md:text-2xl font-bold mb-10 tracking-tight theme-heading">
+            
+            <h3 className="text-xl md:text-xl font-bold mb-10 tracking-tight theme-heading">
               Dedicated to the Art of Deejaying, Music Production, Audio Engineering, and Acoustics.
             </h3>
 

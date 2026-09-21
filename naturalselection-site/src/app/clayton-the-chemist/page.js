@@ -15,7 +15,7 @@ export default function ClaytonTheChemist() {
           <div className="flex flex-col items-center gap-3 text-center">
             {/* Header Content */}
             <div className="max-w-2xl">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight theme-heading mb-2">
+              <h1 className="text-xl sm:text-xl md:text-xl font-bold tracking-tight theme-heading mb-2">
                 Clayton the Chemist
               </h1>
               <p className="text-xs sm:text-sm theme-muted font-medium mb-4">
