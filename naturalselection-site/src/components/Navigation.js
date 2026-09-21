@@ -3,11 +3,40 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMusicDropdownOpen, setIsMusicDropdownOpen] = useState(false);
+  const pathname = usePathname();
+
+  const getLogo = () => {
+    if (pathname?.startsWith('/dj-services')) {
+      return {
+        src: '/images/ns-deejaying_header_white.png',
+        alt: 'Natural Selection Deejaying',
+        width: 400,
+        height: 188,
+      };
+    }
+    if (pathname?.startsWith('/mastering')) {
+      return {
+        src: '/images/ns-mastering_header_white.png',
+        alt: 'Natural Selection Mastering',
+        width: 407,
+        height: 188,
+      };
+    }
+    return {
+      src: '/images/ns-music_header_white.png',
+      alt: 'Natural Selection Music',
+      width: 399,
+      height: 188,
+    };
+  };
+
+  const currentLogo = getLogo();
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -27,13 +56,14 @@ export default function Navigation() {
     <nav className="bg-white/95 dark:bg-[#02070a]/95 text-slate-800 dark:text-white sticky top-0 z-50 shadow-sm dark:shadow-2xl backdrop-blur-md border-b border-slate-200/80 dark:border-emerald-500/20 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo - Adapts brightness between Light and Dark mode */}
+          {/* Logo - Dynamic based on active page route & adapts brightness between Light and Dark mode */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/content/images/ns-deejaying_header_white.png"
-              alt="Natural Selection"
-              width={200}
-              height={34}
+              key={currentLogo.src}
+              src={currentLogo.src}
+              alt={currentLogo.alt}
+              width={currentLogo.width}
+              height={currentLogo.height}
               className="h-8 w-auto brightness-0 dark:brightness-100 hover:opacity-90 transition-all duration-200"
               priority
             />
