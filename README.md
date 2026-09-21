@@ -1,8 +1,10 @@
 # Natural Selection — AI-First Web Platform & Legacy Migration
 
+
 A modern web application ecosystem powering three distinct web properties for Dave Clayton's **Natural Selection** brand, engineered from the ground up using an **AI-First Software Development Life Cycle (AI-First SDLC)**.
 
-This project transitions a 20+ year legacy web presence (originally founded in October 2003 as a WordPress site, later preserved as a Hugo static site) into a cutting-edge Next.js 15, React 19, and Tailwind CSS platform.
+
+This project transitions a 20+ year legacy web presence (originally founded in October 2003 with an HTML site, and then WordPress, and a conversion to a Hugo static site as a baseline) into a cutting-edge Next.js 15, React 19, and Tailwind CSS platform.
 
 ---
 
