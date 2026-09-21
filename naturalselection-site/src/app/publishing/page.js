@@ -7,18 +7,10 @@ export default function Publishing() {
       {/* Hero Section */}
       <div className="theme-hero py-16 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Image
-            src="/content/pages/2015/10/publishing/images/ns-music_header_white.png"
-            alt="Natural Selection Music Publishing"
-            width={550}
-            height={94}
-            className="mx-auto mb-6 drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200"
-            priority
-          />
-          <h1 className="text-2xl md:text-4xl font-bold mb-4 tracking-tight theme-heading">
+          <h1 className="text-xl md:text-xl font-bold mb-4 tracking-tight theme-heading">
             Music Publishing & Licensing
           </h1>
-          <p className="text-base md:text-lg theme-muted max-w-3xl mx-auto font-normal leading-relaxed">
+          <p className="text-base md:text theme-muted max-w-3xl mx-auto font-normal leading-relaxed">
             Original sample-free compositions available for film, television, advertising, and commercial projects.
           </p>
         </div>
@@ -29,8 +21,8 @@ export default function Publishing() {
         
         {/* Introduction */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 theme-heading">Music That Tells Your Story</h2>
-          <p className="text-lg theme-body max-w-4xl mx-auto mb-8 leading-relaxed">
+          <h2 className="text-xl font-bold mb-4 theme-heading">Music That Tells Your Story</h2>
+          <p className="text theme-body max-w-4xl mx-auto mb-8 leading-relaxed">
             Music invokes emotion, and can help take the viewer to that place in the scene. 
             Natural Selection Music&apos;s diverse catalog of moods should have one your movie is looking for.
           </p>

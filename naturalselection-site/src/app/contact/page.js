@@ -4,8 +4,8 @@ export default function Contact() {
       {/* Hero Header */}
       <div className="theme-hero py-16 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight theme-heading">Contact Natural Selection</h1>
-          <p className="text-base md:text-lg theme-muted max-w-2xl mx-auto font-normal leading-relaxed">
+          <h1 className="text-xl md:text-xl font-bold mb-4 tracking-tight theme-heading">Contact Natural Selection</h1>
+          <p className="text-base md:text theme-muted max-w-2xl mx-auto font-normal leading-relaxed">
             Whether you need event DJ services, audio mastering, or music licensing, we&apos;re here to help.
           </p>
         </div>
@@ -14,7 +14,7 @@ export default function Contact() {
       {/* Contact Form Section */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="theme-card rounded-2xl p-8 sm:p-12 shadow-xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center theme-heading">Send Us a Message</h2>
+          <h2 className="text-xl md:text-xl font-bold mb-8 text-center theme-heading">Send Us a Message</h2>
           
           <form className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">

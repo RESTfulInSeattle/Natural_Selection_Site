@@ -7,18 +7,10 @@ export default function Mastering() {
       {/* Hero Section */}
       <div className="theme-hero py-16 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Image
-            src="/content/pages/2015/10/mastering/images/ns-mastering_header_white.png"
-            alt="Natural Selection Mastering"
-            width={550}
-            height={94}
-            className="mx-auto mb-8 drop-shadow-md brightness-0 dark:brightness-100 transition-all duration-200"
-            priority
-          />
-          <h1 className="text-2xl md:text-4xl font-bold mb-4 tracking-tight theme-heading">
+          <h1 className="text-xl md:text-xl font-bold mb-4 tracking-tight theme-heading">
             Professional Audio Mastering Services
           </h1>
-          <p className="text-base md:text-lg theme-muted max-w-3xl mx-auto font-normal leading-relaxed">
+          <p className="text-base md:text theme-muted max-w-3xl mx-auto font-normal leading-relaxed">
             The final step to ensure your music translates perfectly on any system. 
             World-class digital mastering technology in an acoustically neutral environment.
           </p>
@@ -30,12 +22,11 @@ export default function Mastering() {
         
         {/* Service Introduction */}
         <div className="mb-14">
-          <h2 className="text-3xl font-bold mb-6 theme-heading">Mastering Excellence</h2>
-          <p className="text-lg theme-body mb-4 leading-relaxed">
+          <p className="text theme-body mb-4 leading-relaxed">
             You&apos;ve completed that mix or album you live for, and now you need mastering to push your vision further. 
             Dave Clayton will assure your mix translates, and makes an impact, on any system played.
           </p>
-          <p className="text-lg theme-body leading-relaxed">
+          <p className="text theme-body leading-relaxed">
             Mastering is the last chance for your project before delivery. You get an un-biased critical ear 
             in an acoustically neutral environment with world-class digital mastering technology.
           </p>
@@ -43,7 +34,7 @@ export default function Mastering() {
 
         {/* Mastering Chain */}
         <div className="theme-card rounded-2xl p-8 mb-14">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center theme-heading">Current Mastering Chain</h2>
+          <h2 className="text-xl md:text-xl font-bold mb-6 text-center theme-heading">Current Mastering Chain</h2>
           <div className="text-center mb-6">
             <Image
               src="/content/pages/2015/10/mastering/images/currentmasteringchain.png"
