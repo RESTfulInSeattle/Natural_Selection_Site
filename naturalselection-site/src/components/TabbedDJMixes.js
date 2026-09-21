@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { AudioPlayer } from './AudioPlayer';
 import { djMixData } from '@/data/djMixes';
 
@@ -8,48 +8,12 @@ export default function TabbedDJMixes() {
   const tabs = Object.keys(djMixData);
   const [activeTab, setActiveTab] = useState(tabs[0] || 'House');
   const [loadedTabs, setLoadedTabs] = useState(new Set([tabs[0] || 'House']));
-  const audioRefs = useRef({});
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
 
-  // Handle tab switching
+  // Handle tab switching (does NOT interrupt currently playing audio)
   const handleTabSwitch = (tab) => {
-    // Pause currently playing audio when switching tabs
-    Object.values(audioRefs.current).forEach((audio) => {
-      if (audio && !audio.paused) {
-        audio.pause();
-      }
-    });
-
-    setCurrentlyPlaying(null);
     setActiveTab(tab);
-
-    setTimeout(() => {
-      setLoadedTabs((prev) => new Set([...prev, tab]));
-    }, 50);
+    setLoadedTabs((prev) => new Set([...prev, tab]));
   };
-
-  // Ensure only one mix plays at a time
-  const handlePlay = (audioKey) => {
-    if (currentlyPlaying && currentlyPlaying !== audioKey) {
-      const previousAudio = audioRefs.current[currentlyPlaying];
-      if (previousAudio && !previousAudio.paused) {
-        previousAudio.pause();
-      }
-    }
-    setCurrentlyPlaying(audioKey);
-  };
-
-  // Cleanup audio elements on unmount
-  useEffect(() => {
-    return () => {
-      Object.values(audioRefs.current).forEach((audio) => {
-        if (audio) {
-          audio.pause();
-          audio.src = '';
-        }
-      });
-    };
-  }, []);
 
   const activeMixes = djMixData[activeTab] || [];
 
@@ -99,29 +63,19 @@ export default function TabbedDJMixes() {
       {/* Mix List for Active Tab */}
       <div className="space-y-4">
         {loadedTabs.has(activeTab) &&
-          activeMixes.map((mix, index) => {
-            const audioKey = `${activeTab}-${index}`;
-
-            return (
-              <AudioPlayer
-                key={mix.id || audioKey}
-                mixTitle={mix.mixTitle}
-                artistName={mix.artistName}
-                mp3Url={mix.mp3Url}
-                artworkUrl={mix.artworkUrl}
-                downloadUrl={mix.downloadUrl}
-                description={mix.description}
-                audioRef={(ref) => {
-                  if (ref) {
-                    audioRefs.current[audioKey] = ref;
-                  } else {
-                    delete audioRefs.current[audioKey];
-                  }
-                }}
-                onPlay={() => handlePlay(audioKey)}
-              />
-            );
-          })}
+          activeMixes.map((mix, index) => (
+            <AudioPlayer
+              key={mix.id || `${activeTab}-${index}`}
+              id={mix.id || `${activeTab}-${index}`}
+              mixTitle={mix.mixTitle}
+              artistName={mix.artistName}
+              mp3Url={mix.mp3Url}
+              artworkUrl={mix.artworkUrl}
+              downloadUrl={mix.downloadUrl}
+              description={mix.description}
+              genre={mix.genre || activeTab}
+            />
+          ))}
       </div>
     </div>
   );
