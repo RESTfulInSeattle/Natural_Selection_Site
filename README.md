@@ -1,6 +1,6 @@
 # Natural Selection DJ Services Website
 
-This is a modern Next.js website conversion from the original WordPress site for Natural Selection DJ Services.
+This is a legacy conversion that leverages an AI-First approach to rebuild a WordPress site in Next.js and add new features.
 
 ## Features
 
