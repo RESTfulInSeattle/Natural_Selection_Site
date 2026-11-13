@@ -1,0 +1,35 @@
+name: CI Quality Gate
+
+on:
+  push:
+    branches: [ "main", "Antigravity_Agentic_Coding" ]
+  pull_request:
+    branches: [ "main", "Antigravity_Agentic_Coding" ]
+
+jobs:
+  validate:
+    name: Lint & Build Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'naturalselection-site/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./naturalselection-site
+        run: npm ci
+
+      - name: Run ESLint
+        working-directory: ./naturalselection-site
+        run: npm run lint
+
+      - name: Run Next.js Build
+        working-directory: ./naturalselection-site
+        run: npm run build

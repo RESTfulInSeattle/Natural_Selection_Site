@@ -1,36 +1,41 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import TabbedDJMixes from '@/components/TabbedDJMixes';
 import ClaytonVideos from '@/components/ClaytonVideos';
 import ClaytonReleases from '@/components/ClaytonReleases';
 import PhotoSlideshow from '@/components/PhotoSlideshow';
 import ClaytonEPK from '@/components/ClaytonEPK';
 
+const TABS = [
+  { id: 'dj-mixes', label: 'DJ Mixes', icon: '🎧', description: 'Curated sets & mixes' },
+  { id: 'videos', label: 'Videos', icon: '📺', description: 'YouTube playlist & live sets' },
+  { id: 'releases', label: 'Releases', icon: '🎵', description: 'Spotify, Apple & SoundCloud' },
+  { id: 'photos', label: 'Photos', icon: '📷', description: 'Live gigs & photography' },
+  { id: 'epk', label: 'EPK', icon: '📄', description: 'Electronic Press Kit' },
+];
+
+function subscribeToHash(callback) {
+  window.addEventListener('hashchange', callback);
+  return () => window.removeEventListener('hashchange', callback);
+}
+
+function getHashSnapshot() {
+  return typeof window !== 'undefined' ? window.location.hash.replace('#', '') : '';
+}
+
+function getServerSnapshot() {
+  return '';
+}
+
 export default function ClaytonTabs() {
-  const tabs = [
-    { id: 'dj-mixes', label: 'DJ Mixes', icon: '🎧', description: 'Curated sets & mixes' },
-    { id: 'videos', label: 'Videos', icon: '📺', description: 'YouTube playlist & live sets' },
-    { id: 'releases', label: 'Releases', icon: '🎵', description: 'Spotify, Apple & SoundCloud' },
-    { id: 'photos', label: 'Photos', icon: '📷', description: 'Live gigs & photography' },
-    { id: 'epk', label: 'EPK', icon: '📄', description: 'Electronic Press Kit' },
-  ];
+  const hash = useSyncExternalStore(subscribeToHash, getHashSnapshot, getServerSnapshot);
+  const [selectedTab, setSelectedTab] = useState(null);
 
-  const [activeTab, setActiveTab] = useState('dj-mixes');
-
-  // Handle URL hash on initial load
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash) {
-      const hash = window.location.hash.replace('#', '');
-      const matchedTab = tabs.find((t) => t.id === hash);
-      if (matchedTab) {
-        setActiveTab(matchedTab.id);
-      }
-    }
-  }, []);
+  const activeTab = selectedTab || (TABS.some((t) => t.id === hash) ? hash : 'dj-mixes');
 
   const handleTabClick = (tabId) => {
-    setActiveTab(tabId);
+    setSelectedTab(tabId);
     if (typeof window !== 'undefined') {
       window.history.replaceState(null, '', `#${tabId}`);
     }
@@ -41,7 +46,7 @@ export default function ClaytonTabs() {
       {/* Tab Navigation Bar - compact, responsive, no scrollbars */}
       <div className="theme-card rounded-2xl p-1.5 shadow-xl">
         <div className="grid grid-cols-5 gap-1 sm:gap-2">
-          {tabs.map((tab) => {
+          {TABS.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button

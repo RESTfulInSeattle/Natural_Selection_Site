@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useSyncExternalStore } from 'react';
 
 const ThemeContext = createContext({
   theme: 'dark',
@@ -9,47 +9,75 @@ const ThemeContext = createContext({
   mounted: false,
 });
 
+function applyTheme(newTheme) {
+  if (typeof document === 'undefined') return;
+  const root = document.documentElement;
+  if (newTheme === 'dark') {
+    root.classList.add('dark');
+    root.classList.remove('light');
+  } else {
+    root.classList.remove('dark');
+    root.classList.add('light');
+  }
+}
+
+const themeListeners = new Set();
+function notifyThemeListeners() {
+  themeListeners.forEach((listener) => listener());
+}
+
+function subscribeTheme(callback) {
+  themeListeners.add(callback);
+  const media = typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  const onMediaChange = () => callback();
+  media?.addEventListener('change', onMediaChange);
+  return () => {
+    themeListeners.delete(callback);
+    media?.removeEventListener('change', onMediaChange);
+  };
+}
+
+function getThemeSnapshot() {
+  try {
+    const saved = localStorage.getItem('ns-theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  } catch {
+    return 'dark';
+  }
+}
+
+function getServerThemeSnapshot() {
+  return 'dark';
+}
+
+function subscribeMounted() {
+  return () => {};
+}
+function getMountedSnapshot() {
+  return true;
+}
+function getServerMountedSnapshot() {
+  return false;
+}
+
 export function ThemeProvider({ children }) {
-  const [theme, setThemeState] = useState('dark');
-  const [mounted, setMounted] = useState(false);
+  const currentTheme = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getServerThemeSnapshot);
+  const mounted = useSyncExternalStore(subscribeMounted, getMountedSnapshot, getServerMountedSnapshot);
+  const [themeOverride, setThemeOverride] = useState(null);
+
+  const theme = themeOverride || currentTheme;
 
   useEffect(() => {
-    // Determine initial theme from localStorage or system preference
-    try {
-      const savedTheme = localStorage.getItem('ns-theme');
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        setThemeState(savedTheme);
-        applyTheme(savedTheme);
-      } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initial = prefersDark ? 'dark' : 'light';
-        setThemeState(initial);
-        applyTheme(initial);
-      }
-    } catch {
-      // Default to dark mode if localStorage is unavailable
-      setThemeState('dark');
-      applyTheme('dark');
-    }
-    setMounted(true);
-  }, []);
-
-  const applyTheme = (newTheme) => {
-    const root = document.documentElement;
-    if (newTheme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    }
-  };
+    applyTheme(theme);
+  }, [theme]);
 
   const setTheme = (newTheme) => {
-    setThemeState(newTheme);
+    setThemeOverride(newTheme);
     applyTheme(newTheme);
     try {
       localStorage.setItem('ns-theme', newTheme);
+      notifyThemeListeners();
     } catch {}
   };
 

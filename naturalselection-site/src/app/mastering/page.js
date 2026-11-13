@@ -37,7 +37,7 @@ export default function Mastering() {
           <h2 className="text-xl md:text-xl font-bold mb-6 text-center theme-heading">Current Mastering Chain</h2>
           <div className="text-center mb-6">
             <Image
-              src="/content/pages/2015/10/mastering/images/currentmasteringchain.png"
+              src="/images/pages/mastering/currentmasteringchain.png"
               alt="Natural Selection Mastering Chain"
               width={600}
               height={400}

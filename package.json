@@ -1,0 +1,27 @@
+{
+  "name": "natural-selection-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo workspace for Natural Selection web platform powering naturalselectionmusic.com, naturalselectiondeejaying.com, and claytonthechemist.com",
+  "workspaces": [
+    "naturalselection-site"
+  ],
+  "scripts": {
+    "dev": "npm --prefix naturalselection-site run dev",
+    "build": "npm --prefix naturalselection-site run build",
+    "start": "npm --prefix naturalselection-site run start",
+    "lint": "npm --prefix naturalselection-site run lint",
+    "lint:fix": "npm --prefix naturalselection-site run lint:fix"
+  },
+  "keywords": [
+    "nextjs",
+    "react",
+    "tailwindcss",
+    "audio-streaming",
+    "music-label",
+    "dj-services",
+    "clayton-the-chemist"
+  ],
+  "author": "Dave Clayton / Natural Selection",
+  "license": "UNLICENSED"
+}
