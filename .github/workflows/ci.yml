@@ -30,6 +30,10 @@ jobs:
         working-directory: ./naturalselection-site
         run: npm run lint
 
+      - name: Run Tests with Coverage
+        working-directory: ./naturalselection-site
+        run: npm run test:coverage
+
       - name: Run Next.js Build
         working-directory: ./naturalselection-site
         run: npm run build

@@ -11,7 +11,9 @@
     "build": "npm --prefix naturalselection-site run build",
     "start": "npm --prefix naturalselection-site run start",
     "lint": "npm --prefix naturalselection-site run lint",
-    "lint:fix": "npm --prefix naturalselection-site run lint:fix"
+    "lint:fix": "npm --prefix naturalselection-site run lint:fix",
+    "test": "npm --prefix naturalselection-site run test",
+    "test:coverage": "npm --prefix naturalselection-site run test:coverage"
   },
   "keywords": [
     "nextjs",
