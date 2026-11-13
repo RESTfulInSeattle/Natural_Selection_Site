@@ -1,13 +1,13 @@
 # Natural Selection — Next.js Application Package
 
-This package contains the active Next.js 15 web application powering the three web properties for Dave Clayton's Natural Selection brand:
+This package contains the active Next.js 16 web application powering the three web properties for Dave Clayton's Natural Selection brand:
 1. `naturalselectionmusic.com` (Label, Audio Mastering, Acoustics Consultation)
 2. `naturalselectiondeejaying.com` (Event & Venue DJ Services, Testimonials)
 3. `claytonthechemist.com` (Clayton The Chemist Artist Portfolio & DJ Mixes)
 
 > [!NOTE]
 > This repository is managed via an **AI-First Software Development Life Cycle (SDLC)**.
-> For the comprehensive project architecture, AI-First development workflow, and strategic recommendations, please see the primary [Root README.md](../README.md) and [AGENTS.md](../AGENTS.md).
+> For the comprehensive project architecture, AI-First development workflow, and technical guides, please see the primary [Root README.md](../README.md), [AGENTS.md](../agents.md), and [`docs/`](../docs/).
 
 ---
 
@@ -22,8 +22,11 @@ npm install
 # Start local development server with Turbopack (http://localhost:3000)
 npm run dev
 
-# Run ESLint quality checks
+# Run ESLint quality checks (ESLint 9 Flat Config)
 npm run lint
+
+# Auto-fix linting issues
+npm run lint:fix
 
 # Build production bundle
 npm run build
@@ -37,7 +40,9 @@ npm start
 ## Directory Structure
 
 - `content/`: Markdown-based content (`pages/` and `blog/`) with YAML frontmatter.
-- `public/images/`: Optimized public images organized by page and blog slug.
-- `src/app/`: Next.js App Router pages and API routes.
-- `src/components/`: Modular UI components (`Navigation.js`, `MusicPlayers.js`, `TabbedDJMixes.js`, `Content.js`, etc.).
+- `public/`: Public web assets (`images/` organized by slug, `documents/`, favicons).
+- `src/app/`: Next.js App Router pages and layouts.
+- `src/components/`: Modular UI components (`Navigation.js`, `NavbarTransport.js`, `AudioPlayer.js`, `MusicPlayers.js`, `TabbedDJMixes.js`, `Content.js`, etc.).
+- `src/context/`: Global React contexts (`AudioContext.js`).
+- `src/data/`: Centralized audio mix data (`djMixes.js`) and photo data (`claytonPhotos.js`).
 - `src/lib/`: Content parsing engine (`content.js` leveraging `gray-matter` and `remark`).

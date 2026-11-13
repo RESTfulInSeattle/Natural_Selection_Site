@@ -6,7 +6,7 @@ const S3_BASE_URL = 'https://clayton-the-chemist-dj-mixes.s3.us-west-2.amazonaws
 /**
  * Helper to build properly encoded S3 URLs for a mix's MP3 and artwork
  */
-function buildMixUrls(folderName, mixName, options = {}) {
+export function buildMixUrls(folderName, mixName, options = {}) {
   const artworkExt = options.artworkExt || 'jpg';
   const mp3Prefix = options.mp3Prefix || 'Clayton the Chemist';
   const artworkPrefix = options.artworkPrefix || 'Clayton the Chemist';
