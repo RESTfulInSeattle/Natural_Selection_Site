@@ -21,9 +21,10 @@ A unified Next.js codebase serves three distinct target domains under Dave Clayt
 
 ### 2. `naturalselectiondeejaying.com` — Event & Venue DJ Services
 - **DJ Services & Equipment** (`/dj-services`): Comprehensive services covering 8+ event types (weddings, corporate galas, nightclubs, fundraisers, lounges, casinos, private events).
+- **Hero Presentation**: High-impact ballroom visual experience (`dj-ballroom-hero.jpg` overlooking the ballroom and Puget Sound) with ambient contrast scrims and instant quote requests.
 - **Scalable Sound & Lighting**: Multi-zone audio distribution, wireless microphones, subwoofer reinforcement, venue acoustic digital signal processing, and sound-activated/programmable lighting.
 - **Client DJ Mixes**: Mixcloud embedded players showcasing genre-specific promotional sets (Disco, 80s/90s, Top 40, Lounge).
-- **Visual Galleries** (*Upcoming*): Interactive photo slideshows of past events, dance floors, and venue setups.
+- **Event Experience & Visual Gallery**: Dynamic tabbed photo gallery and slideshow (`TabbedEventGallery.js`) with responsive categories (Weddings, Corporate Events, Nightclubs, Races & Festivals), dynamic image resolution via `src/lib/djGallery.js`, mobile touch-swipe support, and fullscreen lightbox modal.
 - **Social Proof** (*Upcoming*): Client thank-you card visual gallery and verified Yelp review integrations ([Natural Selection on Yelp](http://yelp.com/biz/natural-selection-seattle)).
 
 ### 3. `claytonthechemist.com` — Artist Identity (Dave Clayton / Clayton The Chemist)
@@ -94,12 +95,14 @@ Natural_Selction_Site/
 │   ├── public/                  # Public web assets
 │   │   ├── documents/           # Downloadable PDFs (EPK, tech riders)
 │   │   └── images/              # Clean slugs for pages and blog posts
+│   │       ├── blog/            # Blog illustrations & acoustic diagrams
+│   │       └── pages/           # Page imagery (home, dj-services categories, etc.)
 │   ├── src/
 │   │   ├── app/                 # Next.js App Router (pages & layouts)
-│   │   ├── components/          # Reusable React components
+│   │   ├── components/          # Reusable React components (AudioPlayer, TabbedEventGallery, etc.)
 │   │   ├── context/             # Global React contexts (AudioContext)
 │   │   ├── data/                # Static data stores (djMixes.js, claytonPhotos.js)
-│   │   └── lib/                 # Content parsing engine (content.js)
+│   │   └── lib/                 # Content parsing & gallery engines (content.js, djGallery.js)
 │   ├── eslint.config.mjs        # Native ESLint 9 Flat Configuration
 │   ├── next.config.mjs          # Next.js runtime configuration
 │   ├── package.json             # App package dependencies & scripts

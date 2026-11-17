@@ -40,8 +40,14 @@ Focuses on commercial and private DJ services, client acquisition, and social pr
   * Scalable lighting systems (sound-activated dance lighting, programmable up-lighting).
 * **DJ Mixes**:
   * Embedded Mixcloud players (`MixcloudPlayer`) showcasing sample DJ sets (e.g., Disco, 80s, 90s, Top 40) for prospective clients.
-* **Event Photo Slideshow** *(Upcoming / In Roadmap)*:
-  * Interactive image slideshow / gallery showcasing photos from past events, dance floors, and venue setups.
+* **Event Photo Slideshow & Experience Gallery** (`/dj-services`):
+  * Dynamic, tabbed event gallery and slideshow (`TabbedEventGallery.js`) with responsive category tabs:
+    * Weddings (`💒`), Corporate Events (`🏢`), Nightclubs (`🎵`), and Races & Festivals (`🏃`).
+  * Backed by dynamic filesystem loader `getDJEventPhotos()` (`src/lib/djGallery.js`), reading images directly from `public/images/pages/dj-services/[category]`.
+  * Features full-screen lightbox modal with touch swipe gestures (mobile), keyboard navigation (Left/Right arrows, Escape), image counter, and title overlays.
+  * Extensible design with empty state fallback with drop-in folder instructions when new categories are created.
+* **Hero Visual Experience** (`/` and `/dj-services`):
+  * Full-bleed hero banner with ballroom backdrop (`dj-ballroom-hero.jpg` overlooking the ballroom and Puget Sound), ambient contrast scrims, and prominent call to action.
 * **Thank You Cards Slideshow** *(Upcoming / In Roadmap)*:
   * Dedicated visual slideshow of physical thank-you cards, handwritten notes, and letters from past clients and couples.
 * **Yelp Reviews** *(Upcoming / In Roadmap)*:
@@ -82,8 +88,15 @@ The artist portfolio for Dave Clayton (Clayton The Chemist) — DJ and producer 
   * `AudioPlayer.js`: Modular audio player card.
   * `MusicPlayers.js`: Streaming embeds (`MixcloudPlayer`, `SoundCloudPlayer`, `SpotifyPlayer`, `AppleMusicPlayer`).
   * `TabbedDJMixes.js`: Tabbed genre browser for DJ mixes.
+  * `TabbedEventGallery.js`: Interactive tabbed event photo gallery and accessible fullscreen lightbox with touch swipe and keyboard navigation.
+  * `PhotoSlideshow.js`: Artist photo slideshow with autoplay, manual controls, and lightbox preview.
   * `Content.js`: Markdown content renderer.
   * `ThemeProvider.js`: Zero-flash theme engine supporting dark/light mode with SSR-safe `useSyncExternalStore`.
+* **Libraries & Data Utilities** (`src/lib/` & `src/data/`):
+  * `src/lib/content.js`: Markdown content and blog parsing engine.
+  * `src/lib/djGallery.js`: Dynamic filesystem loader scanning and categorizing event photography.
+  * `src/data/djMixes.js`: Centralized DJ mix metadata and stream definitions.
+  * `src/data/claytonPhotos.js`: Artist photography catalog and Google Drive integration.
 * **Architecture Docs**: For in-depth technical documentation, refer to:
   * [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md)
   * [`docs/AUDIO_STREAMING.md`](./docs/AUDIO_STREAMING.md)
@@ -103,12 +116,10 @@ When working on tasks in this repository, follow these specifications:
 - Add support for tracklists, cue markers, waveforms, and download actions.
 
 ### 2. Slideshow Components
-- Build reusable, responsive, accessible slideshow / carousel components:
-  - Event photos slideshow for `naturalselectiondeejaying.com`.
-  - Client thank-you cards slideshow for `naturalselectiondeejaying.com`.
-  - Gigs & performance photography slideshow for `claytonthechemist.com`.
-  - Archival flyers & release artwork slideshow for `claytonthechemist.com`.
-- Slideshows should support touch swipe, keyboard navigation, full-screen lightbox / zoom preview, and lazy loading.
+- **Event Photos Slideshow** (`naturalselectiondeejaying.com`): **Completed** via `TabbedEventGallery.js` and `src/lib/djGallery.js` with category tabs (Weddings, Corporate Events, Nightclubs, Races & Festivals), dynamic image resolution, touch swipe gestures, and keyboard navigation.
+- **Client Thank-You Cards Slideshow** (`naturalselectiondeejaying.com`): *Upcoming / In Roadmap* — Dedicated visual slideshow of physical thank-you cards, handwritten notes, and letters from past clients and couples.
+- **Gigs & Performance Photography Slideshow** (`claytonthechemist.com`): *Implemented / Refined* — Visual slideshow of live DJ performances, club gigs, festival appearances, and behind-the-scenes photography via `PhotoSlideshow.js`.
+- **Flyers & Release Artwork Slideshow** (`claytonthechemist.com`): *Upcoming / In Roadmap* — Archival gallery and slideshow featuring vintage/historical DJ gig flyers, event posters, and cover artwork from music releases.
 
 ### 3. Yelp Reviews Integration
 - Build a dedicated Yelp testimonial section or card carousel on `/dj-services`.

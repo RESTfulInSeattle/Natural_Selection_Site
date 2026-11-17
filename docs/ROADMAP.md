@@ -17,14 +17,17 @@ This document tracks upcoming architectural features, UI components, and domain 
 ---
 
 ## 2. Interactive Slideshow Components
-- [ ] **Event Photos Slideshow (`naturalselectiondeejaying.com`)**:
-  - High-resolution gallery of wedding dance floors, corporate setups, and festival stages.
-  - Touch-swipe support for mobile devices and keyboard arrow navigation.
-  - Fullscreen lightbox mode with zoom and thumbnail navigation.
+- [x] **Event Photos Slideshow & Experience Gallery (`naturalselectiondeejaying.com`)**:
+  - Implemented via `TabbedEventGallery.js` component and dynamic filesystem loader `src/lib/djGallery.js`.
+  - Organizes event photos across Weddings (`💒`), Corporate Events (`🏢`), Nightclubs (`🎵`), and Races & Festivals (`🏃`).
+  - Automatically reads and formats images dynamically from `public/images/pages/dj-services/[category]/` without code changes.
+  - Interactive modal lightbox with smooth backdrop blur, counter indicators, and title overlay captions.
+  - Full mobile touch-swipe gesture support and keyboard accessibility (`ArrowLeft`, `ArrowRight`, `Escape`).
+  - Empty state fallback with drop-in folder path instructions.
 - [ ] **Thank You Cards Slideshow (`naturalselectiondeejaying.com`)**:
   - Dedicated gallery showcasing handwritten client thank-you cards, notes, and letters.
 - [ ] **Gigs & Performance Photography Slideshow (`claytonthechemist.com`)**:
-  - Performance photography across notable club appearances, festival stages, and DJ booths.
+  - Performance photography across notable club appearances, festival stages, and DJ booths (`PhotoSlideshow.js`).
 - [ ] **Flyers & Archival Release Artwork Slideshow (`claytonthechemist.com`)**:
   - Vintage flyers, event posters, and album artwork from 2003–present.
 
