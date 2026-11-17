@@ -1,24 +1,44 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MixcloudPlayer } from "@/components/MusicPlayers";
+import { getDJEventPhotos } from "@/lib/djGallery";
+import TabbedEventGallery from "@/components/TabbedEventGallery";
 
 export default function DJServices() {
+  const eventCategories = getDJEventPhotos();
+
   return (
     <div className="min-h-screen theme-page">
-      {/* Hero Section */}
-      <div className="theme-hero py-16 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-xl md:text-xl font-bold mb-4 tracking-tight theme-heading">
+      {/* Hero Section with DJ Ballroom Background */}
+      <div className="relative min-h-[520px] md:min-h-[600px] lg:min-h-[660px] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <Image
+          src="/images/pages/dj-services/dj-ballroom-hero.jpg"
+          alt="Natural Selection DJ looking out over ballroom and Puget Sound"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center select-none pointer-events-none"
+          quality={90}
+        />
+
+        {/* Ambient Dark Scrim & Gradients for Contrast and Depth */}
+        <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-slate-950/70" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-16 md:py-24">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
             A great DJ plays the right song at the right time
           </h1>
-          <p className="text-base md:text theme-muted max-w-3xl mx-auto mb-4 font-normal leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-3xl mx-auto mb-8 font-normal leading-relaxed drop-shadow-md">
             With 28 years of experience across nightclubs, weddings, corporate events, fundraisers, 
             lounges, casinos, and outdoor races, Dave Clayton brings the expertise and passion to make your event a success.
           </p>
-          <div className="flex flex-col sm:flex-row gap-2 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link 
               href="/contact" 
-              className="inline-block gradient-accent text-white px-4 py-3.5 rounded-xl font-semibold hover:scale-105 transition-all duration-200 shadow-lg shadow-sky-950/20 dark:shadow-sky-950/60"
+              className="inline-block gradient-accent text-white px-8 py-3.5 rounded-xl font-semibold hover:scale-105 transition-all duration-200 shadow-xl shadow-sky-950/30"
             >
               Get Quote
             </Link>
@@ -108,27 +128,8 @@ export default function DJServices() {
           </div>
         </div>
 
-        {/* Event Types */}
-        <div className="mb-14">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center theme-heading">Event Experience</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { name: "Weddings", icon: "💒" },
-              { name: "Corporate Events", icon: "🏢" },
-              { name: "Nightclubs", icon: "🎵" },
-              { name: "Fundraisers", icon: "💝" },
-              { name: "Lounges", icon: "🍸" },
-              { name: "Casinos", icon: "🎰" },
-              { name: "Races and Festivals", icon: "🏃" },
-              { name: "Private Parties", icon: "🎉" }
-            ].map((event, index) => (
-              <div key={index} className="text-center p-5 theme-card rounded-2xl hover:scale-[1.02] transition-all duration-200">
-                <div className="text-3xl mb-2">{event.icon}</div>
-                <div className="font-semibold theme-heading">{event.name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Event Experience Tabbed Gallery */}
+        <TabbedEventGallery categories={eventCategories} />
 
         {/* Mixcloud Section */}
         <div className="theme-card rounded-2xl p-8 mb-10">

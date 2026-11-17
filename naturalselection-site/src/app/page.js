@@ -4,23 +4,36 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="min-h-screen theme-page">
-      {/* Hero Section */}
-      <div className="theme-hero py-10 md:py-12 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center">
-            
-            <h3 className="text-xl md:text-xl font-bold mb-10 tracking-tight theme-heading">
-              Dedicated to the Art of Deejaying, Music Production, Audio Engineering, and Acoustics.
-            </h3>
+      {/* Hero Section with DJ Ballroom Background */}
+      <div className="relative min-h-[540px] md:min-h-[640px] lg:min-h-[720px] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <Image
+          src="/images/pages/home/dj-ballroom-hero.jpg"
+          alt="Natural Selection DJ looking out over ballroom and Puget Sound"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center select-none pointer-events-none"
+          quality={90}
+        />
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/contact" 
-                className="inline-block gradient-accent text-white px-8 py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-200 shadow-lg shadow-sky-950/20 dark:shadow-sky-950/60"
-              >
-                Get Quote
-              </Link>
-            </div>
+        {/* Ambient Dark Scrim & Gradients for Readability and Depth */}
+        <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-slate-950/70" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 md:py-24 text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-8 tracking-tight text-white max-w-4xl mx-auto leading-tight drop-shadow-lg">
+            Dedicated to the Art of Deejaying, Music Production, Audio Engineering, and Acoustics.
+          </h1>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link 
+              href="/contact" 
+              className="inline-block gradient-accent text-white px-8 py-3.5 rounded-xl font-semibold hover:scale-105 transition-all duration-200 shadow-xl shadow-sky-950/30"
+            >
+              Get Quote
+            </Link>
           </div>
         </div>
       </div>
