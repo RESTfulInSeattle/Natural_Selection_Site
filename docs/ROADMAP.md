@@ -4,27 +4,30 @@ This document tracks upcoming architectural features, UI components, and domain 
 
 ---
 
-## 1. Google Drive DJ Mix Player (`claytonthechemist.com`)
-- [ ] **Next.js Audio Proxy (`/api/audio/[id]`)**:
-  - Implement streaming proxy handling HTTP Range requests for Google Drive audio files.
-  - Bypass Google Drive download confirmation screens for large files (>100MB).
-- [ ] **Universal Audio Player Component**:
-  - Migrate away from `DropboxMP3Player.js` to a universal player supporting S3, Google Drive, and local audio.
-  - Implement interactive cue points and timestamped tracklist seek navigation.
+## 1. AWS S3 DJ Mix Player Enhancements (`claytonthechemist.com`)
+- [x] **AWS S3 Audio Streaming Migration**:
+  - Centralized DJ mix streaming and artwork delivery via AWS S3 bucket `clayton-the-chemist-dj-mixes` in `us-west-2` (`src/data/djMixes.js`).
+  - Native browser HTTP Range (`206 Partial Content`) seeking support and high-performance audio streaming.
+  - Integrated with global viewport transport (`NavbarTransport.js`) and persistent audio engine (`AudioContext.js`).
+- [ ] **Next-Gen Player Feature Expansion**:
+  - Implement interactive cue points and timestamped tracklist seek navigation (clicking track seeks directly to point in mix).
   - Add interactive waveform rendering (visualizing amplitude/frequency dynamics).
-  - Add direct download triggers with sanitized filenames.
+  - Add direct download triggers with sanitized filenames and clean `Content-Disposition`.
 
 ---
 
 ## 2. Interactive Slideshow Components
-- [ ] **Event Photos Slideshow (`naturalselectiondeejaying.com`)**:
-  - High-resolution gallery of wedding dance floors, corporate setups, and festival stages.
-  - Touch-swipe support for mobile devices and keyboard arrow navigation.
-  - Fullscreen lightbox mode with zoom and thumbnail navigation.
+- [x] **Event Photos Slideshow & Experience Gallery (`naturalselectiondeejaying.com`)**:
+  - Implemented via `TabbedEventGallery.js` component and dynamic filesystem loader `src/lib/djGallery.js`.
+  - Organizes event photos across Weddings (`💒`), Corporate Events (`🏢`), Nightclubs (`🎵`), and Races & Festivals (`🏃`).
+  - Automatically reads and formats images dynamically from `public/images/pages/dj-services/[category]/` without code changes.
+  - Interactive modal lightbox with smooth backdrop blur, counter indicators, and title overlay captions.
+  - Full mobile touch-swipe gesture support and keyboard accessibility (`ArrowLeft`, `ArrowRight`, `Escape`).
+  - Empty state fallback with drop-in folder path instructions.
 - [ ] **Thank You Cards Slideshow (`naturalselectiondeejaying.com`)**:
   - Dedicated gallery showcasing handwritten client thank-you cards, notes, and letters.
 - [ ] **Gigs & Performance Photography Slideshow (`claytonthechemist.com`)**:
-  - Performance photography across notable club appearances, festival stages, and DJ booths.
+  - Performance photography across notable club appearances, festival stages, and DJ booths (`PhotoSlideshow.js`).
 - [ ] **Flyers & Archival Release Artwork Slideshow (`claytonthechemist.com`)**:
   - Vintage flyers, event posters, and album artwork from 2003–present.
 
@@ -38,8 +41,9 @@ This document tracks upcoming architectural features, UI components, and domain 
 
 ---
 
-## 4. Acoustics & Sound Engineering Section (`naturalselectionmusic.com`)
-- [ ] **Acoustics Route (`/acoustics` or `/services/acoustics`)**:
+## 4. Audio Engineering, Mastering & Acoustic Consultation Section (`naturalselectionmusic.com`)
+- [ ] **Acoustics & Engineering Route (`/acoustics` or `/services/acoustics`)**:
+  - **Audio Engineering & Mastering**: Studio recording, tracking, mixing, and high-resolution mastering delivery formats (MP3, WAV, FLAC, Apple Lossless, Redbook CD).
   - **Room Acoustics**: Studio acoustic design, treatment consultation, and reverberation measurement (RT60).
   - **Event Sound Acoustics**: Venue audio coverage modeling, acoustic digital signal processing, and line array / subwoofer array tuning.
   - **PA Speaker & Subwoofer Design**: Custom loudspeaker engineering case studies (tapped horn, ported, 6th-order bandpass), driver specifications, Thiele/Small parameters, and measurement data.

@@ -31,6 +31,14 @@ naturalselection-site/
         └── pages/
             ├── about/
             ├── clayton-the-chemist/
+            ├── dj-services/
+            │   ├── dj-ballroom-hero.jpg
+            │   ├── weddings/
+            │   ├── corporate-events/
+            │   ├── nightclubs/
+            │   └── races-and-festivals/
+            ├── home/
+            │   └── dj-ballroom-hero.jpg
             ├── mastering/
             ├── music/
             └── publishing/
@@ -81,6 +89,27 @@ The application consumes Markdown via utility functions exported by `src/lib/con
 | `getContentBySlug(slug, type)` | `Promise<ContentObject>` | Retrieves content from `pages/` or `blog/` based on `type` |
 | `getContentByCategory(cat)` | `Promise<ContentObject[]>` | Filters all posts and pages matching a given category or tag |
 | `processContentImages(html, slug, type)` | `string` | Regex processor converting relative markdown image paths to public URLs |
+
+---
+
+## DJ Event Gallery API & Image Conventions (`src/lib/djGallery.js`)
+
+The DJ services page (`/dj-services`) dynamically discovers and renders event photography via `getDJEventPhotos()` and `TabbedEventGallery.js`.
+
+### Dynamic Event Loader API:
+| Function | Return Type | Description |
+| :--- | :--- | :--- |
+| `getDJEventPhotos()` | `Record<string, CategoryGallery>` | Reads subdirectories under `public/images/pages/dj-services/`, returning categorised images, formatted titles, and icons. |
+
+### Adding New Event Photos:
+1. Place photo files directly into the target category folder:
+   - `public/images/pages/dj-services/weddings/`
+   - `public/images/pages/dj-services/corporate-events/`
+   - `public/images/pages/dj-services/nightclubs/`
+   - `public/images/pages/dj-services/races-and-festivals/`
+2. **Supported formats**: `.jpg`, `.jpeg`, `.png`, `.webp`, `.avif`, `.gif`.
+3. **Automatic Title Generation**: File names are automatically converted to human-readable titles (e.g. `Love Lab Disco 1.JPEG` → "Love Lab Disco 1", `dj-setup-on-rooftop.jpeg` → "dj setup on rooftop").
+4. **Instant Updates**: No code changes or database migrations needed. Photos added to these folders appear immediately in the tabbed gallery and lightbox modal upon reload.
 
 ### `ContentObject` Shape:
 ```javascript

@@ -4,7 +4,7 @@
 
 The Natural Selection web platform is a unified Next.js 16 application engineered to power three distinct brand properties under Dave Clayton's Natural Selection umbrella:
 
-1. **`naturalselectionmusic.com`** — Music label catalog, audio mastering engineering, publishing & licensing representation, and acoustics consultation.
+1. **`naturalselectionmusic.com`** — Music label catalog, audio engineering and mastering, publishing & licensing representation, and acoustic consultation.
 2. **`naturalselectiondeejaying.com`** — Event, nightclub, and private DJ services, Mixcloud promotional sets, client testimonials, and visual galleries.
 3. **`claytonthechemist.com`** — Artist portfolio for Clayton The Chemist (DJ & Producer), featuring original productions, DJ mix players, and archival galleries.
 
@@ -19,7 +19,7 @@ The Natural Selection web platform is a unified Next.js 16 application engineere
 | **Styling** | Tailwind CSS (PostCSS) | `v4.0.0` | Utility-first design tokens, theme variables, modern CSS grid |
 | **Content CMS** | Gray-matter + Remark + Remark-HTML | `^4.0.3` / `^15.0.1` / `^16.0.1` | Static Markdown parsing with YAML frontmatter |
 | **Quality & Linting** | ESLint (Flat Config) | `^9.39.1` | Static analysis, React 19 hook safety, Next.js rules |
-| **Media Delivery** | AWS S3 + Google Drive | Cloud CDN | High-resolution MP3 audio streaming and cover artwork |
+| **Media Delivery** | AWS S3 | Cloud Storage & CDN | High-resolution MP3 audio streaming (clayton-the-chemist-dj-mixes bucket) and cover artwork |
 
 ---
 
@@ -32,7 +32,7 @@ Natural_Selction_Site/
 │       └── ci.yml               # GitHub Actions CI quality gate (lint + build)
 ├── docs/                        # Comprehensive architectural documentation
 │   ├── ARCHITECTURE.md          # System design & component contracts (this file)
-│   ├── AUDIO_STREAMING.md       # Audio streaming engine, S3 & Google Drive migration
+│   ├── AUDIO_STREAMING.md       # Audio streaming engine, S3 architecture & player enhancements
 │   ├── CONTENT_GUIDE.md         # Content management & Markdown schema guide
 │   ├── DEVELOPMENT_GUIDE.md     # Local development, scripts & conventions
 │   ├── ROADMAP.md               # Upcoming feature specifications & roadmap
@@ -50,12 +50,15 @@ Natural_Selction_Site/
 │   ├── public/                  # Public web assets
 │   │   ├── documents/           # Downloadable PDFs (EPK, tech riders)
 │   │   └── images/              # Clean slugs for pages and blog posts
+│   │       ├── blog/            # Blog illustrations & acoustic diagrams
+│   │       └── pages/           # Page imagery (home, dj-services categories, etc.)
+│   │           └── dj-services/ # Event photos (weddings, corporate, clubs, races)
 │   ├── src/
 │   │   ├── app/                 # Next.js App Router (pages & layouts)
-│   │   ├── components/          # Reusable React components
+│   │   ├── components/          # Reusable React components (AudioPlayer, TabbedEventGallery, etc.)
 │   │   ├── context/             # Global React contexts (AudioContext)
 │   │   ├── data/                # Static data stores (djMixes.js, claytonPhotos.js)
-│   │   └── lib/                 # Content parsing engine (content.js)
+│   │   └── lib/                 # Content parsing & gallery engines (content.js, djGallery.js)
 │   ├── eslint.config.mjs        # Native ESLint 9 Flat Configuration
 │   ├── next.config.mjs          # Next.js runtime configuration
 │   ├── package.json             # App package dependencies & scripts
@@ -91,6 +94,18 @@ Natural_Selction_Site/
 - Parses Markdown files at build time using `gray-matter` for YAML frontmatter and `remark` / `remark-html` for HTML compilation.
 - Transforms relative markdown image paths (`![](images/photo.jpg)`) into absolute public URLs (`/images/pages/[slug]/photo.jpg` or `/images/blog/[slug]/photo.jpg`).
 - Provides type-safe query utilities: `getPageContent()`, `getAllBlogPosts()`, `getContentBySlug()`.
+
+### 5. Event Experience Gallery & Slideshow Engine (`TabbedEventGallery.js` & `src/lib/djGallery.js`)
+- **Dynamic Filesystem Discovery (`getDJEventPhotos`)**: Dynamically resolves images from `public/images/pages/dj-services/[category]` (`weddings`, `corporate-events`, `nightclubs`, `races-and-festivals`) at render time. Supports `.jpg`, `.jpeg`, `.png`, `.webp`, `.avif`, and `.gif`.
+- **Automatic Title Formatting**: Transforms raw filenames into human-readable titles (e.g. `Wedding Reception Vinyl Setup.JPEG` → "Wedding Reception Vinyl Setup").
+- **Responsive Category Tabs**: Filters gallery views with visual count badges and emoji indicators for each category.
+- **Interactive Lightbox Modal**: High-resolution image modal with backdrop blur, item counter (`X / Y • Category`), responsive next/previous controls, and title caption.
+- **Mobile Touch Gestures & Keyboard Navigation**: Implements touch swipe detection (`touchstart`, `touchmove`, `touchend`) with minimum swipe threshold, and keyboard listeners (`ArrowLeft`, `ArrowRight`, `Escape`).
+- **Drop-in Extensibility**: Empty state triggers a friendly guide indicating the exact directory path to drop images into for instant rendering without code changes.
+
+### 6. Full-Bleed Hero Presentation
+- Atmospheric hero banners for the root hub (`/`) and DJ services page (`/dj-services`) featuring Dave Clayton looking out over a ballroom and Puget Sound (`dj-ballroom-hero.jpg`).
+- Multilayer ambient dark scrims (`bg-slate-950/60`, directional vertical gradient to canvas background) ensuring WCAG-compliant text legibility across all viewport sizes and themes.
 
 ---
 

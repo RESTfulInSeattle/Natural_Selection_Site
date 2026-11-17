@@ -1,7 +1,7 @@
 # Natural Selection — Next.js Application Package
 
 This package contains the active Next.js 16 web application powering the three web properties for Dave Clayton's Natural Selection brand:
-1. `naturalselectionmusic.com` (Label, Audio Mastering, Acoustics Consultation)
+1. `naturalselectionmusic.com` (Label, Audio Engineering and Mastering, Acoustic Consultation)
 2. `naturalselectiondeejaying.com` (Event & Venue DJ Services, Testimonials)
 3. `claytonthechemist.com` (Clayton The Chemist Artist Portfolio & DJ Mixes)
 
@@ -42,7 +42,7 @@ npm start
 - `content/`: Markdown-based content (`pages/` and `blog/`) with YAML frontmatter.
 - `public/`: Public web assets (`images/` organized by slug, `documents/`, favicons).
 - `src/app/`: Next.js App Router pages and layouts.
-- `src/components/`: Modular UI components (`Navigation.js`, `NavbarTransport.js`, `AudioPlayer.js`, `MusicPlayers.js`, `TabbedDJMixes.js`, `Content.js`, etc.).
+- `src/components/`: Modular UI components (`Navigation.js`, `NavbarTransport.js`, `AudioPlayer.js`, `MusicPlayers.js`, `TabbedDJMixes.js`, `TabbedEventGallery.js`, `PhotoSlideshow.js`, `Content.js`, etc.).
 - `src/context/`: Global React contexts (`AudioContext.js`).
 - `src/data/`: Centralized audio mix data (`djMixes.js`) and photo data (`claytonPhotos.js`).
-- `src/lib/`: Content parsing engine (`content.js` leveraging `gray-matter` and `remark`).
+- `src/lib/`: Content parsing and gallery engines (`content.js` leveraging `gray-matter` and `remark`, and `djGallery.js`).

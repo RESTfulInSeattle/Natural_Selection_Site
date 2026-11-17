@@ -10,7 +10,7 @@ This project transitions a 20+ year legacy web presence (originally founded in O
 
 A unified Next.js codebase serves three distinct target domains under Dave Clayton's umbrella:
 
-### 1. `naturalselectionmusic.com` — Music Label, Mastering & Acoustical Engineering
+### 1. `naturalselectionmusic.com` — Music Label, Audio Engineering and Mastering, Acoustic Consultation
 - **Music Releases** (`/music`): Catalog showcase with embedded streaming players (SoundCloud, Spotify, Apple Music).
 - **Audio Mastering** (`/mastering`): Professional mastering service descriptions across multiple high-resolution delivery formats (MP3, WAV, FLAC, Apple Lossless, Redbook-compliant CD).
 - **Publishing & Licensing** (`/publishing`): Catalog representation, sync licensing contact pathways, and rights management.
@@ -21,14 +21,15 @@ A unified Next.js codebase serves three distinct target domains under Dave Clayt
 
 ### 2. `naturalselectiondeejaying.com` — Event & Venue DJ Services
 - **DJ Services & Equipment** (`/dj-services`): Comprehensive services covering 8+ event types (weddings, corporate galas, nightclubs, fundraisers, lounges, casinos, private events).
+- **Hero Presentation**: High-impact ballroom visual experience (`dj-ballroom-hero.jpg` overlooking the ballroom and Puget Sound) with ambient contrast scrims and instant quote requests.
 - **Scalable Sound & Lighting**: Multi-zone audio distribution, wireless microphones, subwoofer reinforcement, venue acoustic digital signal processing, and sound-activated/programmable lighting.
 - **Client DJ Mixes**: Mixcloud embedded players showcasing genre-specific promotional sets (Disco, 80s/90s, Top 40, Lounge).
-- **Visual Galleries** (*Upcoming*): Interactive photo slideshows of past events, dance floors, and venue setups.
+- **Event Experience & Visual Gallery**: Dynamic tabbed photo gallery and slideshow (`TabbedEventGallery.js`) with responsive categories (Weddings, Corporate Events, Nightclubs, Races & Festivals), dynamic image resolution via `src/lib/djGallery.js`, mobile touch-swipe support, and fullscreen lightbox modal.
 - **Social Proof** (*Upcoming*): Client thank-you card visual gallery and verified Yelp review integrations ([Natural Selection on Yelp](http://yelp.com/biz/natural-selection-seattle)).
 
 ### 3. `claytonthechemist.com` — Artist Identity (Dave Clayton / Clayton The Chemist)
 - **Artist Bio & Philosophy** (`/clayton-the-chemist`): Producer/DJ specializing in House, Bass Music, Drum & Bass, Nu Funk, Nu Jazz, and Nu Soul. Notable performance history (opening for De La Soul, Massive Attack, LTJ Bukem, DJ Krush).
-- **Audio Streaming & Mix Player**: Custom streaming audio player powered by AWS S3 / Google Drive with persistent viewport audio transport bar, cue markers, tracklists, and download triggers.
+- **Audio Streaming & Mix Player**: Custom streaming audio player powered by AWS S3 with persistent viewport audio transport bar, cue markers, tracklists, and download triggers.
 - **Archival Galleries** (*Upcoming*): Performance photography slideshows, vintage DJ gig flyers, event posters, and music release artwork.
 
 ---
@@ -76,7 +77,7 @@ Natural_Selction_Site/
 │       └── ci.yml               # GitHub Actions CI quality gate (lint + build)
 ├── docs/                        # Comprehensive architectural documentation
 │   ├── ARCHITECTURE.md          # System design & component contracts
-│   ├── AUDIO_STREAMING.md       # Audio streaming engine, S3 & Google Drive migration
+│   ├── AUDIO_STREAMING.md       # Audio streaming engine, S3 architecture & player enhancements
 │   ├── CONTENT_GUIDE.md         # Content management & Markdown schema guide
 │   ├── DEVELOPMENT_GUIDE.md     # Local development, scripts & conventions
 │   ├── ROADMAP.md               # Upcoming feature specifications & roadmap
@@ -94,12 +95,14 @@ Natural_Selction_Site/
 │   ├── public/                  # Public web assets
 │   │   ├── documents/           # Downloadable PDFs (EPK, tech riders)
 │   │   └── images/              # Clean slugs for pages and blog posts
+│   │       ├── blog/            # Blog illustrations & acoustic diagrams
+│   │       └── pages/           # Page imagery (home, dj-services categories, etc.)
 │   ├── src/
 │   │   ├── app/                 # Next.js App Router (pages & layouts)
-│   │   ├── components/          # Reusable React components
+│   │   ├── components/          # Reusable React components (AudioPlayer, TabbedEventGallery, etc.)
 │   │   ├── context/             # Global React contexts (AudioContext)
 │   │   ├── data/                # Static data stores (djMixes.js, claytonPhotos.js)
-│   │   └── lib/                 # Content parsing engine (content.js)
+│   │   └── lib/                 # Content parsing & gallery engines (content.js, djGallery.js)
 │   ├── eslint.config.mjs        # Native ESLint 9 Flat Configuration
 │   ├── next.config.mjs          # Next.js runtime configuration
 │   ├── package.json             # App package dependencies & scripts
@@ -119,7 +122,7 @@ Natural_Selction_Site/
 For in-depth guides, specifications, and workflows, please see:
 
 - [**Technical Architecture (`docs/ARCHITECTURE.md`)**](./docs/ARCHITECTURE.md): System layout, technology choices, routing, and design tokens.
-- [**Audio Streaming Engine (`docs/AUDIO_STREAMING.md`)**](./docs/AUDIO_STREAMING.md): S3 streaming architecture, AudioContext state machine, and Google Drive migration blueprint.
+- [**Audio Streaming Engine (`docs/AUDIO_STREAMING.md`)**](./docs/AUDIO_STREAMING.md): S3 streaming architecture, AudioContext state machine, and player feature roadmap.
 - [**Content Management Guide (`docs/CONTENT_GUIDE.md`)**](./docs/CONTENT_GUIDE.md): Markdown frontmatter schemas, image asset conventions, and `content.js` API methods.
 - [**Developer Workflows (`docs/DEVELOPMENT_GUIDE.md`)**](./docs/DEVELOPMENT_GUIDE.md): Environment setup, linting rules, and Turbopack commands.
 - [**Active Roadmap (`docs/ROADMAP.md`)**](./docs/ROADMAP.md): Track active progress on upcoming slideshows, Yelp reviews, and acoustics sections.
