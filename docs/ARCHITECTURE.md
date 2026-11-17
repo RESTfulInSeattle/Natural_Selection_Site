@@ -4,7 +4,7 @@
 
 The Natural Selection web platform is a unified Next.js 16 application engineered to power three distinct brand properties under Dave Clayton's Natural Selection umbrella:
 
-1. **`naturalselectionmusic.com`** — Music label catalog, audio mastering engineering, publishing & licensing representation, and acoustics consultation.
+1. **`naturalselectionmusic.com`** — Music label catalog, audio engineering and mastering, publishing & licensing representation, and acoustic consultation.
 2. **`naturalselectiondeejaying.com`** — Event, nightclub, and private DJ services, Mixcloud promotional sets, client testimonials, and visual galleries.
 3. **`claytonthechemist.com`** — Artist portfolio for Clayton The Chemist (DJ & Producer), featuring original productions, DJ mix players, and archival galleries.
 
@@ -19,7 +19,7 @@ The Natural Selection web platform is a unified Next.js 16 application engineere
 | **Styling** | Tailwind CSS (PostCSS) | `v4.0.0` | Utility-first design tokens, theme variables, modern CSS grid |
 | **Content CMS** | Gray-matter + Remark + Remark-HTML | `^4.0.3` / `^15.0.1` / `^16.0.1` | Static Markdown parsing with YAML frontmatter |
 | **Quality & Linting** | ESLint (Flat Config) | `^9.39.1` | Static analysis, React 19 hook safety, Next.js rules |
-| **Media Delivery** | AWS S3 + Google Drive | Cloud CDN | High-resolution MP3 audio streaming and cover artwork |
+| **Media Delivery** | AWS S3 | Cloud Storage & CDN | High-resolution MP3 audio streaming (clayton-the-chemist-dj-mixes bucket) and cover artwork |
 
 ---
 
@@ -32,7 +32,7 @@ Natural_Selction_Site/
 │       └── ci.yml               # GitHub Actions CI quality gate (lint + build)
 ├── docs/                        # Comprehensive architectural documentation
 │   ├── ARCHITECTURE.md          # System design & component contracts (this file)
-│   ├── AUDIO_STREAMING.md       # Audio streaming engine, S3 & Google Drive migration
+│   ├── AUDIO_STREAMING.md       # Audio streaming engine, S3 architecture & player enhancements
 │   ├── CONTENT_GUIDE.md         # Content management & Markdown schema guide
 │   ├── DEVELOPMENT_GUIDE.md     # Local development, scripts & conventions
 │   ├── ROADMAP.md               # Upcoming feature specifications & roadmap

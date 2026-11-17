@@ -10,7 +10,7 @@ This project transitions a 20+ year legacy web presence (originally founded in O
 
 A unified Next.js codebase serves three distinct target domains under Dave Clayton's umbrella:
 
-### 1. `naturalselectionmusic.com` — Music Label, Mastering & Acoustical Engineering
+### 1. `naturalselectionmusic.com` — Music Label, Audio Engineering and Mastering, Acoustic Consultation
 - **Music Releases** (`/music`): Catalog showcase with embedded streaming players (SoundCloud, Spotify, Apple Music).
 - **Audio Mastering** (`/mastering`): Professional mastering service descriptions across multiple high-resolution delivery formats (MP3, WAV, FLAC, Apple Lossless, Redbook-compliant CD).
 - **Publishing & Licensing** (`/publishing`): Catalog representation, sync licensing contact pathways, and rights management.
@@ -29,7 +29,7 @@ A unified Next.js codebase serves three distinct target domains under Dave Clayt
 
 ### 3. `claytonthechemist.com` — Artist Identity (Dave Clayton / Clayton The Chemist)
 - **Artist Bio & Philosophy** (`/clayton-the-chemist`): Producer/DJ specializing in House, Bass Music, Drum & Bass, Nu Funk, Nu Jazz, and Nu Soul. Notable performance history (opening for De La Soul, Massive Attack, LTJ Bukem, DJ Krush).
-- **Audio Streaming & Mix Player**: Custom streaming audio player powered by AWS S3 / Google Drive with persistent viewport audio transport bar, cue markers, tracklists, and download triggers.
+- **Audio Streaming & Mix Player**: Custom streaming audio player powered by AWS S3 with persistent viewport audio transport bar, cue markers, tracklists, and download triggers.
 - **Archival Galleries** (*Upcoming*): Performance photography slideshows, vintage DJ gig flyers, event posters, and music release artwork.
 
 ---
@@ -77,7 +77,7 @@ Natural_Selction_Site/
 │       └── ci.yml               # GitHub Actions CI quality gate (lint + build)
 ├── docs/                        # Comprehensive architectural documentation
 │   ├── ARCHITECTURE.md          # System design & component contracts
-│   ├── AUDIO_STREAMING.md       # Audio streaming engine, S3 & Google Drive migration
+│   ├── AUDIO_STREAMING.md       # Audio streaming engine, S3 architecture & player enhancements
 │   ├── CONTENT_GUIDE.md         # Content management & Markdown schema guide
 │   ├── DEVELOPMENT_GUIDE.md     # Local development, scripts & conventions
 │   ├── ROADMAP.md               # Upcoming feature specifications & roadmap
@@ -122,7 +122,7 @@ Natural_Selction_Site/
 For in-depth guides, specifications, and workflows, please see:
 
 - [**Technical Architecture (`docs/ARCHITECTURE.md`)**](./docs/ARCHITECTURE.md): System layout, technology choices, routing, and design tokens.
-- [**Audio Streaming Engine (`docs/AUDIO_STREAMING.md`)**](./docs/AUDIO_STREAMING.md): S3 streaming architecture, AudioContext state machine, and Google Drive migration blueprint.
+- [**Audio Streaming Engine (`docs/AUDIO_STREAMING.md`)**](./docs/AUDIO_STREAMING.md): S3 streaming architecture, AudioContext state machine, and player feature roadmap.
 - [**Content Management Guide (`docs/CONTENT_GUIDE.md`)**](./docs/CONTENT_GUIDE.md): Markdown frontmatter schemas, image asset conventions, and `content.js` API methods.
 - [**Developer Workflows (`docs/DEVELOPMENT_GUIDE.md`)**](./docs/DEVELOPMENT_GUIDE.md): Environment setup, linting rules, and Turbopack commands.
 - [**Active Roadmap (`docs/ROADMAP.md`)**](./docs/ROADMAP.md): Track active progress on upcoming slideshows, Yelp reviews, and acoustics sections.

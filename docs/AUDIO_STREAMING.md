@@ -53,39 +53,43 @@ An application-wide React Context that wraps the entire tree in `src/app/layout.
 
 ---
 
-## Google Drive Audio Migration Roadmap
+## AWS S3 Audio Streaming Architecture & Migration Summary
 
-Per the specifications in `AGENTS.md`, the DJ mix player is targeted for Google Drive integration to allow direct streaming and cover art loading from Google Drive shared files.
+The DJ mix player originally began in legacy WordPress with Dropbox-shared MP3 links via `DropboxMP3Player.js`. It was subsequently migrated directly to **AWS S3** (`clayton-the-chemist-dj-mixes.s3.us-west-2.amazonaws.com`), providing a robust, high-performance streaming architecture:
 
-### Technical Challenges of Direct Google Drive Streaming
-1. **Direct Stream URLs**: Standard Google Drive share URLs (`https://drive.google.com/file/d/FILE_ID/view?usp=sharing`) cannot be directly consumed by an `<audio>` tag.
-2. **CORS & HTTP Range Requests**: Seeking within large MP3 files (often 100MB+ for 60-90 minute DJ sets) requires `HTTP 206 Partial Content` (Range headers). Google Drive direct links frequently fail range request negotiation.
-3. **Download Rate Limits & Antivirus Scans**: Files larger than 100MB trigger a Google virus scan warning page instead of serving the binary audio file.
+### Why AWS S3 is the Production Audio Engine
+1. **Native HTTP Range Support**: AWS S3 inherently responds to `HTTP 206 Partial Content` (Range headers), enabling instant scrub and seek navigation within large 60–90 minute mix MP3s without lag or re-buffering.
+2. **No File Size Gates**: Avoids the 100MB virus scan interstitial pages associated with Google Drive, eliminating the need for an intermediate server-side streaming proxy.
+3. **High Throughput & Reliability**: Low latency, high bandwidth delivery across global client connections with persistent CORS headers.
+4. **Clean Asset Separation**:
+   - **Audio MP3s & Mix Artwork**: Hosted in AWS S3 (`src/data/djMixes.js`).
+   - **Artist Photography & EPK Downloads**: Hosted via Google Drive shared folders (`src/data/claytonPhotos.js` and `ClaytonEPK.js`).
 
-### Recommended Architecture: Next.js Audio Proxy Route
-To deliver a smooth, high-fidelity experience with Google Drive:
+### S3 URL Builder Utility (`src/data/djMixes.js`)
+URLs for both the audio stream and high-resolution cover artwork are generated dynamically using `buildMixUrls()`:
 
+```javascript
+const S3_BASE_URL = 'https://clayton-the-chemist-dj-mixes.s3.us-west-2.amazonaws.com';
+
+export function buildMixUrls(folderName, mixName, options = {}) {
+  const encodedFolder = encodeURIComponent(folderName);
+  const encodedMp3 = encodeURIComponent(options.mp3Name || `Clayton the Chemist - ${mixName}.mp3`);
+  const encodedArtwork = encodeURIComponent(options.artworkName || `Clayton the Chemist - ${mixName}.${options.artworkExt || 'jpg'}`);
+  return {
+    mp3Url: `${S3_BASE_URL}/${encodedFolder}/${encodedMp3}`,
+    artworkUrl: `${S3_BASE_URL}/${encodedFolder}/${encodedArtwork}`,
+    downloadUrl: `${S3_BASE_URL}/${encodedFolder}/${encodedMp3}`
+  };
+}
 ```
-[Browser Audio Element]
-         │
-         ▼ (HTTP Range Request)
-[/api/audio/[id]/route.js] ── (Next.js Server / Streaming Proxy)
-         │
-         ▼ (Google Drive API / Direct Download Stream)
-[Google Drive File Storage]
-```
 
-#### Implementation Blueprint (`/api/audio/[id]/route.js`):
-1. **File ID Extraction**: Route receives the Google Drive file ID: `/api/audio/[id]`.
-2. **Range Header Forwarding**: Checks `request.headers.get('range')` and forwards it to Google Drive.
-3. **Stream Pipe**: Streams chunked audio bytes back to the browser with:
-   - `Content-Type: audio/mpeg`
-   - `Accept-Ranges: bytes`
-   - `Content-Range: bytes START-END/TOTAL`
-   - `Content-Length: CHUNK_LENGTH`
-   - `Cache-Control: public, max-age=31536000, immutable`
+---
 
-### Next-Gen Audio Player Features
-- **Tracklist & Cue Points**: Display time-coded tracklists where clicking a track seeks directly to that point in the set.
-- **Waveform Visualization**: Pre-rendered or client-generated audio waveforms (e.g., via WaveSurfer.js or Web Audio API `AudioBuffer`).
-- **Direct Download Triggers**: Clean download pathway with proper `Content-Disposition: attachment; filename="MixName.mp3"` headers.
+## Next-Gen Audio Player Features (Roadmap)
+
+With AWS S3 delivering stable audio streaming, upcoming player development focuses on enhanced listener experience:
+
+- **Tracklist & Interactive Cue Points**: Time-coded tracklists where clicking any individual track seeks directly to that timestamp in the mix.
+- **Waveform Visualization**: Interactive audio waveforms (e.g. via Web Audio API `AudioBuffer` or pre-calculated peak data) providing visual cues for breakdowns, drops, and transitions.
+- **Direct Download Triggers**: Seamless client-side download triggers with sanitized filenames and clean `Content-Disposition`.
+- **Enhanced Queue & Playlist Controls**: Continuous playback queue across genres with forward/back skip across mixes.

@@ -1,7 +1,7 @@
 # Natural Selection — Next.js Application Package
 
 This package contains the active Next.js 16 web application powering the three web properties for Dave Clayton's Natural Selection brand:
-1. `naturalselectionmusic.com` (Label, Audio Mastering, Acoustics Consultation)
+1. `naturalselectionmusic.com` (Label, Audio Engineering and Mastering, Acoustic Consultation)
 2. `naturalselectiondeejaying.com` (Event & Venue DJ Services, Testimonials)
 3. `claytonthechemist.com` (Clayton The Chemist Artist Portfolio & DJ Mixes)
 

@@ -4,7 +4,7 @@
 
 `naturalselection-site` is a Next.js 16 web application engineered to power three distinct websites / web properties under Dave Clayton's Natural Selection brand:
 
-1. **`naturalselectionmusic.com`** — Music label, audio mastering, publishing & licensing, and acoustic consultation.
+1. **`naturalselectionmusic.com`** — Music label, audio engineering and mastering, publishing & licensing, and acoustic consultation.
 2. **`naturalselectiondeejaying.com`** — Professional event & venue DJ services, Mixcloud sets, client testimonials, and visual galleries.
 3. **`claytonthechemist.com`** — Artist identity for Clayton The Chemist (DJ & Producer), featuring original productions, DJ mix players, and archival galleries.
 
@@ -13,7 +13,7 @@
 ## Target Websites & Functional Requirements
 
 ### 1. `naturalselectionmusic.com`
-Focuses on music releases, audio engineering, publishing, and acoustical engineering.
+Focuses on music releases, audio engineering and mastering, publishing, and acoustic consultation.
 
 * **Music Section** (`/music`):
   * Showcases music released under the label.
@@ -61,9 +61,8 @@ The artist portfolio for Dave Clayton (Clayton The Chemist) — DJ and producer 
 * **Artist Bio & Philosophy** (`/clayton-the-chemist`):
   * Bio, notable gigs (opening for De La Soul, Massive Attack, LTJ Bukem, DJ Krush), and musical philosophy.
   * Embedded Spotify, Apple Music, and SoundCloud artist players.
-* **DJ Mix Player (Google Drive Migration & Enhancements)** *(High Priority)*:
-  * **Current State**: Mixes are centralized in `src/data/djMixes.js` and played via `AudioPlayer.js` and global `NavbarTransport.js` connected to `AudioContext.js`.
-  * **Migration Requirement**: Update the DJ mix player to stream audio and load artwork directly from Google Drive links (via direct stream URL formatting, proxy API route, or Google Drive API).
+* **DJ Mix Player (AWS S3 Streaming & Enhancements)** *(Active Architecture)*:
+  * **Current State**: Mixes are centralized in `src/data/djMixes.js` and stream directly with cover artwork from AWS S3 bucket `clayton-the-chemist-dj-mixes` in `us-west-2`. Playback is orchestrated via `AudioPlayer.js` and persistent `NavbarTransport.js` connected to `AudioContext.js`.
   * **Feature Expansion**: Enhance the player beyond basic playback (e.g., tracklist display, timestamped cue points, audio waveforms, download triggers, enhanced queue/playlist controls).
 * **Gigs & Pictures Slideshow** *(Upcoming / In Roadmap)*:
   * Visual slideshow of live DJ performances, club gigs, festival appearances, and behind-the-scenes photography.
@@ -111,9 +110,9 @@ The artist portfolio for Dave Clayton (Clayton The Chemist) — DJ and producer 
 
 When working on tasks in this repository, follow these specifications:
 
-### 1. Google Drive DJ Mix Player
-- Refactor audio streaming to support Google Drive (via `/api/audio/[id]` streaming proxy for HTTP range requests).
-- Add support for tracklists, cue markers, waveforms, and download actions.
+### 1. AWS S3 DJ Mix Player Enhancements
+- Build upon existing AWS S3 streaming architecture (`clayton-the-chemist-dj-mixes` bucket in `us-west-2`).
+- Add support for tracklists, cue markers, waveforms, and direct download actions.
 
 ### 2. Slideshow Components
 - **Event Photos Slideshow** (`naturalselectiondeejaying.com`): **Completed** via `TabbedEventGallery.js` and `src/lib/djGallery.js` with category tabs (Weddings, Corporate Events, Nightclubs, Races & Festivals), dynamic image resolution, touch swipe gestures, and keyboard navigation.
