@@ -101,6 +101,7 @@ describe('App Router Pages and Layout', () => {
       render(<Music />);
       expect(screen.getByText(/The Soul Purpose/i)).toBeInTheDocument();
       expect(screen.getByText(/Music for your soul/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Puget Sound shoreline and sunlit clouds/i)).toBeInTheDocument();
     });
   });
 
@@ -109,6 +110,7 @@ describe('App Router Pages and Layout', () => {
       render(<Publishing />);
       expect(screen.getByText(/Music Publishing & Licensing/i)).toBeInTheDocument();
       expect(screen.getByText(/Licensing Catalog/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Sunset over Puget Sound and the Olympic Mountains/i)).toBeInTheDocument();
     });
   });
 });
