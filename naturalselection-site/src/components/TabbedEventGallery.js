@@ -75,14 +75,6 @@ export default function TabbedEventGallery({ categories = {} }) {
 
   return (
     <div className="mb-14">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold tracking-tight theme-heading mb-3">
-          Event Experience & Gallery
-        </h2>
-        <p className="text-sm md:text-base theme-muted max-w-2xl mx-auto">
-          Explore moments from past performances across weddings, corporate galas, nightclubs, and outdoor festivals.
-        </p>
-      </div>
 
       {/* Category Tabs */}
       <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8" role="tablist" aria-label="Event categories">

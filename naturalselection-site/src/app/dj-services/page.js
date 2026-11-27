@@ -10,7 +10,7 @@ export default function DJServices() {
   return (
     <div className="min-h-screen theme-page">
       {/* Hero Section with DJ Ballroom Background */}
-      <div className="relative min-h-[520px] md:min-h-[600px] lg:min-h-[660px] flex items-center justify-center overflow-hidden">
+      <div className="relative flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <Image
           src="/images/pages/dj-services/dj-ballroom-hero.jpg"
@@ -18,20 +18,20 @@ export default function DJServices() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center select-none pointer-events-none"
+          className="object-cover object-[center_55%] select-none pointer-events-none"
           quality={90}
         />
 
         {/* Ambient Dark Scrim & Gradients for Contrast and Depth */}
         <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-[0.5px]" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-slate-950/70" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-8 md:py-12">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-12 sm:py-14 md:py-16">
+          <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-extrabold mb-3 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
             A great DJ plays the right song at the right time
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-3xl mx-auto mb-84font-normal leading-relaxed drop-shadow-md">
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-3xl mx-auto mb-6 font-normal leading-relaxed drop-shadow-md">
             With 28 years of experience across nightclubs, weddings, corporate events, fundraisers, 
             lounges, casinos, and outdoor races, Dave Clayton brings the expertise and passion to make your event a success.
           </p>
@@ -47,7 +47,7 @@ export default function DJServices() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14">
         
         {/* Service Description */}
         <div className="mb-8 text-center">
