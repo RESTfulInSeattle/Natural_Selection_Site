@@ -66,6 +66,7 @@ describe('App Router Pages and Layout', () => {
       );
       expect(screen.getAllByText(/Clayton the Chemist/i).length).toBeGreaterThan(0);
       expect(screen.getByText(/The Chemist's Philosophy/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Seattle skyline and Space Needle/i)).toBeInTheDocument();
     });
   });
 
@@ -74,6 +75,7 @@ describe('App Router Pages and Layout', () => {
       render(<Contact />);
       expect(screen.getByText(/Contact Natural Selection/i)).toBeInTheDocument();
       expect(screen.getByText(/Send Us a Message/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Natural Selection Mural by Bret Seyfert/i)).toBeInTheDocument();
     });
   });
 

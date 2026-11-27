@@ -97,7 +97,7 @@ export default function PhotoSlideshow({ photos = claytonPhotos }) {
   return (
     <div
       ref={containerRef}
-      className="gradient-primary rounded-2xl p-4 sm:p-6 border border-white/10 shadow-2xl"
+      className="bg-slate-950/75 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/10 shadow-2xl"
       aria-label="Clayton The Chemist Photo Slideshow"
       role="region"
     >

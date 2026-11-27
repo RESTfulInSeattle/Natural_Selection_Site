@@ -63,7 +63,7 @@ export default function ClaytonEPK() {
   return (
     <div className="space-y-6">
       {/* Action Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl theme-card shadow-lg">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl theme-card-glass shadow-lg">
         <div>
           <h4 className="theme-heading font-bold text-lg flex items-center gap-2">
             <span>📄</span> Electronic Press Kit (EPK)
@@ -101,7 +101,7 @@ export default function ClaytonEPK() {
       </div>
 
       {/* EPK Main Card */}
-      <div className="theme-card rounded-2xl p-6 sm:p-10 md:p-12 shadow-xl">
+      <div className="theme-card-glass rounded-2xl p-6 sm:p-10 md:p-12 shadow-xl">
         {/* Header Section */}
         <div className="flex flex-col-reverse md:flex-row md:items-start justify-between gap-8 pb-8 border-b border-slate-200/80 dark:border-slate-800">
           {/* Identity & Basic Info */}

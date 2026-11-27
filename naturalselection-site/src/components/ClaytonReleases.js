@@ -14,7 +14,7 @@ export default function ClaytonReleases() {
   ];
 
   return (
-    <div className="theme-card rounded-2xl p-6 sm:p-8">
+    <div className="theme-card-glass rounded-2xl p-6 sm:p-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 pb-4 border-b border-slate-200/80 dark:border-slate-800 gap-4">
         <div>

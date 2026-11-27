@@ -154,7 +154,7 @@
 }
 
 .theme-card-glass {
-  background-color: rgba(255, 255, 255, 0.78);
+  background-color: rgba(255, 255, 255, 0.68);
   border: 1px solid var(--card-border);
   box-shadow: var(--card-shadow);
   backdrop-filter: blur(10px);
@@ -170,7 +170,7 @@
 }
 
 .dark .theme-card-glass {
-  background-color: rgba(6, 18, 23, 0.62);
+  background-color: rgba(6, 18, 23, 0.52);
 }
 
 .dark .theme-card-glass .theme-body {

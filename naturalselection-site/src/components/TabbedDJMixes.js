@@ -18,7 +18,7 @@ export default function TabbedDJMixes() {
   const activeMixes = djMixData[activeTab] || [];
 
   return (
-    <div className="theme-card rounded-2xl p-6 sm:p-8">
+    <div className="theme-card-glass rounded-2xl p-6 sm:p-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 pb-4 border-b border-slate-200/80 dark:border-slate-800 gap-4">
         <div>
           <h3 className="text-2xl font-bold theme-heading tracking-tight flex items-center gap-2">
