@@ -3,21 +3,22 @@ import Image from "next/image";
 export default function Contact() {
   return (
     <div className="min-h-screen theme-page relative overflow-x-hidden">
-      {/* Flowing Hero Mural Background */}
-      <div className="absolute inset-x-0 top-0 h-[620px] sm:h-[720px] md:h-[840px] overflow-hidden pointer-events-none select-none">
+      {/* Flowing Hero Ballroom Background */}
+      <div className="absolute inset-x-0 top-0 h-[620px] sm:h-[720px] md:h-[860px] overflow-hidden pointer-events-none select-none">
         <Image
-          src="/images/pages/about/muralleveled.jpg"
-          alt="Natural Selection Mural by Bret Seyfert"
+          src="/images/pages/home/dj-ballroom-hero.jpg"
+          alt="Natural Selection DJ looking out over ballroom and Puget Sound"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-top"
+          className="object-cover object-[center_45%]"
           quality={90}
         />
 
-        {/* Ambient Scrim & Smooth Vertical Fade into Page Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/35 to-white/25 dark:from-black/80 dark:via-black/50 dark:to-black/40 backdrop-blur-[0.5px]" />
-        <div className="absolute inset-x-0 bottom-0 h-56 sm:h-64 bg-gradient-to-t from-white via-white/75 to-transparent dark:from-[#02070a] dark:via-[#02070a]/75 dark:to-transparent" />
+        {/* Ambient Dark Scrim & Smooth Vertical Fade into Page Background */}
+        <div className="absolute inset-0 bg-slate-950/45 dark:bg-black/55 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/20 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-56 bg-gradient-to-t from-white via-white/65 to-transparent dark:from-[#02070a] dark:via-[#02070a]/65 dark:to-transparent" />
       </div>
 
       {/* Foreground Content */}

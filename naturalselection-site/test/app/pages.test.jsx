@@ -75,7 +75,7 @@ describe('App Router Pages and Layout', () => {
       render(<Contact />);
       expect(screen.getByText(/Contact Natural Selection/i)).toBeInTheDocument();
       expect(screen.getByText(/Send Us a Message/i)).toBeInTheDocument();
-      expect(screen.getByAltText(/Natural Selection Mural by Bret Seyfert/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Natural Selection DJ looking out over ballroom and Puget Sound/i)).toBeInTheDocument();
     });
   });
 
