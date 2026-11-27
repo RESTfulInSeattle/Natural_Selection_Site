@@ -44,7 +44,7 @@ export default function ClaytonTabs() {
   return (
     <div className="w-full space-y-6">
       {/* Tab Navigation Bar - compact, responsive, no scrollbars */}
-      <div className="theme-card rounded-2xl p-1.5 shadow-xl">
+      <div className="theme-card-glass rounded-2xl p-1.5 shadow-xl">
         <div className="grid grid-cols-5 gap-1 sm:gap-2">
           {TABS.map((tab) => {
             const isActive = activeTab === tab.id;

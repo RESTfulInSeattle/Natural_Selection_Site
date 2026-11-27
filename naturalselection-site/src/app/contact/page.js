@@ -1,19 +1,41 @@
+import Image from "next/image";
+
 export default function Contact() {
   return (
-    <div className="min-h-screen theme-page">
-      {/* Hero Header */}
-      <div className="theme-hero py-16 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-xl md:text-xl font-bold mb-4 tracking-tight theme-heading">Contact Natural Selection</h1>
-          <p className="text-base md:text theme-muted max-w-2xl mx-auto font-normal leading-relaxed">
+    <div className="min-h-screen theme-page relative overflow-x-hidden">
+      {/* Flowing Hero Ballroom Background */}
+      <div className="absolute inset-x-0 top-0 h-[620px] sm:h-[720px] md:h-[860px] overflow-hidden pointer-events-none select-none">
+        <Image
+          src="/images/pages/home/dj-ballroom-hero.jpg"
+          alt="Natural Selection DJ looking out over ballroom and Puget Sound"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_45%]"
+          quality={90}
+        />
+
+        {/* Ambient Dark Scrim & Smooth Vertical Fade into Page Background */}
+        <div className="absolute inset-0 bg-slate-950/45 dark:bg-black/55 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/20 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-56 bg-gradient-to-t from-white via-white/65 to-transparent dark:from-[#02070a] dark:via-[#02070a]/65 dark:to-transparent" />
+      </div>
+
+      {/* Foreground Content */}
+      <div className="relative z-10">
+        {/* Hero Header */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-10 sm:pt-20 sm:pb-12">
+          <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-extrabold mb-3 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
+            Contact Natural Selection
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-2xl mx-auto font-normal leading-relaxed drop-shadow-md">
             Whether you need event DJ services, audio mastering, or music licensing, we&apos;re here to help.
           </p>
         </div>
-      </div>
 
-      {/* Contact Form Section */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="theme-card rounded-2xl p-8 sm:p-12 shadow-xl">
+        {/* Contact Form Section */}
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-14">
+          <div className="theme-card-glass rounded-2xl p-8 sm:p-12 shadow-xl">
           <h2 className="text-xl md:text-xl font-bold mb-8 text-center theme-heading">Send Us a Message</h2>
           
           <form className="space-y-6">
@@ -144,6 +166,7 @@ export default function Contact() {
               </button>
             </div>
           </form>
+        </div>
         </div>
       </div>
     </div>

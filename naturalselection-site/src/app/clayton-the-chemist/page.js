@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import ClaytonTabs from "@/components/ClaytonTabs";
 
@@ -8,39 +9,58 @@ export const metadata = {
 
 export default function ClaytonTheChemist() {
   return (
-    <div className="min-h-screen theme-page">
-      {/* Streamlined Hero Section */}
-      <div className="theme-hero py-8 sm:py-10 border-b border-slate-200/80 dark:border-emerald-500/20 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col items-center gap-3 text-center">
-            {/* Header Content */}
-            <div className="max-w-2xl">
-              <h1 className="text-xl sm:text-xl md:text-xl font-bold tracking-tight theme-heading mb-2">
-                Clayton the Chemist
-              </h1>
-              <p className="text-xs sm:text-sm theme-muted font-medium mb-4">
-                House • Bass Music • Drum & Bass • Nu Funk • Nu Jazz • Nu Soul
-              </p>
+    <div className="min-h-screen theme-page relative overflow-x-hidden">
+      {/* Flowing Hero Seattle Skyline Background */}
+      <div className="absolute inset-x-0 top-0 h-[440px] sm:h-[500px] md:h-[560px] overflow-hidden pointer-events-none select-none">
+        <Image
+          src="/images/pages/clayton-the-chemist/clayton-seattle-panorama-hero.jpg"
+          alt="Seattle skyline and Space Needle overlooking Elliott Bay"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+          quality={90}
+        />
 
-              {/* Quote & Bio */}
-              <blockquote className="text-sm sm:text-base text-slate-700 dark:text-emerald-100/80 italic font-light">
-                &quot;You look like a mad scientist up there mixing records, like some crazy chemist&quot;
-                <span className="text-emerald-600 dark:text-emerald-300 not-italic ml-2 font-normal">— JJ Brown</span>
-              </blockquote>
+        {/* Ambient Scrim & Smooth Vertical Fade into Page Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/45 to-white/20 dark:from-black/80 dark:via-black/55 dark:to-black/40 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-x-0 bottom-0 h-56 sm:h-64 bg-gradient-to-t from-white via-white/75 to-transparent dark:from-[#02070a] dark:via-[#02070a]/75 dark:to-transparent" />
+      </div>
+
+      {/* Foreground Content */}
+      <div className="relative z-10">
+        {/* Hero Header */}
+        <div className="py-10 sm:py-14">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col items-center gap-3 text-center">
+              {/* Header Content */}
+              <div className="max-w-2xl">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-2 drop-shadow-lg">
+                  Clayton the Chemist
+                </h1>
+                <p className="text-xs sm:text-sm text-slate-200 font-medium mb-4 drop-shadow-md">
+                  House • Bass Music • Drum & Bass • Nu Funk • Nu Jazz • Nu Soul
+                </p>
+
+                {/* Quote & Bio */}
+                <blockquote className="text-sm sm:text-base text-slate-100 italic font-light drop-shadow-md">
+                  &quot;You look like a mad scientist up there mixing records, like some crazy chemist&quot;
+                  <span className="text-emerald-300 not-italic ml-2 font-medium">— JJ Brown</span>
+                </blockquote>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Main Content - Tabs & Sections */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* 5-Tab Section: DJ Mixes, Videos, Releases, Photos, EPK */}
-        <div className="mb-12">
-          <ClaytonTabs />
-        </div>
+        {/* Main Content - Tabs & Sections */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-8">
+          {/* 5-Tab Section: DJ Mixes, Videos, Releases, Photos, EPK */}
+          <div className="mb-12">
+            <ClaytonTabs />
+          </div>
 
-        {/* Philosophy */}
-        <div className="theme-card rounded-2xl p-8 mb-10">
+          {/* Philosophy */}
+          <div className="theme-card-glass rounded-2xl p-8 mb-10">
           <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center theme-heading">The Chemist&apos;s Philosophy</h2>
           <div className="text-center max-w-3xl mx-auto">
             <p className="text-sm sm:text-base theme-body leading-relaxed">
@@ -71,6 +91,7 @@ export default function ClaytonTheChemist() {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

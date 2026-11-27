@@ -11,4 +11,4 @@ He creates high quality MP3s mastered to accommodate for their compression to th
 
 Mastering is the last chance for your project before delivery. You get an un-biased critical ear in an acoustically neutral environment with world class digital mastering technology.
 
-![](images/currentmasteringchain.png)
+![](images/current-mastering-chain.png)

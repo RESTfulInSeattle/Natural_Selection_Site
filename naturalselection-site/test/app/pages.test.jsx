@@ -40,6 +40,8 @@ describe('App Router Pages and Layout', () => {
       const PageJSX = await About();
       render(PageJSX);
       expect(screen.getByText(/About Natural Selection/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Natural Selection Mural by Bret Seyfert/i)).toBeInTheDocument();
+      expect(screen.queryByAltText('muralleveled')).not.toBeInTheDocument();
     });
 
     it('renders ExistingAboutContent fallback when markdown content is missing', async () => {
@@ -64,6 +66,7 @@ describe('App Router Pages and Layout', () => {
       );
       expect(screen.getAllByText(/Clayton the Chemist/i).length).toBeGreaterThan(0);
       expect(screen.getByText(/The Chemist's Philosophy/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Seattle skyline and Space Needle/i)).toBeInTheDocument();
     });
   });
 
@@ -72,6 +75,7 @@ describe('App Router Pages and Layout', () => {
       render(<Contact />);
       expect(screen.getByText(/Contact Natural Selection/i)).toBeInTheDocument();
       expect(screen.getByText(/Send Us a Message/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Natural Selection DJ looking out over ballroom and Puget Sound/i)).toBeInTheDocument();
     });
   });
 
@@ -88,6 +92,7 @@ describe('App Router Pages and Layout', () => {
       render(<Mastering />);
       expect(screen.getByText(/Professional Audio Mastering Services/i)).toBeInTheDocument();
       expect(screen.getByText(/Current Mastering Chain/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Natural Selection audio mastering studio/i)).toBeInTheDocument();
     });
   });
 
@@ -96,6 +101,7 @@ describe('App Router Pages and Layout', () => {
       render(<Music />);
       expect(screen.getByText(/The Soul Purpose/i)).toBeInTheDocument();
       expect(screen.getByText(/Music for your soul/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Puget Sound shoreline and sunlit clouds/i)).toBeInTheDocument();
     });
   });
 
@@ -104,6 +110,7 @@ describe('App Router Pages and Layout', () => {
       render(<Publishing />);
       expect(screen.getByText(/Music Publishing & Licensing/i)).toBeInTheDocument();
       expect(screen.getByText(/Licensing Catalog/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Sunset over Puget Sound and the Olympic Mountains/i)).toBeInTheDocument();
     });
   });
 });

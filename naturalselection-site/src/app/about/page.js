@@ -3,6 +3,45 @@ import Link from "next/link";
 import { getPageContent, processContentImages } from "../../lib/content";
 import { ImageGallery } from "../../components/Content";
 
+function AboutShell({ children }) {
+  return (
+    <div className="min-h-screen theme-page relative overflow-x-hidden">
+      {/* Flowing Hero Mural Background */}
+      <div className="absolute inset-x-0 top-0 h-[620px] sm:h-[720px] md:h-[840px] overflow-hidden pointer-events-none select-none">
+        <Image
+          src="/images/pages/about/muralleveled.jpg"
+          alt="Natural Selection Mural by Bret Seyfert"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-top"
+          quality={90}
+        />
+
+        {/* Ambient Scrim & Smooth Vertical Fade into Page Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/35 to-white/25 dark:from-black/80 dark:via-black/50 dark:to-black/40 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-x-0 bottom-0 h-56 sm:h-64 bg-gradient-to-t from-white via-white/75 to-transparent dark:from-[#02070a] dark:via-[#02070a]/75 dark:to-transparent" />
+      </div>
+
+      {/* Foreground Content */}
+      <div className="relative z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-10 sm:pt-20 sm:pb-12">
+          <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-extrabold mb-3 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
+            About Natural Selection
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-3xl mx-auto font-normal leading-relaxed drop-shadow-md">
+            Creating exceptional musical experiences since 2003
+          </p>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-14 space-y-12">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default async function About() {
   // Get the about page content from markdown
   const aboutContent = await getPageContent('about');
@@ -13,34 +52,26 @@ export default async function About() {
   }
 
   const processedContent = processContentImages(aboutContent.content, aboutContent.slug, 'page');
+  const galleryImages = (aboutContent.images || []).filter(
+    (img) => img.filename !== 'muralleveled.jpg'
+  );
 
   return (
-    <div className="min-h-screen theme-page">
-      {/* Hero Section */}
-      <div className="theme-hero py-16 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl md:text-xl font-bold mb-4 tracking-tight theme-heading">About Natural Selection</h1>
-          <p className="text-lg md:text-xl theme-muted font-normal">
-            Creating exceptional musical experiences since 2003
-          </p>
-        </div>
+    <AboutShell>
+      <div className="theme-card-glass rounded-2xl p-8">
+        <p className={`text-lg theme-body leading-relaxed ${galleryImages.length > 0 ? 'mb-6' : ''}`}>
+          Natural Selection was created by Dave Clayton in October 2003, and has remained an outlet for his passion for music.
+        </p>        
+        {galleryImages.length > 0 && (
+          <ImageGallery 
+            images={galleryImages}
+            className="grid-cols-1"
+          />
+        )}
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
-        <div className="theme-card rounded-2xl p-8">
-          <p className="text-lg theme-body leading-relaxed mb-6">
-            Natural Selection was created by Dave Clayton in October 2003, and has remained an outlet for his passion for music.
-          </p>        
-          {aboutContent.images && aboutContent.images.length > 0 && (
-            <ImageGallery 
-              images={aboutContent.images}
-              className="grid-cols-1"
-            />
-          )}
-        </div>
-
-        {/* Enhanced About Section with Dave's Background */}
-        <div className="theme-card rounded-2xl p-8 sm:p-10">
+      {/* Enhanced About Section with Dave's Background */}
+      <div className="theme-card-glass rounded-2xl p-8 sm:p-10">
           <h2 className="text-3xl font-bold theme-heading mb-6">Meet Dave Clayton</h2>
           <p className="text-lg theme-body mb-4 leading-relaxed">
             With 28 years of industry experience, Dave is a renaissance man in the music industry 
@@ -52,23 +83,23 @@ export default async function About() {
             His underground moniker, Clayton the Chemist, features vibes that run the gamut of House, 
             Bass Music, Drum & Bass, Nu Funk, Nu Jazz, and Nu Soul.
           </p>
-          <div className="space-y-4 pt-4 border-t border-slate-200/80 dark:border-emerald-500/20">
+          <div className="space-y-4 pt-4 border-t border-slate-300/80 dark:border-emerald-500/20">
             <h3 className="text-xl font-semibold theme-heading">Core Expertise:</h3>
             <ul className="grid sm:grid-cols-2 gap-3 theme-body">
               <li className="flex items-center">
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 font-bold">✓</span>
+                <span className="text-emerald-700 dark:text-emerald-400 mr-3 font-bold">✓</span>
                 Professional Event DJ Services
               </li>
               <li className="flex items-center">
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 font-bold">✓</span>
+                <span className="text-emerald-700 dark:text-emerald-400 mr-3 font-bold">✓</span>
                 Audio Mastering & Engineering
               </li>
               <li className="flex items-center">
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 font-bold">✓</span>
+                <span className="text-emerald-700 dark:text-emerald-400 mr-3 font-bold">✓</span>
                 Sound System Design & Setup
               </li>
               <li className="flex items-center">
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 font-bold">✓</span>
+                <span className="text-emerald-700 dark:text-emerald-400 mr-3 font-bold">✓</span>
                 Acoustical Consultation
               </li>
             </ul>
@@ -88,52 +119,28 @@ export default async function About() {
             Get In Touch
           </Link>
         </div>
-      </div>
-    </div>
+    </AboutShell>
   );
 }
 
 // Fallback to existing content structure if markdown isn't available
 function ExistingAboutContent() {
   return (
-    <div className="min-h-screen theme-page">
-      {/* Hero Section */}
-      <div className="theme-hero py-16 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight theme-heading">About Natural Selection</h1>
-          <p className="text-lg md:text-2xl theme-muted font-normal">
-            Creating exceptional musical experiences since 2003
+    <AboutShell>
+      <div className="theme-card-glass rounded-2xl p-8 sm:p-10">
+        <div>
+          <h2 className="text-3xl font-bold mb-4 theme-heading">Dave Clayton</h2>
+          <p className="theme-body mb-4 leading-relaxed">
+            Natural Selection was created by Dave Clayton in October 2003, and has remained an outlet for his passion for music.
+          </p>
+          <p className="theme-body mb-4 leading-relaxed">
+            With 28 years of industry experience, Dave is a renaissance man in the music industry who is adept at DJing, producing, live performance, mastering, acoustical design, and enjoys sharing his knowledge and mentoring others.
+          </p>
+          <p className="theme-body leading-relaxed">
+            His underground moniker, Clayton the Chemist, features vibes that run the gamut of House, Bass Music, Drum & Bass, Nu Funk, Nu Jazz, and Nu Soul.
           </p>
         </div>
       </div>
-
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
-        <div className="theme-card rounded-2xl p-8 sm:p-10">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <Image
-                src="/images/pages/about/muralleveled.jpg"
-                alt="Natural Selection Mural by Bret Seyfert"
-                width={500}
-                height={300}
-                className="rounded-xl shadow-lg border border-emerald-500/20"
-              />
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-4 theme-heading">Dave Clayton</h2>
-              <p className="theme-body mb-4 leading-relaxed">
-                Natural Selection was created by Dave Clayton in October 2003, and has remained an outlet for his passion for music.
-              </p>
-              <p className="theme-body mb-4 leading-relaxed">
-                With 28 years of industry experience, Dave is a renaissance man in the music industry who is adept at DJing, producing, live performance, mastering, acoustical design, and enjoys sharing his knowledge and mentoring others.
-              </p>
-              <p className="theme-body leading-relaxed">
-                His underground moniker, Clayton the Chemist, features vibes that run the gamut of House, Bass Music, Drum & Bass, Nu Funk, Nu Jazz, and Nu Soul.
-              </p>
-            </div>
-          </div>
-        </div>
 
         {/* Services Section */}
         <div className="theme-card rounded-2xl p-8">
@@ -213,7 +220,6 @@ function ExistingAboutContent() {
             Get In Touch
           </Link>
         </div>
-      </div>
-    </div>
+    </AboutShell>
   );
 }

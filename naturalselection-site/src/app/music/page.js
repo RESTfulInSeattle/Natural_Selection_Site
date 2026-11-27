@@ -4,28 +4,44 @@ import { SoundCloudPlayer, SpotifyPlayer, AppleMusicPlayer } from "@/components/
 
 export default function Music() {
   return (
-    <div className="min-h-screen theme-page">
-      {/* Hero Section */}
-      <div className="theme-hero py-16 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-    
-          <h1 className="text-xl md:text-xl font-bold mb-4 tracking-tight theme-heading">
+    <div className="min-h-screen theme-page relative overflow-x-hidden">
+      {/* Flowing Hero Puget Sound Background */}
+      <div className="absolute inset-x-0 top-0 h-[620px] sm:h-[720px] md:h-[860px] overflow-hidden pointer-events-none select-none">
+        <Image
+          src="/images/pages/music/music-sound-hero.jpg"
+          alt="Puget Sound shoreline and sunlit clouds over the water"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+          quality={90}
+        />
+
+        {/* Ambient Scrim & Smooth Vertical Fade into Page Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/35 to-white/20 dark:from-black/80 dark:via-black/50 dark:to-black/40 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-x-0 bottom-0 h-56 sm:h-64 bg-gradient-to-t from-white via-white/75 to-transparent dark:from-[#02070a] dark:via-[#02070a]/75 dark:to-transparent" />
+      </div>
+
+      {/* Foreground Content */}
+      <div className="relative z-10">
+        {/* Hero Header */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-10 sm:pt-20 sm:pb-12">
+          <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-extrabold mb-3 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
             Music for your soul, as well as your backside
           </h1>
-          <p className="text-base md:text-lg theme-muted max-w-3xl mx-auto font-normal leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-3xl mx-auto font-normal leading-relaxed drop-shadow-md">
             Clayton and Fulcrum&apos;s 2 albums spanning multiple genres and moods.
           </p>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        
-        {/* Featured Albums */}
-        <div className="mb-16">
-          <div className="grid md:grid-cols-2 gap-10 mb-12">
-            {/* The Soul Purpose */}
-            <div className="theme-card rounded-2xl p-6 sm:p-8">
+        {/* Main Content */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-14">
+          
+          {/* Featured Albums */}
+          <div className="mb-16">
+            <div className="grid md:grid-cols-2 gap-10 mb-12">
+              {/* The Soul Purpose */}
+              <div className="theme-card-glass rounded-2xl p-6 sm:p-8">
               <h2 className="text-2xl font-bold mb-6 text-center theme-heading">The Soul Purpose</h2>
               
               {/* SoundCloud Playlist */}
@@ -54,7 +70,7 @@ export default function Music() {
             </div>
 
             {/* Songs from the Soul City */}
-            <div className="theme-card rounded-2xl p-6 sm:p-8">
+            <div className="theme-card-glass rounded-2xl p-6 sm:p-8">
               <h2 className="text-2xl font-bold mb-6 text-center theme-heading">Songs from the Soul City</h2>
               
               {/* SoundCloud Playlist */}
@@ -104,6 +120,7 @@ export default function Music() {
               Contact Us
             </Link>
           </div>
+        </div>
         </div>
       </div>
     </div>
