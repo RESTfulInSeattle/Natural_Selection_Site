@@ -27,15 +27,15 @@ export default function DJServices() {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-slate-950/70" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-8 md:py-12">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
             A great DJ plays the right song at the right time
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-3xl mx-auto mb-8 font-normal leading-relaxed drop-shadow-md">
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-3xl mx-auto mb-84font-normal leading-relaxed drop-shadow-md">
             With 28 years of experience across nightclubs, weddings, corporate events, fundraisers, 
             lounges, casinos, and outdoor races, Dave Clayton brings the expertise and passion to make your event a success.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
             <Link 
               href="/contact" 
               className="inline-block gradient-accent text-white px-8 py-3.5 rounded-xl font-semibold hover:scale-105 transition-all duration-200 shadow-xl shadow-sky-950/30"
@@ -58,7 +58,42 @@ export default function DJServices() {
           </p>
         </div>
 
-        {/* Equipment & Capabilities */}
+        {/* Event Experience Tabbed Gallery */}
+        <TabbedEventGallery categories={eventCategories} />
+
+        {/* Mixcloud Section */}
+        <div className="theme-card rounded-2xl p-8 mb-10">
+          <h2 className="text-2xl font-bold mb-2 text-center theme-heading">Sample DJ Mixes</h2>
+          <p className="text-center theme-muted mb-8 text-sm">
+            Curated event sets across Disco, 80s, 90s, and Top 40 by Dave Clayton
+          </p>
+          <div className="space-y-6">          
+            <MixcloudPlayer 
+              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-disco/"
+              title="Natural Selection Disco"
+              height="120"
+            />
+            
+            <MixcloudPlayer 
+              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-80s/"
+              title="Natural Selection 80s"
+              height="120"
+            />
+            
+            <MixcloudPlayer 
+              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-90s/"
+              title="Natural Selection 90s"
+              height="120"
+            />
+            
+            <MixcloudPlayer 
+              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-top-40/"
+              title="Natural Selection Top 40"
+              height="120"
+            />
+          </div>
+        </div>
+ {/* Equipment & Capabilities */}
         <div className="theme-card rounded-2xl p-8 mb-14">
           <h2 className="text-xl md:text-xl font-bold mb-4 text-center theme-heading">Equipment & Capabilities</h2>
           <p className="text-center theme-body leading-relaxed mb-4">
@@ -127,43 +162,6 @@ export default function DJServices() {
             </div>
           </div>
         </div>
-
-        {/* Event Experience Tabbed Gallery */}
-        <TabbedEventGallery categories={eventCategories} />
-
-        {/* Mixcloud Section */}
-        <div className="theme-card rounded-2xl p-8 mb-10">
-          <h2 className="text-2xl font-bold mb-2 text-center theme-heading">Sample DJ Mixes</h2>
-          <p className="text-center theme-muted mb-8 text-sm">
-            Curated event sets across Disco, 80s, 90s, and Top 40 by Dave Clayton
-          </p>
-          <div className="space-y-6">          
-            <MixcloudPlayer 
-              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-disco/"
-              title="Natural Selection Disco"
-              height="120"
-            />
-            
-            <MixcloudPlayer 
-              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-80s/"
-              title="Natural Selection 80s"
-              height="120"
-            />
-            
-            <MixcloudPlayer 
-              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-90s/"
-              title="Natural Selection 90s"
-              height="120"
-            />
-            
-            <MixcloudPlayer 
-              url="https://www.mixcloud.com/ClaytontheChemist/natural-selection-top-40/"
-              title="Natural Selection Top 40"
-              height="120"
-            />
-          </div>
-        </div>
-
         {/* Yelp Testimonial Link */}
         <div className="mb-14">
           <div className="theme-card rounded-2xl p-6 text-center">
