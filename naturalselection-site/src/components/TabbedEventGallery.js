@@ -97,15 +97,7 @@ export default function TabbedEventGallery({ categories = {} }) {
             >
               <span className="text-base">{category.icon}</span>
               <span>{category.title}</span>
-              <span
-                className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                  isActive
-                    ? 'bg-white/20 text-white'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
-                }`}
-              >
-                {count}
-              </span>
+
             </button>
           );
         })}
