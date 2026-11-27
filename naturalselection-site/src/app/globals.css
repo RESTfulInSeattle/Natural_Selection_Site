@@ -154,15 +154,31 @@
 }
 
 .theme-card-glass {
-  background-color: rgba(255, 255, 255, 0.65);
+  background-color: rgba(255, 255, 255, 0.78);
   border: 1px solid var(--card-border);
   box-shadow: var(--card-shadow);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
+.theme-card-glass .theme-body {
+  color: #0f172a;
+}
+
+.theme-card-glass .theme-muted {
+  color: #334155;
+}
+
 .dark .theme-card-glass {
-  background-color: rgba(6, 18, 23, 0.58);
+  background-color: rgba(6, 18, 23, 0.62);
+}
+
+.dark .theme-card-glass .theme-body {
+  color: #e2e8f0;
+}
+
+.dark .theme-card-glass .theme-muted {
+  color: #cbd5e1;
 }
 
 .theme-card-subtle {

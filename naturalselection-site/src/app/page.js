@@ -3,26 +3,29 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen theme-page">
-      {/* Hero Section with DJ Ballroom Background */}
-      <div className="relative flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+    <div className="min-h-screen theme-page relative overflow-x-hidden">
+      {/* Flowing Hero Ballroom Background */}
+      <div className="absolute inset-x-0 top-0 h-[620px] sm:h-[720px] md:h-[860px] overflow-hidden pointer-events-none select-none">
         <Image
           src="/images/pages/home/dj-ballroom-hero.jpg"
           alt="Natural Selection DJ looking out over ballroom and Puget Sound"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_55%] select-none pointer-events-none"
+          className="object-cover object-[center_45%]"
           quality={90}
         />
 
-        {/* Ambient Dark Scrim & Gradients for Readability and Depth */}
-        <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-[0.5px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-slate-950/70" />
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
+        {/* Ambient Dark Scrim & Smooth Vertical Fade into Page Background */}
+        <div className="absolute inset-0 bg-slate-950/45 dark:bg-black/55 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/20 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-56 bg-gradient-to-t from-white via-white/65 to-transparent dark:from-[#02070a] dark:via-[#02070a]/65 dark:to-transparent" />
+      </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 sm:py-14 md:py-16 text-center">
+      {/* Foreground Content */}
+      <div className="relative z-10">
+        {/* Hero Header */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10 sm:pt-16 sm:pb-12 text-center">
           <h1 className="text-xl sm:text-xl md:text-xl lg:text-xl font-extrabold mb-6 tracking-tight text-white max-w-4xl mx-auto leading-tight drop-shadow-lg">
             Dedicated to the Art of Deejaying, Music Production, Audio Engineering, and Acoustics.
           </h1>
@@ -36,15 +39,10 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </div>
 
-      
-      {/* Services Section */}
-      <div className="py-10 theme-page">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            
-          </div>
+        {/* Services Section */}
+        <div className="pt-4 pb-14">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -86,7 +84,7 @@ export default function Home() {
               },
             ].map((service) => (
               <Link key={service.title} href={service.href} className="group">
-                <div className="theme-card rounded-2xl p-6 text-center h-full hover:scale-[1.02] transition-all duration-200">
+                <div className="theme-card-glass rounded-2xl p-6 text-center h-full hover:scale-[1.02] transition-all duration-200">
                   <div className="h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-200">
                     <Image
                       src={`/images/${service.logo}-black.png`}
@@ -115,15 +113,11 @@ export default function Home() {
       </div>
       
       {/* Equipment & Capabilities */}
-      <div className="py-20 theme-page border-t border-slate-200/80 dark:border-emerald-500/20">
+      <div className="py-5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold theme-heading mb-4">Professional Equipment</h2>
-            <p className="text-lg theme-muted">Sound and lighting scaled to your venue size and requirements</p>
-          </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="theme-card rounded-2xl p-8">
+            <div className="theme-card-glass rounded-2xl p-8">
               <h3 className="text-xl font-semibold mb-4 flex items-center theme-heading">
                 <span className="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mr-3">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -140,7 +134,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="theme-card rounded-2xl p-8">
+            <div className="theme-card-glass rounded-2xl p-8">
               <h3 className="text-xl font-semibold mb-4 flex items-center theme-heading">
                 <span className="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center mr-3">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -176,6 +170,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

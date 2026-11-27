@@ -3,26 +3,29 @@ import Link from "next/link";
 
 export default function Mastering() {
   return (
-    <div className="min-h-screen theme-page">
-      {/* Hero Section with Studio Background */}
-      <div className="relative flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+    <div className="min-h-screen theme-page relative overflow-x-hidden">
+      {/* Flowing Hero Studio Background */}
+      <div className="absolute inset-x-0 top-0 h-[620px] sm:h-[720px] md:h-[860px] overflow-hidden pointer-events-none select-none">
         <Image
           src="/images/pages/mastering/mastering-studio-hero.jpg"
           alt="Natural Selection audio mastering studio with acoustic treatment, reference monitors, and outboard gear"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_48%] select-none pointer-events-none"
+          className="object-cover object-[center_45%]"
           quality={90}
         />
 
-        {/* Ambient Dark Scrim & Gradients for Contrast and Depth */}
-        <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-[0.5px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-slate-950/70" />
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
+        {/* Ambient Dark Scrim & Smooth Vertical Fade into Page Background */}
+        <div className="absolute inset-0 bg-slate-950/45 dark:bg-black/55 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/20 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-56 bg-gradient-to-t from-white via-white/65 to-transparent dark:from-[#02070a] dark:via-[#02070a]/65 dark:to-transparent" />
+      </div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-16 sm:py-20">
+      {/* Foreground Content */}
+      <div className="relative z-10">
+        {/* Hero Header */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-10 sm:pt-20 sm:pb-12">
           <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-extrabold mb-3 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
             Professional Audio Mastering Services
           </h1>
@@ -31,25 +34,24 @@ export default function Mastering() {
             World-class digital mastering technology in an acoustically neutral environment.
           </p>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        
-        {/* Service Introduction */}
-        <div className="mb-14">
-          <p className="text theme-body mb-4 leading-relaxed">
-            You&apos;ve completed that mix or album you live for, and now you need mastering to push your vision further. 
-            Dave Clayton will assure your mix translates, and makes an impact, on any system played.
-          </p>
-          <p className="text theme-body leading-relaxed">
-            Mastering is the last chance for your project before delivery. You get an un-biased critical ear 
-            in an acoustically neutral environment with world-class digital mastering technology.
-          </p>
-        </div>
+        {/* Main Content */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-14">
+          
+          {/* Service Introduction */}
+          <div className="theme-card-glass rounded-2xl p-8 mb-14">
+            <p className="text theme-body mb-4 leading-relaxed">
+              You&apos;ve completed that mix or album you live for, and now you need mastering to push your vision further. 
+              Dave Clayton will assure your mix translates, and makes an impact, on any system played.
+            </p>
+            <p className="text theme-body leading-relaxed">
+              Mastering is the last chance for your project before delivery. You get an un-biased critical ear 
+              in an acoustically neutral environment with world-class digital mastering technology.
+            </p>
+          </div>
 
-        {/* Mastering Chain */}
-        <div className="theme-card rounded-2xl p-8 mb-14">
+          {/* Mastering Chain */}
+          <div className="theme-card-glass rounded-2xl p-8 mb-14">
           <h2 className="text-xl md:text-xl font-bold mb-6 text-center theme-heading">Current Mastering Chain</h2>
           <div className="text-center mb-6">
             <Image
@@ -71,7 +73,7 @@ export default function Mastering() {
           <div className="grid md:grid-cols-2 gap-8">
             
             {/* Digital Formats */}
-            <div className="theme-card rounded-2xl p-6 sm:p-8">
+            <div className="theme-card-glass rounded-2xl p-6 sm:p-8">
               <h3 className="text-xl font-bold mb-4 theme-heading flex items-center">
                 <div className="gradient-accent text-white rounded-xl w-9 h-9 flex items-center justify-center mr-3 shadow-sm">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -101,7 +103,7 @@ export default function Mastering() {
             </div>
 
             {/* CD Production */}
-            <div className="theme-card rounded-2xl p-6 sm:p-8">
+            <div className="theme-card-glass rounded-2xl p-6 sm:p-8">
               <h3 className="text-xl font-bold mb-4 theme-heading flex items-center">
                 <div className="gradient-accent text-white rounded-xl w-9 h-9 flex items-center justify-center mr-3 shadow-sm">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -134,7 +136,7 @@ export default function Mastering() {
         </div>
 
         {/* Process */}
-        <div className="theme-card rounded-2xl p-8 mb-14">
+        <div className="theme-card-glass rounded-2xl p-8 mb-14">
           <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center theme-heading">Mastering Process</h2>
           <div className="grid md:grid-cols-3 gap-8">
             
@@ -190,7 +192,7 @@ export default function Mastering() {
                 icon: "🔄"
               }
             ].map((service, index) => (
-              <div key={index} className="text-center p-5 theme-card rounded-2xl hover:scale-[1.02] transition-all duration-200">
+              <div key={index} className="text-center p-5 theme-card-glass rounded-2xl hover:scale-[1.02] transition-all duration-200">
                 <div className="text-3xl mb-3">{service.icon}</div>
                 <h3 className="text-lg font-semibold theme-heading mb-2">{service.title}</h3>
                 <p className="text-sm theme-muted">{service.description}</p>
@@ -200,7 +202,7 @@ export default function Mastering() {
         </div>
 
         {/* Acoustical Environment */}
-        <div className="theme-card rounded-2xl p-8 mb-14">
+        <div className="theme-card-glass rounded-2xl p-8 mb-14">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center theme-heading">Acoustically Neutral Environment</h2>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -249,6 +251,7 @@ export default function Mastering() {
             Get Mastering Quote
           </Link>
         </div>
+      </div>
       </div>
     </div>
   );

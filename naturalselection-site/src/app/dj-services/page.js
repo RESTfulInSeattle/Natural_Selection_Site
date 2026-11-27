@@ -8,26 +8,29 @@ export default function DJServices() {
   const eventCategories = getDJEventPhotos();
 
   return (
-    <div className="min-h-screen theme-page">
-      {/* Hero Section with DJ Ballroom Background */}
-      <div className="relative flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+    <div className="min-h-screen theme-page relative overflow-x-hidden">
+      {/* Flowing Hero Ballroom Background */}
+      <div className="absolute inset-x-0 top-0 h-[620px] sm:h-[720px] md:h-[860px] overflow-hidden pointer-events-none select-none">
         <Image
           src="/images/pages/dj-services/dj-ballroom-hero.jpg"
           alt="Natural Selection DJ looking out over ballroom and Puget Sound"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_55%] select-none pointer-events-none"
+          className="object-cover object-[center_45%]"
           quality={90}
         />
 
-        {/* Ambient Dark Scrim & Gradients for Contrast and Depth */}
-        <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-[0.5px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-slate-950/70" />
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
+        {/* Ambient Dark Scrim & Smooth Vertical Fade into Page Background */}
+        <div className="absolute inset-0 bg-slate-950/45 dark:bg-black/55 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/20 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-56 bg-gradient-to-t from-white via-white/65 to-transparent dark:from-[#02070a] dark:via-[#02070a]/65 dark:to-transparent" />
+      </div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-12 sm:py-14 md:py-16">
+      {/* Foreground Content */}
+      <div className="relative z-10">
+        {/* Hero Header */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 pb-10 sm:pt-14 sm:pb-12">
           <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-extrabold mb-3 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
             A great DJ plays the right song at the right time
           </h1>
@@ -44,25 +47,24 @@ export default function DJServices() {
             </Link>
           </div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14">
-        
-        {/* Service Description */}
-        <div className="mb-8 text-center">
-          <h2 className="text-xl font-bold mb-6 theme-heading">Professional DJ Services</h2>
-          <p className="text theme-body mb-4 leading-relaxed">
-            No event and crowd are the same. You need a seasoned professional to both keep the event on schedule, 
-            and the crowd entertained with music that speaks to them.
-          </p>
-        </div>
+        {/* Main Content */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-14">
+          
+          {/* Service Description */}
+          <div className="theme-card-glass rounded-2xl p-6 sm:p-8 mb-8 text-center">
+            <h2 className="text-xl font-bold mb-4 theme-heading">Professional DJ Services</h2>
+            <p className="text theme-body leading-relaxed">
+              No event and crowd are the same. You need a seasoned professional to both keep the event on schedule, 
+              and the crowd entertained with music that speaks to them.
+            </p>
+          </div>
 
-        {/* Event Experience Tabbed Gallery */}
-        <TabbedEventGallery categories={eventCategories} />
+          {/* Event Experience Tabbed Gallery */}
+          <TabbedEventGallery categories={eventCategories} />
 
-        {/* Mixcloud Section */}
-        <div className="theme-card rounded-2xl p-8 mb-10">
+          {/* Mixcloud Section */}
+          <div className="theme-card-glass rounded-2xl p-8 mb-10">
           <h2 className="text-2xl font-bold mb-2 text-center theme-heading">Sample DJ Mixes</h2>
           <p className="text-center theme-muted mb-8 text-sm">
             Curated event sets across Disco, 80s, 90s, and Top 40 by Dave Clayton
@@ -93,8 +95,8 @@ export default function DJServices() {
             />
           </div>
         </div>
- {/* Equipment & Capabilities */}
-        <div className="theme-card rounded-2xl p-8 mb-14">
+        {/* Equipment & Capabilities */}
+        <div className="theme-card-glass rounded-2xl p-8 mb-14">
           <h2 className="text-xl md:text-xl font-bold mb-4 text-center theme-heading">Equipment & Capabilities</h2>
           <p className="text-center theme-body leading-relaxed mb-4">
             Sound and lighting can be scaled up and down to your needs and venue size.
@@ -164,7 +166,7 @@ export default function DJServices() {
         </div>
         {/* Yelp Testimonial Link */}
         <div className="mb-14">
-          <div className="theme-card rounded-2xl p-6 text-center">
+          <div className="theme-card-glass rounded-2xl p-6 text-center">
             <a 
               href="http://yelp.com/biz/natural-selection-seattle" 
               target="_blank" 
@@ -194,6 +196,7 @@ export default function DJServices() {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

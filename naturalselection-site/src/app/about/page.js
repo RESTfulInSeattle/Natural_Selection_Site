@@ -18,10 +18,9 @@ function AboutShell({ children }) {
           quality={90}
         />
 
-        {/* Ambient Dark Scrim & Smooth Vertical Fade into Page Background */}
-        <div className="absolute inset-0 bg-slate-950/40 dark:bg-black/50 backdrop-blur-[0.5px]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/15 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-56 bg-gradient-to-t from-white via-white/60 to-transparent dark:from-[#02070a] dark:via-[#02070a]/60 dark:to-transparent" />
+        {/* Ambient Scrim & Smooth Vertical Fade into Page Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/35 to-white/25 dark:from-black/80 dark:via-black/50 dark:to-black/40 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-x-0 bottom-0 h-56 sm:h-64 bg-gradient-to-t from-white via-white/75 to-transparent dark:from-[#02070a] dark:via-[#02070a]/75 dark:to-transparent" />
       </div>
 
       {/* Foreground Content */}
@@ -84,23 +83,23 @@ export default async function About() {
             His underground moniker, Clayton the Chemist, features vibes that run the gamut of House, 
             Bass Music, Drum & Bass, Nu Funk, Nu Jazz, and Nu Soul.
           </p>
-          <div className="space-y-4 pt-4 border-t border-slate-200/80 dark:border-emerald-500/20">
+          <div className="space-y-4 pt-4 border-t border-slate-300/80 dark:border-emerald-500/20">
             <h3 className="text-xl font-semibold theme-heading">Core Expertise:</h3>
             <ul className="grid sm:grid-cols-2 gap-3 theme-body">
               <li className="flex items-center">
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 font-bold">✓</span>
+                <span className="text-emerald-700 dark:text-emerald-400 mr-3 font-bold">✓</span>
                 Professional Event DJ Services
               </li>
               <li className="flex items-center">
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 font-bold">✓</span>
+                <span className="text-emerald-700 dark:text-emerald-400 mr-3 font-bold">✓</span>
                 Audio Mastering & Engineering
               </li>
               <li className="flex items-center">
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 font-bold">✓</span>
+                <span className="text-emerald-700 dark:text-emerald-400 mr-3 font-bold">✓</span>
                 Sound System Design & Setup
               </li>
               <li className="flex items-center">
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 font-bold">✓</span>
+                <span className="text-emerald-700 dark:text-emerald-400 mr-3 font-bold">✓</span>
                 Acoustical Consultation
               </li>
             </ul>
