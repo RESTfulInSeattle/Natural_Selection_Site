@@ -4,13 +4,29 @@ import Link from "next/link";
 export default function Mastering() {
   return (
     <div className="min-h-screen theme-page">
-      {/* Hero Section */}
-      <div className="theme-hero py-16 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-xl md:text-xl font-bold mb-4 tracking-tight theme-heading">
+      {/* Hero Section with Studio Background */}
+      <div className="relative flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <Image
+          src="/images/pages/mastering/mastering-studio-hero.jpg"
+          alt="Natural Selection audio mastering studio with acoustic treatment, reference monitors, and outboard gear"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_48%] select-none pointer-events-none"
+          quality={90}
+        />
+
+        {/* Ambient Dark Scrim & Gradients for Contrast and Depth */}
+        <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-slate-950/70" />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-16 sm:py-20">
+          <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-extrabold mb-3 tracking-tight text-white max-w-3xl mx-auto leading-tight drop-shadow-lg">
             Professional Audio Mastering Services
           </h1>
-          <p className="text-base md:text theme-muted max-w-3xl mx-auto font-normal leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-3xl mx-auto font-normal leading-relaxed drop-shadow-md">
             The final step to ensure your music translates perfectly on any system. 
             World-class digital mastering technology in an acoustically neutral environment.
           </p>
@@ -37,11 +53,11 @@ export default function Mastering() {
           <h2 className="text-xl md:text-xl font-bold mb-6 text-center theme-heading">Current Mastering Chain</h2>
           <div className="text-center mb-6">
             <Image
-              src="/images/pages/mastering/currentmasteringchain.png"
+              src="/images/pages/mastering/current-mastering-chain.png"
               alt="Natural Selection Mastering Chain"
-              width={600}
-              height={400}
-              className="mx-auto rounded-xl shadow-lg border border-emerald-500/20"
+              width={960}
+              height={512}
+              className="mx-auto w-full max-w-2xl h-auto rounded-xl shadow-lg border border-emerald-500/20"
             />
           </div>
           <p className="text-center theme-muted text-sm max-w-xl mx-auto">

@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="min-h-screen theme-page">
       {/* Hero Section with DJ Ballroom Background */}
-      <div className="relative min-h-[540px] md:min-h-[640px] lg:min-h-[720px] flex items-center justify-center overflow-hidden">
+      <div className="relative flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <Image
           src="/images/pages/home/dj-ballroom-hero.jpg"
@@ -13,17 +13,17 @@ export default function Home() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center select-none pointer-events-none"
+          className="object-cover object-[center_55%] select-none pointer-events-none"
           quality={90}
         />
 
         {/* Ambient Dark Scrim & Gradients for Readability and Depth */}
         <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-[0.5px]" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-slate-950/70" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white dark:from-[#02070a] to-transparent pointer-events-none" />
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 md:py-24 text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-8 tracking-tight text-white max-w-4xl mx-auto leading-tight drop-shadow-lg">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 sm:py-14 md:py-16 text-center">
+          <h1 className="text-xl sm:text-xl md:text-xl lg:text-xl font-extrabold mb-6 tracking-tight text-white max-w-4xl mx-auto leading-tight drop-shadow-lg">
             Dedicated to the Art of Deejaying, Music Production, Audio Engineering, and Acoustics.
           </h1>
 
@@ -38,89 +38,78 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Experience Banner */}
-      <div className="theme-banner py-5 border-y">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-black/40 backdrop-blur-sm border border-emerald-500/15 shadow-sm">
-              <div className="text-2xl font-extrabold mb-2 bg-gradient-to-r from-emerald-600 to-sky-600 dark:from-emerald-400 dark:to-sky-300 bg-clip-text text-transparent">28</div>
-              <div className="theme-muted font-medium">Years Experience</div>
-            </div>
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-black/40 backdrop-blur-sm border border-emerald-500/15 shadow-sm">
-              <div className="text-2xl font-extrabold mb-2 bg-gradient-to-r from-sky-600 to-emerald-600 dark:from-sky-400 dark:to-emerald-300 bg-clip-text text-transparent">100+</div>
-              <div className="theme-muted font-medium">Events Completed</div>
-            </div>
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-black/40 backdrop-blur-sm border border-emerald-500/15 shadow-sm">
-              <div className="text-2xl font-extrabold mb-2 bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent">100%</div>
-              <div className="theme-muted font-medium">Client Satisfaction</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      
       {/* Services Section */}
       <div className="py-10 theme-page">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold theme-heading mb-4">Our Services</h2>
-            <p className="text-lg theme-muted max-w-3xl mx-auto">
-              From DJing unforgettable events to professional audio mastering, 
-              Natural Selection brings expertise across the entire music spectrum.
-            </p>
+            
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* DJ Services */}
-            <Link href="/dj-services" className="group">
-              <div className="theme-card rounded-2xl p-6 text-center h-full hover:scale-[1.02] transition-all duration-200">
-                <div className="gradient-accent text-white rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-200 shadow-md">
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.369 4.369 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
-                  </svg>
+            {[
+              {
+                href: "/dj-services",
+                title: "DJ Services",
+                description: "Professional event DJing for weddings, corporate events, and entertainment",
+                logo: "ns-deejaying",
+                alt: "Natural Selection Deejaying",
+                width: 1008,
+                height: 474,
+              },
+              {
+                href: "/mastering",
+                title: "Audio Mastering",
+                description: "Professional mastering services to make your music sound its best",
+                logo: "ns-mastering",
+                alt: "Natural Selection Mastering",
+                width: 1024,
+                height: 473,
+              },
+              {
+                href: "/music",
+                title: "Music & Production",
+                description: "Original music composition and production for media and licensing",
+                logo: "ns-music",
+                alt: "Natural Selection Music",
+                width: 1006,
+                height: 474,
+              },
+              {
+                href: "/about",
+                title: "Consultation",
+                description: "Acoustical consultation and studio design expertise",
+                logo: "ns-music",
+                alt: "Natural Selection Music",
+                width: 1006,
+                height: 474,
+              },
+            ].map((service) => (
+              <Link key={service.title} href={service.href} className="group">
+                <div className="theme-card rounded-2xl p-6 text-center h-full hover:scale-[1.02] transition-all duration-200">
+                  <div className="h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-200">
+                    <Image
+                      src={`/images/${service.logo}-black.png`}
+                      alt={service.alt}
+                      width={service.width}
+                      height={service.height}
+                      className="h-14 w-auto object-contain dark:hidden"
+                    />
+                    <Image
+                      src={`/images/${service.logo}-white.png`}
+                      alt={service.alt}
+                      width={service.width}
+                      height={service.height}
+                      className="h-14 w-auto object-contain hidden dark:block"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2 theme-heading group-hover:text-emerald-500 transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="theme-muted text-sm leading-relaxed">{service.description}</p>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 theme-heading group-hover:text-emerald-500 transition-colors">DJ Services</h3>
-                <p className="theme-muted text-sm leading-relaxed">Professional event DJing for weddings, corporate events, and entertainment</p>
-              </div>
-            </Link>
-
-            {/* Audio Mastering */}
-            <Link href="/mastering" className="group">
-              <div className="theme-card rounded-2xl p-6 text-center h-full hover:scale-[1.02] transition-all duration-200">
-                <div className="gradient-accent text-white rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-200 shadow-md">
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-2 theme-heading group-hover:text-emerald-500 transition-colors">Audio Mastering</h3>
-                <p className="theme-muted text-sm leading-relaxed">Professional mastering services to make your music sound its best</p>
-              </div>
-            </Link>
-
-            {/* Music Production */}
-            <Link href="/music" className="group">
-              <div className="theme-card rounded-2xl p-6 text-center h-full hover:scale-[1.02] transition-all duration-200">
-                <div className="gradient-accent text-white rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-200 shadow-md">
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217z" clipRule="evenodd"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-2 theme-heading group-hover:text-emerald-500 transition-colors">Music & Production</h3>
-                <p className="theme-muted text-sm leading-relaxed">Original music composition and production for media and licensing</p>
-              </div>
-            </Link>
-
-            {/* Consultation */}
-            <Link href="/about" className="group">
-              <div className="theme-card rounded-2xl p-6 text-center h-full hover:scale-[1.02] transition-all duration-200">
-                <div className="gradient-accent text-white rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-200 shadow-md">
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-2 theme-heading group-hover:text-emerald-500 transition-colors">Consultation</h3>
-                <p className="theme-muted text-sm leading-relaxed">Acoustical consultation and studio design expertise</p>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

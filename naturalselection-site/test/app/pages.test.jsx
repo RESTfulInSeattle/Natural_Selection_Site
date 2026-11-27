@@ -40,6 +40,8 @@ describe('App Router Pages and Layout', () => {
       const PageJSX = await About();
       render(PageJSX);
       expect(screen.getByText(/About Natural Selection/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Natural Selection Mural by Bret Seyfert/i)).toBeInTheDocument();
+      expect(screen.queryByAltText('muralleveled')).not.toBeInTheDocument();
     });
 
     it('renders ExistingAboutContent fallback when markdown content is missing', async () => {
@@ -88,6 +90,7 @@ describe('App Router Pages and Layout', () => {
       render(<Mastering />);
       expect(screen.getByText(/Professional Audio Mastering Services/i)).toBeInTheDocument();
       expect(screen.getByText(/Current Mastering Chain/i)).toBeInTheDocument();
+      expect(screen.getByAltText(/Natural Selection audio mastering studio/i)).toBeInTheDocument();
     });
   });
 
